@@ -1,0 +1,137 @@
+{
+    "systems": [
+        {
+            "id": 1,
+            "name": ".50 Cal Machine Gun",
+            "tech_level": 1,
+            "slots": 2,
+            "salvage_value": 2
+        },
+        {
+            "id": 2,
+            "name": "Armour Plating",
+            "tech_level": 1,
+            "slots": 2,
+            "salvage_value": 1
+        },
+        {
+            "id": 3,
+            "name": "Cargo Pod",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 4,
+            "name": "Chainsaw Arm",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 5,
+            "name": "Escape Hatch",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 6,
+            "name": "Floodlights",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 7,
+            "name": "FM-3 Flamethrower",
+            "tech_level": 1,
+            "slots": 3,
+            "salvage_value": 3
+        },
+        {
+            "id": 8,
+            "name": "High Pressure Hose",
+            "tech_level": 1,
+            "slots": 2,
+            "salvage_value": 2
+        },
+        {
+            "id": 9,
+            "name": "Hydraulic Crusher",
+            "tech_level": 1,
+            "slots": 4,
+            "salvage_value": 4
+        },
+        {
+            "id": 10,
+            "name": "Locomotion System",
+            "tech_level": 1,
+            "slots": 2,
+            "salvage_value": 2
+        },
+        {
+            "id": 11,
+            "name": "Loudspeakers",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 12,
+            "name": "Mechapult",
+            "tech_level": 1,
+            "slots": 5,
+            "salvage_value": 3
+        },
+        {
+            "id": 13,
+            "name": "Mini Mortar",
+            "tech_level": 1,
+            "slots": 5,
+            "salvage_value": 5
+        },
+        {
+            "id": 14,
+            "name": "Mining Rig",
+            "tech_level": 1,
+            "slots": 5,
+            "salvage_value": 5
+        },
+        {
+            "id": 15,
+            "name": "Red Laser",
+            "tech_level": 1,
+            "slots": 3,
+            "salvage_value": 3
+        },
+        {
+            "id": 16,
+            "name": "Rigging Arm",
+            "tech_level": 1,
+            "slots": 2,
+            "salvage_value": 2
+        },
+        {
+            "id": 17,
+            "name": "Riveting Gun",
+            "tech_level": 1,
+            "slots": 3,
+            "salvage_value": 4
+        },
+        {
+            "id": 18,
+            "name": "Sandblaster",
+            "tech_level": 1,
+            "slots": 3,
+            "salvage_value": 2
+        },
+        {
+            "id": 19,
+            "name": "Transport Hold",
+            "tech_level": 1,
+            "slots": 2,
+            "salvage_value": 2
+        }
+    ]
+}

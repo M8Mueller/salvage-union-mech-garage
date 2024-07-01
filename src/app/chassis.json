@@ -1,0 +1,154 @@
+{
+    "chassis": [
+        {
+            "id": 1,
+            "name": "Mule",
+            "structure_pts": 12,
+            "energy_pts": 4,
+            "heat_cap": 6,
+            "system_slots": 16,
+            "module_slots": 2,
+            "cargo_cap": 16,
+            "tech_level": 1,
+            "salvage_value": 7,
+            "ability": {
+                "name": "Integrated Cargo Bay",
+                "description": "Increases the Cargo Capacity of the Mule by 10, to 16."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                },
+                {
+                    "id": 2,
+                    "name": "Hauler",
+                    "systems": [1, 5, 6, 10, 11, 16],
+                    "modules": [1, 8]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Mazona",
+            "structure_pts": 5,
+            "energy_pts": 10,
+            "heat_cap": 6,
+            "system_slots": 7,
+            "module_slots": 3,
+            "cargo_cap": 6,
+            "tech_level": 1,
+            "salvage_value": 4,
+            "ability": {
+                "name": "Hover Drone",
+                "description": "The Mazona has an Integrated Hover Locomotion System which is included in its profile. This allows it to hover over obstacles and terrain."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [5],
+                    "modules": [1]
+                },
+                {
+                    "id": 2,
+                    "name": "Buzzard",
+                    "systems": [7, 7, 11],
+                    "modules": [1, 7, 9]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Scrapper",
+            "structure_pts": 9,
+            "energy_pts": 9,
+            "heat_cap": 8,
+            "system_slots": 12,
+            "module_slots": 2,
+            "cargo_cap": 6,
+            "tech_level": 1,
+            "salvage_value": 6,
+            "ability": {
+                "name": "Hazard Protected Chassis",
+                "description": "The Scrapper suffers no effect or damage from hazardous environmental effects such as radiation storms. In addition, when dealing with severe environmental hazards they may Push once for free to circumvent or resist any effects."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                },
+                {
+                    "id": 2,
+                    "name": "Leaky",
+                    "systems": [4, 5, 10, 17, 16],
+                    "modules": [1, 5]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Spectrum",
+            "structure_pts": 17,
+            "energy_pts": 11,
+            "heat_cap": 3,
+            "system_slots": 7,
+            "module_slots": 4,
+            "cargo_cap": 6,
+            "tech_level": 1,
+            "salvage_value": 10,
+            "ability": {
+                "name": "Data Scanner",
+                "description": "The Spectrum is a mobile data repository that has all manner of information stored within it. It is able to scan objects to both gain information about them and store that data to access at a later time."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                },
+                {
+                    "id": 2,
+                    "name": "Settler",
+                    "systems": [1, 5, 10],
+                    "modules": [1, 6, 5, 4]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Thresher",
+            "structure_pts": 15,
+            "energy_pts": 6,
+            "heat_cap": 10,
+            "system_slots": 9,
+            "module_slots": 2,
+            "cargo_cap": 6,
+            "tech_level": 1,
+            "salvage_value": 9,
+            "ability": {
+              "name": "Heavily Armoured Chassis",
+              "description": "Any attack that rolls a 'Nailed It' (20) result against the Thresher counts as a standard hit (11-19) and does not deal 2x damage or have any other bonus effect."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                },
+                {
+                    "id": 2,
+                    "name": "Shepherd",
+                    "systems": [15, 2, 5, 6, 10],
+                    "modules": [1, 10]
+                }
+            ]
+        }
+    ]
+}
