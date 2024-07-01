@@ -1,0 +1,74 @@
+{
+    "modules": [
+        {
+            "id": 1,
+            "name": "Comms Module",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 2,
+            "name": "Eggs Mayhem",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 3
+        },
+        {
+            "id": 3,
+            "name": "Equipment Locker",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 4,
+            "name": "Firewall",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 2
+        },
+        {
+            "id": 5,
+            "name": "Personal Recreation Device",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 6,
+            "name": "Reactor Flare",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 7,
+            "name": "Self-Destruct",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 1
+        },
+        {
+            "id": 8,
+            "name": "Survey Scanner",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 3
+        },
+        {
+            "id": 9,
+            "name": "Weapon Link",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 3
+        },
+        {
+            "id": 10,
+            "name": "Zoom Optics",
+            "tech_level": 1,
+            "slots": 1,
+            "salvage_value": 2
+        }
+    ]
+}
