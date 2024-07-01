@@ -1,0 +1,164 @@
+
+<form class="form-horizontal" [formGroup]="mechForm">
+    <div class="row mb-4">
+        <div class="col">
+            <fieldset class="form-group border px-4">
+                <legend>Scrap Required</legend>
+                <dl class="row">
+                    <div class="col border text-center" *ngFor="let techLevel of techLevels">
+                        <dt>T{{ techLevel }}</dt>
+                        <dd>{{ scrapCost[techLevel] }}</dd>
+                    </div>
+                </dl>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg">
+            <div class="row mb-4">
+                <label class="col-4 col-form-label fw-bold mb-2" for="name">Mech Name</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" id="name" formControlName="name">
+                </div>
+
+                <label class="col-4 col-form-label fw-bold" for="pilot">Pilot Name</label>
+                <div class="col-8">
+                    <input class="form-control" type="text" id="pilot" formControlName="pilot">
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <fieldset class="form-group border p-4">
+                        <div class="row mb-2">
+                            <label class="col-4 col-form-label fw-bold" for="chassis">Chassis</label>
+                            <div class="col-8">
+                                <select class="form-select" id="chassis" formControlName="chassis">
+                                    <option [ngValue]="0" disabled hidden>Select a chassis...</option>
+                                    <option *ngFor="let chas of chassisList" [ngValue]="chas.id">{{ chas.name }} (Tech Level {{ chas.tech_level }})</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2" *ngIf="chassis">
+                            <label class="col-4 col-form-label fw-bold" for="pattern">Pattern</label>
+                            <div class="col-8">
+                                <select class="form-select" id="pattern" formControlName="pattern">
+                                    <option [ngValue]="0">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="chassis">
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <dl class="row">
+                                        <dt class="col-4">Structure Points</dt>
+                                        <dd class="col-8">{{ chassis.structure_pts }}</dd>
+                                        
+                                        <dt class="col-4">Energy Points</dt>
+                                        <dd class="col-8">{{ chassis.energy_pts }}</dd>
+                                        
+                                        <dt class="col-4">Heat Capacity</dt>
+                                        <dd class="col-8">{{ chassis.heat_cap }}</dd>
+                                        
+                                        <dt class="col-4">System Slots</dt>
+                                        <dd class="col-8"><i class="bi bi-triangle-fill"></i> {{ chassis.system_slots }}</dd>
+                                        
+                                        <dt class="col-4">Module Slots</dt>
+                                        <dd class="col-8"><i class="bi bi-triangle-fill"></i> {{ chassis.module_slots }}</dd>
+                                        
+                                        <dt class="col-4">Cargo Capacity</dt>
+                                        <dd class="col-8">{{ chassis.module_slots }}</dd>
+                                        
+                                        <dt class="col-4">Tech Level</dt>
+                                        <dd class="col-8"><i class="bi bi-square-fill"></i> {{ chassis.tech_level }}</dd>
+                                        
+                                        <dt class="col-4">Salvage Value</dt>
+                                        <dd class="col-8"><i class="bi bi-gear-fill"></i> {{ chassis.salvage_value }}</dd>
+                                        
+                                        <dt class="col-4">Chassis Ability</dt>
+                                        <dd class="col-8">{{ chassis.ability }}</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <ng-container *ngIf="chassis">
+                <div class="row">
+                    <div class="col">
+                        <fieldset class="form-group border p-4">
+                            <legend>Systems <div class="float-end"><i class="bi bi-triangle-fill"></i> {{ systemSlotCount }} / {{ chassis.system_slots }}</div></legend>
+                            
+                            <div *ngFor="let system of systemsFormArray().value; let i = index">
+                                <span class="align-middle me-2">{{ system.name }}</span>
+                                <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ system.tech_level }}</span>
+                                <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ system.slots }}</span>
+                                <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ system.salvage_value }}</span>
+                                <button class="btn btn-danger btn-sm float-end" (click)="removeSystem(i)"><i class="bi bi-dash-circle"></i></button>
+                                <hr>
+                            </div>
+                            <button class="btn btn-primary mb-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#system_picker" aria-controls="system_picker" [disabled]="systemSlotCount >= chassis.system_slots">
+                                Add Systems
+                            </button>
+                        </fieldset>
+
+                        <hr>
+
+                        <fieldset class="form-group border p-4">
+                            <legend>Modules <div class="float-end"><i class="bi bi-triangle-fill"></i> {{ moduleSlotCount }} / {{ chassis.module_slots }}</div></legend>
+                            
+                            <div *ngFor="let module of modulesFormArray().value; let i = index">
+                                <span class="align-middle me-2">{{ module.name }}</span>
+                                <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ module.tech_level }}</span>
+                                <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ module.slots }}</span>
+                                <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ module.salvage_value }}</span>
+                                <button class="btn btn-danger btn-sm float-end" (click)="removeModule(i)"><i class="bi bi-dash-circle"></i></button>
+                                <hr>
+                            </div>
+                            <button class="btn btn-primary mb-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#module_picker" aria-controls="module_picker" [disabled]="moduleSlotCount >= chassis.module_slots">
+                                Add Modules
+                            </button>
+                        </fieldset>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</form>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="system_picker" aria-labelledby="system_picker_label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="system_picker_label">Add Systems</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div *ngFor="let system of systemList">
+            <span class="align-middle me-2">{{ system.name }}</span>
+            <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ system.tech_level }}</span>
+            <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ system.slots }}</span>
+            <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ system.salvage_value }}</span>
+            <button class="btn btn-primary btn-sm float-end" (click)="addSystem(system.id)" [disabled]="systemSlotCount + system.slots > chassis.system_slots"><i class="bi bi-plus-circle"></i></button>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="module_picker" aria-labelledby="module_picker_label">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="module_picker_label">Add Modules</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div *ngFor="let module of moduleList">
+            <span class="align-middle me-2">{{ module.name }}</span>
+            <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ module.tech_level }}</span>
+            <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ module.slots }}</span>
+            <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ module.salvage_value }}</span>
+            <button class="btn btn-primary btn-sm float-end" (click)="addModule(module.id)" [disabled]="moduleSlotCount + module.slots > chassis.module_slots"><i class="bi bi-plus-circle"></i></button>
+            <hr>
+        </div>
+    </div>
+</div>
