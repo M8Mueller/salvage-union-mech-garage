@@ -204,7 +204,7 @@
     <div class="offcanvas-body container">
         <ng-container *ngFor="let system of systemList">
             <div class="row">
-                <div class="col-6"><span class="align-middle">{{ system.name }}</span></div>
+                <div class="col-6"><span class="align-middle fw-bold">{{ system.name }}</span></div>
                 <div class="col-5">
                     <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ system.tech_level }}</span>
                     <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ system.slots }}</span>
@@ -214,6 +214,11 @@
                     <button class="btn btn-primary btn-sm float-end" (click)="addSystem(system.id)" [disabled]="systemSlotCount + system.slots > chassis.system_slots" *ngIf="chassis">
                         <i class="bi bi-box-arrow-in-up"></i>
                     </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-secondary" *ngFor="let trait of system.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
                 </div>
             </div>
             <hr>
@@ -229,7 +234,7 @@
     <div class="offcanvas-body container">
         <ng-container *ngFor="let module of moduleList">
             <div class="row">
-                <div class="col-6"><span class="align-middle">{{ module.name }}</span></div>
+                <div class="col-6"><span class="align-middle fw-bold">{{ module.name }}</span></div>
                 <div class="col-5">
                     <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ module.tech_level }}</span>
                     <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ module.slots }}</span>
@@ -239,6 +244,11 @@
                     <button class="btn btn-primary btn-sm float-end" (click)="addModule(module.id)" [disabled]="moduleSlotCount + module.slots > chassis.module_slots" *ngIf="chassis">
                         <i class="bi bi-box-arrow-in-up"></i>
                     </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-secondary" *ngFor="let trait of module.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
                 </div>
             </div>
             <hr>
