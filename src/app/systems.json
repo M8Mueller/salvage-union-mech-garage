@@ -25,8 +25,8 @@
             "id": 4,
             "name": "Chainsaw Arm",
             "tech_level": 1,
-            "slots": 1,
-            "salvage_value": 1
+            "slots": 3,
+            "salvage_value": 3
         },
         {
             "id": 5,
