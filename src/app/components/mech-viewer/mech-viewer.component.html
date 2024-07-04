@@ -114,10 +114,10 @@
 
                         <dl class="row text-center mb-0 collapse show" id="scrapSection">
                             <div class="col" *ngFor="let techLevel of techLevels">
-                                <fieldset class="form-group border p-2">
+                                <fieldset class="form-group p-2">
                                     <legend>T{{ techLevel }}</legend>
                                     <hr>
-                                    <span class="fs-3">{{ scrapCost[techLevel] }}</span>
+                                    <span class="text-secondary fs-3">{{ scrapCost[techLevel] }}</span>
                                 </fieldset>
                             </div>
                         </dl>
@@ -193,7 +193,7 @@
                             <i class="bi bi-plus"></i> Add Systems
                         </button>
 
-                        <button class="btn btn-secondary-outline float-end me-2" type="button"  (click)="clearSystems()" [disabled]="!chassis">
+                        <button class="btn btn-secondary-outline float-end me-2" type="button" (click)="clearSystems()" [disabled]="!chassis">
                             Clear Systems
                         </button>
                     </fieldset>
@@ -244,33 +244,11 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body container">
-        <ng-container *ngFor="let system of systemList">
-            <div class="row">
-                <div class="col-6"><span class="align-middle fw-bold">{{ system.name }}</span></div>
-                <div class="col-5">
-                    <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ system.tech_level }}</span>
-                    <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ system.slots }}</span>
-                    <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ system.salvage_value }}</span>
-                </div>
-                <div class="col-1">
-                    <button class="btn btn-primary btn-sm float-end" (click)="addSystem(system.id)" [disabled]="systemSlotCount + system.slots > chassis.system_slots" *ngIf="chassis">
-                        <i class="bi bi-box-arrow-in-up"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span class="fw-bold" *ngIf="system.ep_cost">{{ system.ep_cost }}EP  <i class="bi bi-caret-right-fill"></i> </span>
-                    <span class="text-secondary" *ngFor="let trait of system.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
-                    <div *ngFor="let action of system.actions">
-                        <span class="fw-bold" *ngIf="action.ep_cost">{{ action.ep_cost }}EP <i class="bi bi-caret-right-fill"></i> </span>
-                        <span class="fw-bold">{{ action.name }} </span>
-                        <span class="text-secondary" *ngFor="let trait of action.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
-                    </div>
-                </div>
-            </div>
-            <hr>
-        </ng-container>
+        <app-mech-component-picker
+            [componentList]="systemList"
+            [availableSlots]="chassis.system_slots - systemSlotCount"
+            (componentSelected)="addSystem($event)"
+            *ngIf="chassis"></app-mech-component-picker>
     </div>
 </div>
 
@@ -280,27 +258,10 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body container">
-        <ng-container *ngFor="let module of moduleList">
-            <div class="row">
-                <div class="col-6"><span class="align-middle fw-bold">{{ module.name }}</span></div>
-                <div class="col-5">
-                    <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ module.tech_level }}</span>
-                    <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ module.slots }}</span>
-                    <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ module.salvage_value }}</span>
-                </div>
-                <div class="col-1">
-                    <button class="btn btn-primary btn-sm float-end" (click)="addModule(module.id)" [disabled]="moduleSlotCount + module.slots > chassis.module_slots" *ngIf="chassis">
-                        <i class="bi bi-box-arrow-in-up"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span class="fw-bold" *ngIf="module.ep_cost">{{ module.ep_cost }}EP <i class="bi bi-caret-right-fill"></i> </span>
-                    <span class="text-secondary" *ngFor="let trait of module.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
-                </div>
-            </div>
-            <hr>
-        </ng-container>
+        <app-mech-component-picker
+            [componentList]="moduleList"
+            [availableSlots]="chassis.module_slots - moduleSlotCount"
+            (componentSelected)="addModule($event)"
+            *ngIf="chassis"></app-mech-component-picker>
     </div>
 </div>

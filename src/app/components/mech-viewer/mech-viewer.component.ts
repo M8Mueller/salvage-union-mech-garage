@@ -7,6 +7,7 @@ import * as moduleData from '../../data/modules.json';
 import * as systemData from '../../data/systems.json';
 
 import type { Chassis, MechComponent, Pattern } from '../../types/mech.d';
+import { MechComponentPickerComponent } from '../mech-component-picker/mech-component-picker.component';
 
 @Component({
   selector: 'app-mech-viewer',
@@ -14,6 +15,7 @@ import type { Chassis, MechComponent, Pattern } from '../../types/mech.d';
   imports: [
     CommonModule,
     FormsModule,
+    MechComponentPickerComponent,
     ReactiveFormsModule,
   ],
   templateUrl: './mech-viewer.component.html',
