@@ -2,29 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import * as chassisData from '../chassis.json';
-import * as moduleData from '../modules.json';
-import * as systemData from '../systems.json';
+import * as chassisData from '../../data/chassis.json';
+import * as moduleData from '../../data/modules.json';
+import * as systemData from '../../data/systems.json';
 
-interface Ability {
-  name: string;
-  description: string;
-}
-
-interface Chassis {
-  id: number;
-  name: string;
-  structure_pts: number;
-  energy_pts: number;
-  heat_cap: number;
-  system_slots: number;
-  module_slots: number;
-  cargo_cap: number;
-  tech_level: number;
-  salvage_value: number;
-  ability: Ability;
-  patterns: any[];
-}
+import type { Chassis, MechComponent, Pattern } from '../../types/mech.d';
 
 @Component({
   selector: 'app-mech-viewer',
@@ -40,12 +22,12 @@ interface Chassis {
 export class MechViewerComponent implements OnInit{
   techLevels = [1, 2, 3, 4, 5, 6];
 
-  chassisList = chassisData.chassis;
-  moduleList = moduleData.modules;
-  systemList = systemData.systems;
+  chassisList: Chassis[] = chassisData.chassis;
+  moduleList: MechComponent[] = moduleData.modules;
+  systemList: MechComponent[] = systemData.systems;
+  patternList: Pattern[] = [];
 
   chassis: any = null;
-  patternList: any[] = [];
 
   systemSlotCount: number = 0;
   moduleSlotCount: number = 0;
@@ -221,8 +203,8 @@ export class MechViewerComponent implements OnInit{
       this.clearSystems(false);
       this.clearModules(false);
 
-      pattern.systems.forEach((sys: number) => this.addSystem(sys, false));
-      pattern.modules.forEach((sys: number) => this.addModule(sys, false));
+      pattern?.systems.forEach((sys: number) => this.addSystem(sys, false));
+      pattern?.modules.forEach((sys: number) => this.addModule(sys, false));
 
       this.calculateValues();
     });

@@ -260,7 +260,13 @@
             </div>
             <div class="row">
                 <div class="col">
+                    <span class="fw-bold" *ngIf="system.ep_cost">{{ system.ep_cost }}EP  <i class="bi bi-caret-right-fill"></i> </span>
                     <span class="text-secondary" *ngFor="let trait of system.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
+                    <div *ngFor="let action of system.actions">
+                        <span class="fw-bold" *ngIf="action.ep_cost">{{ action.ep_cost }}EP <i class="bi bi-caret-right-fill"></i> </span>
+                        <span class="fw-bold">{{ action.name }} </span>
+                        <span class="text-secondary" *ngFor="let trait of action.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -290,6 +296,7 @@
             </div>
             <div class="row">
                 <div class="col">
+                    <span class="fw-bold" *ngIf="module.ep_cost">{{ module.ep_cost }}EP <i class="bi bi-caret-right-fill"></i> </span>
                     <span class="text-secondary" *ngFor="let trait of module.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
                 </div>
             </div>
