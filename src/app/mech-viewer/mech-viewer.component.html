@@ -5,25 +5,27 @@
             <div class="row mb-4">
                 <div class="col">
                     <fieldset class="form-group border p-4">
-                        <legend>Administrative
+                        <legend data-bs-toggle="collapse" href="#adminSection" role="button" aria-expanded="false" aria-controls="adminSection">
+                            <span>Administrative</span>
                             <div class="float-end">
                                 <i class="bi bi-pen-fill"></i>
                             </div>
                         </legend>
 
                         <hr>
-
-                        <div class="row mb-2">
-                            <label class="col-4 col-form-label fw-bold" for="name">Mech Name</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="name" formControlName="name">
+                        <div class="collapse show" id="adminSection">
+                            <div class="row mb-2">
+                                <label class="col-4 col-form-label fw-bold" for="name">Mech Name</label>
+                                <div class="col-8">
+                                    <input class="form-control" type="text" id="name" formControlName="name">
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <label class="col-4 col-form-label fw-bold" for="pilot">Pilot Callsign</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="pilot" formControlName="pilot">
+    
+                            <div class="row">
+                                <label class="col-4 col-form-label fw-bold" for="pilot">Pilot Callsign</label>
+                                <div class="col-8">
+                                    <input class="form-control" type="text" id="pilot" formControlName="pilot">
+                                </div>
                             </div>
                         </div>
                     </fieldset>
@@ -101,23 +103,63 @@
             <div class="row mb-4">
                 <div class="col">
                     <fieldset class="form-group border p-4">
-                        <legend>Scrap Required
+                        <legend data-bs-toggle="collapse" href="#scrapSection" role="button" aria-expanded="false" aria-controls="scrapSection">
+                            <span>Scrap Required</span>
                             <div class="float-end">
                                 <i class="bi bi-gear-fill"></i>
                             </div>
                         </legend>
 
                         <hr>
-        
-                        <dl class="row">
-                            <div class="col text-center" *ngFor="let techLevel of techLevels">
-                                <dt>TL{{ techLevel }}</dt>
-                                <dd>{{ scrapCost[techLevel] }}</dd>
+
+                        <dl class="row text-center mb-0 collapse show" id="scrapSection">
+                            <div class="col" *ngFor="let techLevel of techLevels">
+                                <fieldset class="form-group border p-2">
+                                    <legend>T{{ techLevel }}</legend>
+                                    <hr>
+                                    <span class="fs-3">{{ scrapCost[techLevel] }}</span>
+                                </fieldset>
                             </div>
                         </dl>
                     </fieldset>
                 </div>
             </div>
+
+            <dl class="row text-center mb-0">
+                <div class="col-6 col-xl-4 mb-4">
+                    <fieldset class="form-group border p-2">
+                        <legend>Structure
+                            <div class="float-end">
+                                <i class="bi bi-shield-fill"></i>
+                            </div>
+                        </legend>
+                        <hr>
+                        <dd class="display-4">{{ chassis?.structure_pts || "?" }}</dd>
+                    </fieldset>
+                </div>
+                <div class="col-6 col-xl-4 mb-4">
+                    <fieldset class="form-group border p-2">
+                        <legend>Energy
+                            <div class="float-end">
+                                <i class="bi bi-lightning-fill"></i>
+                            </div>
+                        </legend>
+                        <hr>
+                        <dd class="display-4">{{ chassis?.energy_pts || "?" }}</dd>
+                    </fieldset>
+                </div>
+                <div class="col-6 offset-3 col-xl-4 offset-xl-0 mb-4">
+                    <fieldset class="form-group border p-2">
+                        <legend>Heat Cap
+                            <div class="float-end">
+                                <i class="bi bi-thermometer-half"></i>
+                            </div>
+                        </legend>
+                        <hr>
+                        <dd class="display-4">{{ chassis?.heat_cap || "?" }}</dd>
+                    </fieldset>
+                </div>
+            </dl>
 
             <div class="row">
                 <div class="col">
@@ -204,7 +246,7 @@
     <div class="offcanvas-body container">
         <ng-container *ngFor="let system of systemList">
             <div class="row">
-                <div class="col-6"><span class="align-middle">{{ system.name }}</span></div>
+                <div class="col-6"><span class="align-middle fw-bold">{{ system.name }}</span></div>
                 <div class="col-5">
                     <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ system.tech_level }}</span>
                     <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ system.slots }}</span>
@@ -214,6 +256,11 @@
                     <button class="btn btn-primary btn-sm float-end" (click)="addSystem(system.id)" [disabled]="systemSlotCount + system.slots > chassis.system_slots" *ngIf="chassis">
                         <i class="bi bi-box-arrow-in-up"></i>
                     </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-secondary" *ngFor="let trait of system.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
                 </div>
             </div>
             <hr>
@@ -229,7 +276,7 @@
     <div class="offcanvas-body container">
         <ng-container *ngFor="let module of moduleList">
             <div class="row">
-                <div class="col-6"><span class="align-middle">{{ module.name }}</span></div>
+                <div class="col-6"><span class="align-middle fw-bold">{{ module.name }}</span></div>
                 <div class="col-5">
                     <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ module.tech_level }}</span>
                     <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ module.slots }}</span>
@@ -239,6 +286,11 @@
                     <button class="btn btn-primary btn-sm float-end" (click)="addModule(module.id)" [disabled]="moduleSlotCount + module.slots > chassis.module_slots" *ngIf="chassis">
                         <i class="bi bi-box-arrow-in-up"></i>
                     </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-secondary" *ngFor="let trait of module.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
                 </div>
             </div>
             <hr>

@@ -5,133 +5,226 @@
             "name": ".50 Cal Machine Gun",
             "tech_level": 1,
             "slots": 2,
-            "salvage_value": 2
+            "salvage_value": 2,
+            "traits": [
+                "Range: Close",
+                "Damage: 2 SP",
+                "Ballistic",
+                "Jamming",
+                "Pinning"
+            ]
         },
         {
             "id": 2,
             "name": "Armour Plating",
             "tech_level": 1,
             "slots": 2,
-            "salvage_value": 1
+            "salvage_value": 1,
+            "traits": [
+                "Passive"
+            ]
         },
         {
             "id": 3,
             "name": "Cargo Pod",
             "tech_level": 1,
             "slots": 1,
-            "salvage_value": 1
+            "salvage_value": 1,
+            "traits": [
+                "Passive"
+            ]
         },
         {
             "id": 4,
             "name": "Chainsaw Arm",
             "tech_level": 1,
             "slots": 3,
-            "salvage_value": 3
+            "salvage_value": 3,
+            "traits": [
+                "Range: Close",
+                "Damage: 2 SP",
+                "Melee",
+                "Salvaging"
+            ]
         },
         {
             "id": 5,
             "name": "Escape Hatch",
             "tech_level": 1,
             "slots": 1,
-            "salvage_value": 1
+            "salvage_value": 1,
+            "traits": [
+                "Reaction",
+                "Escape",
+                "Recommended System"
+            ]
         },
         {
             "id": 6,
             "name": "Floodlights",
             "tech_level": 1,
             "slots": 1,
-            "salvage_value": 1
+            "salvage_value": 1,
+            "traits": [
+                "Free Action",
+                "Range: Medium"
+            ]
         },
         {
             "id": 7,
             "name": "FM-3 Flamethrower",
             "tech_level": 1,
             "slots": 3,
-            "salvage_value": 3
+            "salvage_value": 3,
+            "traits": [
+                "Range: Close",
+                "Damage: 1 SP",
+                "Anti-Organic",
+                "Burn (1)",
+                "Overheat"
+            ]
         },
         {
             "id": 8,
             "name": "High Pressure Hose",
             "tech_level": 1,
             "slots": 2,
-            "salvage_value": 2
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Close",
+                "Pinning",
+                "Uses (5)"
+            ]
         },
         {
             "id": 9,
             "name": "Hydraulic Crusher",
             "tech_level": 1,
             "slots": 4,
-            "salvage_value": 4
+            "salvage_value": 4,
+            "traits": [
+                "Range: Close",
+                "Damage: 3 SP",
+                "Melee",
+                "Rigging",
+                "Salvaging",
+                "Unwieldy"
+            ]
         },
         {
             "id": 10,
             "name": "Locomotion System",
             "tech_level": 1,
             "slots": 2,
-            "salvage_value": 2
+            "salvage_value": 2,
+            "traits": [
+                "Passive",
+                "Recommended System"
+            ]
         },
         {
             "id": 11,
             "name": "Loudspeakers",
             "tech_level": 1,
             "slots": 1,
-            "salvage_value": 1
+            "salvage_value": 1,
+            "traits": [
+                "Free Action",
+                "Range: Medium"
+            ]
         },
         {
             "id": 12,
             "name": "Mechapult",
             "tech_level": 1,
             "slots": 5,
-            "salvage_value": 3
+            "salvage_value": 3,
+            "traits": [
+                "Turn Action",
+                "Range: Long"
+            ]
         },
         {
             "id": 13,
             "name": "Mini Mortar",
             "tech_level": 1,
             "slots": 5,
-            "salvage_value": 5
+            "salvage_value": 5,
+            "traits": [
+                "Range: Medium",
+                "Damage: 5 SP",
+                "Explosive (1)",
+                "Uses (5)"
+            ]
         },
         {
             "id": 14,
             "name": "Mining Rig",
             "tech_level": 1,
             "slots": 5,
-            "salvage_value": 5
+            "salvage_value": 5,
+            "traits": [
+                "Range: Close",
+                "Damage: 4 SP",
+                "Melee",
+                "Salvaging",
+                "Unwieldy"
+            ]
         },
         {
             "id": 15,
             "name": "Red Laser",
             "tech_level": 1,
             "slots": 3,
-            "salvage_value": 3
+            "salvage_value": 3,
+            "traits": [
+                "Range: Close",
+                "Damage: 3 SP",
+                "Energy",
+                "Hot (1)"
+            ]
         },
         {
             "id": 16,
             "name": "Rigging Arm",
             "tech_level": 1,
             "slots": 2,
-            "salvage_value": 2
+            "salvage_value": 2,
+            "traits": [
+                "Range: Close",
+                "Rigging"
+            ]
         },
         {
             "id": 17,
             "name": "Riveting Gun",
             "tech_level": 1,
             "slots": 3,
-            "salvage_value": 4
+            "salvage_value": 4,
+            "traits": []
         },
         {
             "id": 18,
             "name": "Sandblaster",
             "tech_level": 1,
             "slots": 3,
-            "salvage_value": 2
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Close",
+                "Damage: 1 SP"
+            ]
         },
         {
             "id": 19,
             "name": "Transport Hold",
             "tech_level": 1,
             "slots": 2,
-            "salvage_value": 2
+            "salvage_value": 2,
+            "traits": [
+                "Passive"
+            ]
         }
     ]
 }

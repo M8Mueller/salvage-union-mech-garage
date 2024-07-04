@@ -6,6 +6,26 @@ import * as chassisData from '../chassis.json';
 import * as moduleData from '../modules.json';
 import * as systemData from '../systems.json';
 
+interface Ability {
+  name: string;
+  description: string;
+}
+
+interface Chassis {
+  id: number;
+  name: string;
+  structure_pts: number;
+  energy_pts: number;
+  heat_cap: number;
+  system_slots: number;
+  module_slots: number;
+  cargo_cap: number;
+  tech_level: number;
+  salvage_value: number;
+  ability: Ability;
+  patterns: any[];
+}
+
 @Component({
   selector: 'app-mech-viewer',
   standalone: true,
@@ -47,6 +67,8 @@ export class MechViewerComponent implements OnInit{
     systems: this.fb.array([]),
     modules: this.fb.array([]),
   });
+
+  showScrapSection = true;
 
   // Getters
 
