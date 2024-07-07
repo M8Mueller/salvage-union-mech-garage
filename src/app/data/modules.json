@@ -16,6 +16,7 @@
         {
             "id": 2,
             "name": "Eggs Mayhem",
+            "ep_cost": 2,
             "tech_level": 1,
             "slots": 1,
             "salvage_value": 3,
@@ -38,6 +39,7 @@
         {
             "id": 4,
             "name": "Firewall",
+            "ep_cost": 2,
             "tech_level": 1,
             "slots": 1,
             "salvage_value": 2,
@@ -50,6 +52,7 @@
         {
             "id": 5,
             "name": "Personal Recreation Device",
+            "ep_cost": 1,
             "tech_level": 1,
             "slots": 1,
             "salvage_value": 1,
@@ -60,6 +63,7 @@
         {
             "id": 6,
             "name": "Reactor Flare",
+            "ep_cost": 1,
             "tech_level": 1,
             "slots": 1,
             "salvage_value": 1,
@@ -81,6 +85,7 @@
         {
             "id": 8,
             "name": "Survey Scanner",
+            "ep_cost": 2,
             "tech_level": 1,
             "slots": 1,
             "salvage_value": 3,
@@ -105,6 +110,7 @@
         {
             "id": 10,
             "name": "Zoom Optics",
+            "ep_cost": 1,
             "tech_level": 1,
             "slots": 1,
             "salvage_value": 2,

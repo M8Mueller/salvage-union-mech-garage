@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { MechViewerComponent } from './mech-viewer/mech-viewer.component';
+import { MechViewerComponent } from './components/mech-viewer/mech-viewer.component';
 
 @Component({
   selector: 'app-root',

@@ -202,7 +202,33 @@
             "tech_level": 1,
             "slots": 3,
             "salvage_value": 4,
-            "traits": []
+            "traits": [],
+            "actions": [
+                {
+                    "name": "Patch",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Range: Close",
+                        "Turn Action"
+                    ]
+                },
+                {
+                    "name": "System Repair",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Range: Close",
+                        "Short Action"
+                    ]
+                },
+                {
+                    "name": "Chassis Repair",
+                    "ep_cost": 4,
+                    "traits": [
+                        "Range: Close",
+                        "Long Action"
+                    ]
+                }
+            ]
         },
         {
             "id": 18,
