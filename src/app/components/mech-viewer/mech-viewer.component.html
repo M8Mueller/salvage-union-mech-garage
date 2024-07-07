@@ -13,6 +13,7 @@
                         </legend>
 
                         <hr>
+
                         <div class="collapse show" id="adminSection">
                             <div class="row mb-2">
                                 <label class="col-4 col-form-label fw-bold" for="name">Mech Name</label>
@@ -48,7 +49,10 @@
                             <div class="col-8">
                                 <select class="form-select" id="chassis" formControlName="chassis">
                                     <option [ngValue]="0" disabled hidden>Select a chassis...</option>
-                                    <option *ngFor="let chas of chassisList" [ngValue]="chas.id">{{ chas.name }} (Tech Level {{ chas.tech_level }})</option>
+                                    <ng-container *ngFor="let tl of techLevels">
+                                        <option disabled *ngIf="chassisListByTechLevel[tl] && chassisListByTechLevel[tl].length > 0">Tech Level {{ tl }}</option>
+                                        <option *ngFor="let chas of chassisListByTechLevel[tl]" [ngValue]="chas.id">{{ chas.name }}</option>
+                                    </ng-container>
                                 </select>
                             </div>
                         </div>
@@ -112,51 +116,51 @@
 
                         <hr>
 
-                        <dl class="row text-center mb-0 collapse show" id="scrapSection">
-                            <div class="col" *ngFor="let techLevel of techLevels">
+                        <div class="row text-center collapse show" id="scrapSection">
+                            <div class="col-4 col-sm-2" *ngFor="let techLevel of techLevels">
                                 <fieldset class="form-group p-2">
                                     <legend>T{{ techLevel }}</legend>
                                     <hr>
                                     <span class="text-secondary fs-3">{{ scrapCost[techLevel] }}</span>
                                 </fieldset>
                             </div>
-                        </dl>
+                        </div>
                     </fieldset>
                 </div>
             </div>
 
-            <dl class="row text-center mb-0">
-                <div class="col-6 col-xl-4 mb-4">
-                    <fieldset class="form-group border p-2">
+            <dl class="row mb-0">
+                <div class="col-6 col-xxl-4 mb-4">
+                    <fieldset class="form-group border p-4">
                         <legend>Structure
                             <div class="float-end">
                                 <i class="bi bi-shield-fill"></i>
                             </div>
                         </legend>
                         <hr>
-                        <dd class="display-4">{{ chassis?.structure_pts || "?" }}</dd>
+                        <dd class="display-4 text-center">{{ chassis?.structure_pts || "?" }}</dd>
                     </fieldset>
                 </div>
-                <div class="col-6 col-xl-4 mb-4">
-                    <fieldset class="form-group border p-2">
+                <div class="col-6 col-xxl-4 mb-4">
+                    <fieldset class="form-group border p-4">
                         <legend>Energy
                             <div class="float-end">
                                 <i class="bi bi-lightning-fill"></i>
                             </div>
                         </legend>
                         <hr>
-                        <dd class="display-4">{{ chassis?.energy_pts || "?" }}</dd>
+                        <dd class="display-4 text-center">{{ chassis?.energy_pts || "?" }}</dd>
                     </fieldset>
                 </div>
-                <div class="col-6 offset-3 col-xl-4 offset-xl-0 mb-4">
-                    <fieldset class="form-group border p-2">
+                <div class="col-6 offset-3 col-xxl-4 offset-xxl-0 mb-4">
+                    <fieldset class="form-group border p-4">
                         <legend>Heat Cap
                             <div class="float-end">
                                 <i class="bi bi-thermometer-half"></i>
                             </div>
                         </legend>
                         <hr>
-                        <dd class="display-4">{{ chassis?.heat_cap || "?" }}</dd>
+                        <dd class="display-4 text-center">{{ chassis?.heat_cap || "?" }}</dd>
                     </fieldset>
                 </div>
             </dl>
@@ -245,7 +249,7 @@
     </div>
     <div class="offcanvas-body container">
         <app-mech-component-picker
-            [componentList]="systemList"
+            [componentListByTechLevel]="systemListByTechLevel"
             [availableSlots]="chassis.system_slots - systemSlotCount"
             (componentSelected)="addSystem($event)"
             *ngIf="chassis"></app-mech-component-picker>
@@ -259,7 +263,7 @@
     </div>
     <div class="offcanvas-body container">
         <app-mech-component-picker
-            [componentList]="moduleList"
+            [componentListByTechLevel]="moduleListByTechLevel"
             [availableSlots]="chassis.module_slots - moduleSlotCount"
             (componentSelected)="addModule($event)"
             *ngIf="chassis"></app-mech-component-picker>

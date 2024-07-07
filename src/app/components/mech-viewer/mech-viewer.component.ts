@@ -29,6 +29,29 @@ export class MechViewerComponent implements OnInit{
   systemList: MechComponent[] = systemData.systems;
   patternList: Pattern[] = [];
 
+  sortListByTechLevel(list: any[]) {
+    return list.reduce(
+      (acc: { [tl: number]: any[] }, item: any) => {
+        if (item.tech_level in acc){
+          acc[item.tech_level].push(item);
+        } else {
+          acc[item.tech_level] = [item];
+        }
+        
+        return acc;
+      }, {});
+  }
+
+  chassisListByTechLevel: {
+    [tl: number]: Chassis[]
+  } = this.sortListByTechLevel(this.chassisList);
+  moduleListByTechLevel: {
+    [tl: number]: MechComponent[]
+  } = this.sortListByTechLevel(this.moduleList);
+  systemListByTechLevel: {
+    [tl: number]: MechComponent[]
+  } = this.sortListByTechLevel(this.systemList);
+
   chassis: any = null;
 
   systemSlotCount: number = 0;
