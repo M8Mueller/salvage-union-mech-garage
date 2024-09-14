@@ -149,6 +149,192 @@
                     "modules": [1, 10]
                 }
             ]
+        },
+        {
+            "id": 6,
+            "name": "Forge",
+            "structure_pts": 16,
+            "energy_pts": 13,
+            "heat_cap": 10,
+            "system_slots": 15,
+            "module_slots": 4,
+            "cargo_cap": 6,
+            "tech_level": 2,
+            "salvage_value": 10,
+            "ability": {
+              "name": "Integrated Epoxy Printer",
+              "description": "The Forge is able to 3D print metallic structures via a specialised epoxy."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Gopher",
+            "structure_pts": 14,
+            "energy_pts": 10,
+            "heat_cap": 8,
+            "system_slots": 12,
+            "module_slots": 3,
+            "cargo_cap": 12,
+            "tech_level": 2,
+            "salvage_value": 4,
+            "ability": {
+              "name": "Integrated Expanded Transport Hold",
+              "description": "Increases the Cargo Capacity of the Gopher by 6, to 12."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Hussar",
+            "structure_pts": 12,
+            "energy_pts": 10,
+            "heat_cap": 12,
+            "system_slots": 12,
+            "module_slots": 3,
+            "cargo_cap": 6,
+            "tech_level": 2,
+            "salvage_value": 6,
+            "ability": {
+              "name": "Fast",
+              "description": "The Hussar can move an additional Range band on its turn as a Free Action. In addition, it moves twice as fast across the Campaign, Area, and Region Maps."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Jackhammer",
+            "structure_pts": 18,
+            "energy_pts": 7,
+            "heat_cap": 13,
+            "system_slots": 15,
+            "module_slots": 3,
+            "cargo_cap": 6,
+            "tech_level": 2,
+            "salvage_value": 6,
+            "ability": {
+              "name": "Reinforced Chassis",
+              "description": "The Jackhammer rolls on an alternate Critical Damage Table."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Kraken",
+            "structure_pts": 24,
+            "energy_pts": 10,
+            "heat_cap": 14,
+            "system_slots": 18,
+            "module_slots": 3,
+            "cargo_cap": 6,
+            "tech_level": 2,
+            "salvage_value": 14,
+            "ability": {
+              "name": "Integrated Amphibious Locomotion System",
+              "description": "The Kraken has an integral Advanced Amphibious Locomotion System included in its profile. This allows the Kraken to operate indefinitely in underwater conditions at significant depths whilst also being able to walk on land. Its sealed Chassis is also airtight and watertight"
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [5],
+                    "modules": [1]
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "name": "Magpie",
+            "structure_pts": 15,
+            "energy_pts": 12,
+            "heat_cap": 10,
+            "system_slots": 15,
+            "module_slots": 3,
+            "cargo_cap": 6,
+            "tech_level": 2,
+            "salvage_value": 5,
+            "ability": {
+              "name": "Hot Swap Universal Mounts",
+              "description": "The Magpie allows you to mount and dismount Systems on it in the field significantly faster. This uses the normal rules for mounting, but increases the speed and versatility. A Pilot may Mount a System on the Magpie as a Short Action (10 minutes). A Mech, including the Magpie itself, may Mount a System on the Magpie as a Turn Action."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "name": "Mirror Ball",
+            "structure_pts": 16,
+            "energy_pts": 14,
+            "heat_cap": 8,
+            "system_slots": 12,
+            "module_slots": 3,
+            "cargo_cap": 6,
+            "tech_level": 2,
+            "salvage_value": 8,
+            "ability": {
+              "name": "Integrated Advanced Shield Dome",
+              "description": "The Mirror Ball can project a glowing, protective energy field around its Chassis."
+            },
+            "patterns": [
+                {
+                    "id": 1,
+                    "name": "Recommended",
+                    "systems": [10, 5],
+                    "modules": [1]
+                }
+            ]
+        },
+        {
+            "id": 100,
+            "name": "Survey Drone (Tech 2)",
+            "structure_pts": 4,
+            "energy_pts": 6,
+            "heat_cap": 3,
+            "system_slots": 4,
+            "module_slots": 2,
+            "cargo_cap": 2,
+            "tech_level": 2,
+            "salvage_value": 2,
+            "ability": {
+              "name": "Integrated Hover Locomotion System",
+              "description": "Your Survey Drone has the Hover trait."
+            },
+            "patterns": []
         }
+
     ]
 }

@@ -45,14 +45,22 @@ export class MechViewerComponent implements OnInit{
   chassisListByTechLevel: {
     [tl: number]: Chassis[]
   } = this.sortListByTechLevel(this.chassisList);
+
   moduleListByTechLevel: {
     [tl: number]: MechComponent[]
   } = this.sortListByTechLevel(this.moduleList);
+
   systemListByTechLevel: {
     [tl: number]: MechComponent[]
   } = this.sortListByTechLevel(this.systemList);
 
   chassis: any = null;
+
+  bonusHeatCap: number = 0;
+  bonusCargoCap: number = 0;
+
+  bonusSystemSlotCount: number = 0;
+  bonusModuleSlotCount: number = 0;
 
   systemSlotCount: number = 0;
   moduleSlotCount: number = 0;
@@ -143,10 +151,14 @@ export class MechViewerComponent implements OnInit{
     formArray.push(
       this.fb.group({
         'id': item.id,
-        'name': item?.name,
-        'tech_level': item?.tech_level,
-        'slots': item?.slots,
-        'salvage_value': item?.salvage_value
+        'name': item.name,
+        'tech_level': item.tech_level,
+        'slots': item.slots,
+        'salvage_value': item.salvage_value,
+        'heat_cap': item.heat_cap | 0,
+        'cargo_cap': item.cargo_cap | 0,
+        'system_slots': item.system_slots | 0,
+        'module_slots': item.module_slots | 0
       })
     );
 
@@ -179,6 +191,7 @@ export class MechViewerComponent implements OnInit{
   
   calculateValues() {
     this.calculateScrapCost();
+    this.calculateBonuses();
     this.calculateSlotCounts();
   }
 
@@ -193,6 +206,33 @@ export class MechViewerComponent implements OnInit{
 
     this.modulesFormArray().value.forEach(
       (mod: any) => this.scrapCost[mod.tech_level] += mod.salvage_value);
+  }
+
+  calculateBonuses() {
+    const systems = this.systemsFormArray().value;
+    const modules = this.modulesFormArray().value;
+    const components = [...systems, ...modules];
+
+    this.bonusHeatCap = components.reduce(
+      (count: number, comp: any) => count + comp.heat_cap | 0,
+      0
+    );
+
+    this.bonusCargoCap = components.reduce(
+      (count: number, comp: any) => count + comp.cargo_cap | 0,
+      0
+    );
+
+    this.bonusSystemSlotCount = modules.reduce(
+      (count: number, mod: any) => count + mod.system_slots | 0,
+      0
+    );
+
+    this.bonusModuleSlotCount = systems.reduce(
+      (count: number, sys: any) => count + sys.module_slots,
+      0
+    );
+
   }
 
   calculateSlotCounts() {

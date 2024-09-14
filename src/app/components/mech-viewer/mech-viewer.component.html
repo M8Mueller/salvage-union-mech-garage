@@ -2,7 +2,43 @@
 <form class="form-horizontal" [formGroup]="mechForm">
     <div class="row">
         <div class="col-lg">
-            <div class="row mb-4">
+            <dl class="row mb-0">
+                <div class="col-6 col-xxl-4 mb-4">
+                    <fieldset class="form-group border p-4">
+                        <legend>Structure
+                            <div class="float-end">
+                                <i class="bi bi-shield-fill"></i>
+                            </div>
+                        </legend>
+                        <hr>
+                        <dd class="display-4 text-center">{{ chassis?.structure_pts || "?" }}</dd>
+                    </fieldset>
+                </div>
+                <div class="col-6 col-xxl-4 mb-4">
+                    <fieldset class="form-group border p-4">
+                        <legend>Energy
+                            <div class="float-end">
+                                <i class="bi bi-lightning-fill"></i>
+                            </div>
+                        </legend>
+                        <hr>
+                        <dd class="display-4 text-center">{{ chassis?.energy_pts || "?" }}</dd>
+                    </fieldset>
+                </div>
+                <div class="col-6 offset-3 col-xxl-4 offset-xxl-0 mb-4">
+                    <fieldset class="form-group border p-4">
+                        <legend>Heat Cap
+                            <div class="float-end">
+                                <i class="bi bi-thermometer-half"></i>
+                            </div>
+                        </legend>
+                        <hr>
+                        <dd class="display-4 text-center">{{ chassis?.heat_cap || "?" }}<span *ngIf="bonusHeatCap">+{{ bonusHeatCap }}</span></dd>
+                    </fieldset>
+                </div>
+            </dl>
+
+            <!-- <div class="row mb-4">
                 <div class="col">
                     <fieldset class="form-group border p-4">
                         <legend data-bs-toggle="collapse" href="#adminSection" role="button" aria-expanded="false" aria-controls="adminSection">
@@ -31,7 +67,7 @@
                         </div>
                     </fieldset>
                 </div>
-            </div>
+            </div> -->
 
             <div class="row mb-4">
                 <div class="col">
@@ -80,19 +116,19 @@
                             <dd class="col-8">{{ chassis.heat_cap }}</dd>
                             
                             <dt class="col-4">System Slots</dt>
-                            <dd class="col-8"><i class="bi bi-triangle-fill"></i> {{ chassis.system_slots }}</dd>
+                            <dd class="col-8">{{ chassis.system_slots }}</dd>
                             
                             <dt class="col-4">Module Slots</dt>
-                            <dd class="col-8"><i class="bi bi-triangle-fill"></i> {{ chassis.module_slots }}</dd>
+                            <dd class="col-8">{{ chassis.module_slots }}</dd>
                             
                             <dt class="col-4">Cargo Capacity</dt>
-                            <dd class="col-8">{{ chassis.cargo_cap }}</dd>
+                            <dd class="col-8">{{ chassis.cargo_cap }}<span *ngIf="bonusCargoCap">+{{ bonusCargoCap }}</span></dd>
                             
                             <dt class="col-4">Tech Level</dt>
-                            <dd class="col-8"><i class="bi bi-square-fill"></i> {{ chassis.tech_level }}</dd>
+                            <dd class="col-8">{{ chassis.tech_level }}</dd>
                             
                             <dt class="col-4">Salvage Value</dt>
-                            <dd class="col-8"><i class="bi bi-gear-fill"></i> {{ chassis.salvage_value }}</dd>
+                            <dd class="col-8">{{ chassis.salvage_value }}</dd>
                             
                             <dt class="col-4">Chassis Ability</dt>
                             <dd class="col-8">{{ chassis.ability?.name }}</dd>
@@ -129,48 +165,12 @@
                 </div>
             </div>
 
-            <dl class="row mb-0">
-                <div class="col-6 col-xxl-4 mb-4">
-                    <fieldset class="form-group border p-4">
-                        <legend>Structure
-                            <div class="float-end">
-                                <i class="bi bi-shield-fill"></i>
-                            </div>
-                        </legend>
-                        <hr>
-                        <dd class="display-4 text-center">{{ chassis?.structure_pts || "?" }}</dd>
-                    </fieldset>
-                </div>
-                <div class="col-6 col-xxl-4 mb-4">
-                    <fieldset class="form-group border p-4">
-                        <legend>Energy
-                            <div class="float-end">
-                                <i class="bi bi-lightning-fill"></i>
-                            </div>
-                        </legend>
-                        <hr>
-                        <dd class="display-4 text-center">{{ chassis?.energy_pts || "?" }}</dd>
-                    </fieldset>
-                </div>
-                <div class="col-6 offset-3 col-xxl-4 offset-xxl-0 mb-4">
-                    <fieldset class="form-group border p-4">
-                        <legend>Heat Cap
-                            <div class="float-end">
-                                <i class="bi bi-thermometer-half"></i>
-                            </div>
-                        </legend>
-                        <hr>
-                        <dd class="display-4 text-center">{{ chassis?.heat_cap || "?" }}</dd>
-                    </fieldset>
-                </div>
-            </dl>
-
             <div class="row">
                 <div class="col">
                     <fieldset class="form-group border p-4 mb-4">
                         <legend>Systems
                             <div class="float-end">
-                                <i class="bi bi-triangle-fill"></i> {{ systemSlotCount }}/{{ chassis?.system_slots || "?" }}
+                                <i class="bi bi-triangle-fill"></i> {{ systemSlotCount }}/{{ chassis?.system_slots || "?" }}<span *ngIf="bonusSystemSlotCount">+{{ bonusSystemSlotCount }}</span>
                             </div>
                         </legend>
 
@@ -194,18 +194,18 @@
                         </ng-container>
 
                         <button class="btn btn-primary float-end" type="button" data-bs-toggle="offcanvas" data-bs-target="#system_picker" aria-controls="system_picker" [disabled]="!chassis">
-                            <i class="bi bi-plus"></i> Add Systems
+                            <i class="bi bi-box-arrow-in-up"></i> Mount Systems
                         </button>
 
-                        <button class="btn btn-secondary-outline float-end me-2" type="button" (click)="clearSystems()" [disabled]="!chassis">
-                            Clear Systems
+                        <button class="btn btn-outline-danger float-end me-2" type="button" (click)="clearSystems()" *ngIf="systemSlotCount">
+                            <i class="bi bi-box-arrow-down"></i> Unmount All
                         </button>
                     </fieldset>
 
                     <fieldset class="form-group border p-4">
                         <legend>Modules
                             <div class="float-end">
-                                <i class="bi bi-triangle-fill"></i> {{ moduleSlotCount }}/{{ chassis?.module_slots || "?" }}
+                                <i class="bi bi-triangle-fill"></i> {{ moduleSlotCount }}/{{ chassis?.module_slots || "?" }}<span *ngIf="bonusModuleSlotCount">+{{ bonusModuleSlotCount }}</span>
                             </div>
                         </legend>
 
@@ -229,11 +229,11 @@
                         </ng-container>
 
                         <button class="btn btn-primary float-end" type="button" data-bs-toggle="offcanvas" data-bs-target="#module_picker" aria-controls="module_picker" [disabled]="!chassis">
-                            <i class="bi bi-plus"></i> Add Modules
+                            <i class="bi bi-box-arrow-in-up"></i> Mount Modules
                         </button>
 
-                        <button class="btn btn-secondary-outline float-end me-2" type="button"  (click)="clearModules()" [disabled]="!chassis">
-                            Clear Modules
+                        <button class="btn btn-outline-danger float-end me-2" type="button" (click)="clearModules()" *ngIf="moduleSlotCount">
+                            <i class="bi bi-box-arrow-down"></i> Unmount All
                         </button>
                     </fieldset>
                 </div>
@@ -247,10 +247,10 @@
         <h5 class="offcanvas-title" id="system_picker_label">Add Systems</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body container">
+    <div class="offcanvas-body container pt-0">
         <app-mech-component-picker
             [componentListByTechLevel]="systemListByTechLevel"
-            [availableSlots]="chassis.system_slots - systemSlotCount"
+            [availableSlots]="chassis.system_slots + bonusSystemSlotCount - systemSlotCount"
             (componentSelected)="addSystem($event)"
             *ngIf="chassis"></app-mech-component-picker>
     </div>
@@ -261,10 +261,10 @@
         <h5 class="offcanvas-title" id="module_picker_label">Add Modules</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body container">
+    <div class="offcanvas-body container pt-0">
         <app-mech-component-picker
             [componentListByTechLevel]="moduleListByTechLevel"
-            [availableSlots]="chassis.module_slots - moduleSlotCount"
+            [availableSlots]="chassis.module_slots + bonusModuleSlotCount - moduleSlotCount"
             (componentSelected)="addModule($event)"
             *ngIf="chassis"></app-mech-component-picker>
     </div>
