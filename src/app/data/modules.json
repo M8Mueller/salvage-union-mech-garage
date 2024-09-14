@@ -118,6 +118,211 @@
                 "Free Action",
                 "Optics"
             ]
+        },
+        {
+            "id": 11,
+            "name": "Barometric Sensor",
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Passive",
+                "Scanner"
+            ]
+        },
+        {
+            "id": 12,
+            "name": "Damage Assessor",
+            "ep_cost": 1,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Turn Action",
+                "Range: Medium",
+                "Scanner"
+            ]
+        },
+        {
+            "id": 13,
+            "name": "Deep Survey Scanner",
+            "ep_cost": 2,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Short Action",
+                "Range: Long",
+                "Scanner"
+            ]
+        },
+        {
+            "id": 14,
+            "name": "Energy Cell",
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Reaction"
+            ]
+        },
+        {
+            "id": 15,
+            "name": "Evasion Protocols",
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Reaction",
+                "Heat Spike",
+                "Hot (2)"
+            ]
+        },
+        {
+            "id": 16,
+            "name": "Hull Magnetiser",
+            "ep_cost": 2,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action"
+            ]
+        },
+        {
+            "id": 17,
+            "name": "IR Night Vision Optics",
+            "ep_cost": 1,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Free Action",
+                "Range: Far",
+                "Optics"
+            ]
+        },
+        {
+            "id": 18,
+            "name": "M315 Motion Sensor",
+            "ep_cost": 1,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Medium",
+                "Scanner"
+            ]
+        },
+        {
+            "id": 19,
+            "name": "Metal Detector",
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Reaction",
+                "Heat Spike",
+                "Hot (2)"
+            ],
+            "actions": [
+                {
+                    "name": "Auto-Scan",
+                    "traits": [
+                        "Passive"
+                    ]
+                },
+                {
+                    "name": "Active Scan",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Short Action",
+                        "Range: Medium",
+                        "Scanner"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "name": "Navigation Module",
+            "ep_cost": 1,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Medium",
+                "Scanner"
+            ]
+        },
+        {
+            "id": 21,
+            "name": "Pinpoint Targeter",
+            "ep_cost": 3,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 3,
+            "traits": [
+                "Turn Action",
+                "Targeter"
+            ]
+        },
+        {
+            "id": 22,
+            "name": "Projection Array",
+            "ep_cost": 1,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Turn Action",
+                "Range: Long"
+            ]
+        },
+        {
+            "id": 23,
+            "name": "Reactor Overload",
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 24,
+            "name": "Reactor Safety Protocols",
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 25,
+            "name": "Sleeping Beauty",
+            "ep_cost": 2,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Reaction"
+            ]
+        },
+        {
+            "id": 26,
+            "name": "Video Recording Array",
+            "ep_cost": 1,
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Turn Action",
+                "Range: Far"
+            ]
         }
     ]
 }

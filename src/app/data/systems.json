@@ -30,6 +30,7 @@
             "tech_level": 1,
             "slots": 1,
             "salvage_value": 1,
+            "cargo_cap": 1,
             "traits": [
                 "Passive"
             ]
@@ -202,30 +203,30 @@
             "tech_level": 1,
             "slots": 3,
             "salvage_value": 4,
-            "traits": [],
             "actions": [
                 {
                     "name": "Patch",
                     "ep_cost": 2,
                     "traits": [
-                        "Range: Close",
-                        "Turn Action"
+                        "Turn Action",
+                        "Range: Close"
                     ]
                 },
                 {
                     "name": "System Repair",
                     "ep_cost": 2,
                     "traits": [
-                        "Range: Close",
-                        "Short Action"
+                        "Short Action",
+                        "Range: Close"
                     ]
                 },
                 {
                     "name": "Chassis Repair",
                     "ep_cost": 4,
                     "traits": [
-                        "Range: Close",
-                        "Long Action"
+                        "Long Action",
+                        "Range: Close"
+                        
                     ]
                 }
             ]
@@ -248,8 +249,290 @@
             "tech_level": 1,
             "slots": 2,
             "salvage_value": 2,
+            "cargo_cap": 4,
             "traits": [
                 "Passive"
+            ]
+        },
+        {
+            "id": 20,
+            "name": "30mm Autocannon",
+            "tech_level": 2,
+            "slots": 5,
+            "salvage_value": 3,
+            "traits": [
+                "Range: Medium",
+                "Damage: 4 SP",
+                "Ballistic",
+                "Jamming"
+            ]
+        },
+        {
+            "id": 21,
+            "name": "Armoured Shield",
+            "tech_level": 2,
+            "slots": 2,
+            "salvage_value": 2,
+            "traits": [
+                "Reaction",
+                "Shield",
+                "Wield"
+            ]
+        },
+        {
+            "id": 22,
+            "name": "Blue Mining Laser",
+            "tech_level": 2,
+            "slots": 7,
+            "salvage_value": 5,
+            "traits": [
+                "Range: Long",
+                "Damage: 6 SP",
+                "Energy",
+                "Hot (3)"
+            ]
+        },
+        {
+            "id": 23,
+            "name": "Cargo Bay",
+            "tech_level": 2,
+            "slots": 4,
+            "salvage_value": 2,
+            "cargo_cap": 10,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 24,
+            "name": "Chaff Launcher",
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Reaction",
+                "Uses (2)"
+            ]
+        },
+        {
+            "id": 25,
+            "name": "Dozer Blades",
+            "tech_level": 2,
+            "slots": 3,
+            "salvage_value": 2,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 26,
+            "name": "Grappling Harpoon",
+            "tech_level": 2,
+            "slots": 3,
+            "salvage_value": 2,
+            "actions": [
+                {
+                    "name": "Pin",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Turn Action",
+                        "Range: Medium",
+                        "Pinning"
+                    ]
+                },
+                {
+                    "name": "Swing",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Turn Action",
+                        "Range: Medium"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "name": "Green Laser",
+            "tech_level": 2,
+            "slots": 4,
+            "salvage_value": 2,
+            "traits": [
+                "Range: Medium",
+                "Damage: 4 SP",
+                "Energy",
+                "Hot (2)"
+            ]
+        },
+        {
+            "id": 28,
+            "name": "Heat Sink",
+            "tech_level": 2,
+            "slots": 2,
+            "salvage_value": 1,
+            "heat_cap": 1,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 29,
+            "name": "High Gain Antenna",
+            "tech_level": 2,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 30,
+            "name": "Industrial Body Kit",
+            "tech_level": 2,
+            "slots": 3,
+            "salvage_value": 3,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 31,
+            "name": "M2-X Mauler",
+            "tech_level": 2,
+            "slots": 3,
+            "salvage_value": 2,
+            "traits": [
+                "Range: Close",
+                "Damage: 3 SP + 2 SP",
+                "Ballistic"
+            ]
+        },
+        {
+            "id": 32,
+            "name": "Module Switch",
+            "tech_level": 2,
+            "slots": 4,
+            "salvage_value": 1,
+            "module_slots": 1,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 33,
+            "name": "Nanofibre Net Launcher",
+            "ep_cost": 2,
+            "tech_level": 2,
+            "slots": 3,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Close"
+            ]
+        },
+        {
+            "id": 34,
+            "name": "Personnel Transport Pod",
+            "tech_level": 2,
+            "slots": 3,
+            "salvage_value": 2,
+            "traits": [
+                "Passive",
+                "Personnel Capacity (12)"
+            ]
+        },
+        {
+            "id": 35,
+            "name": "Refractive Shield Projector",
+            "tech_level": 2,
+            "slots": 2,
+            "salvage_value": 2,
+            "traits": [
+                "Reaction",
+                "Range: Close",
+                "Shield"
+            ]
+        },
+        {
+            "id": 36,
+            "name": "Shotgun Pit",
+            "tech_level": 2,
+            "slots": 2,
+            "salvage_value": 2,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 37,
+            "name": "Smoke Machine",
+            "ep_cost": 2,
+            "tech_level": 2,
+            "slots": 2,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action"
+            ]
+        },
+        {
+            "id": 38,
+            "name": "Torpedo Tubes",
+            "tech_level": 2,
+            "slots": 6,
+            "salvage_value": 5,
+            "traits": [
+                "Range: Close/Long",
+                "Damage: 6 SP",
+                "Hot (1)",
+                "Explosive (2)",
+                "Missile",
+                "Uses (6)"
+            ]
+        },
+        {
+            "id": 39,
+            "name": "Tracking Node",
+            "ep_cost": 2,
+            "tech_level": 2,
+            "slots": 2,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Long",
+                "Targeter"
+            ]
+        },
+        {
+            "id": 40,
+            "name": "Welding Laser",
+            "tech_level": 2,
+            "slots": 3,
+            "salvage_value": 3,
+            "actions": [
+                {
+                    "name": "Patch",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Turn Action",
+                        "Range: Close"
+                    ]
+                },
+                {
+                    "name": "System Repair",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Short Action",
+                        "Range: Close"
+                    ]
+                },
+                {
+                    "name": "Chassis Repair",
+                    "ep_cost": 4,
+                    "traits": [
+                        "Long Action",
+                        "Range: Close"
+                        
+                    ]
+                }
             ]
         }
     ]
