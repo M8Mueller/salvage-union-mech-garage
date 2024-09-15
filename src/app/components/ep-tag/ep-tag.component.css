@@ -1,0 +1,20 @@
+.ep-tag {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+}
+
+.ep-tag:after {
+    content: "";
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    line-height: 0px;
+    border-style: solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+    position: absolute;
+    top: 0px;
+    left: 100%;
+}

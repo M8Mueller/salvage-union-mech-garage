@@ -11,10 +11,12 @@
             "cargo_cap": 16,
             "tech_level": 1,
             "salvage_value": 7,
-            "ability": {
-                "name": "Integrated Cargo Bay",
-                "description": "Increases the Cargo Capacity of the Mule by 10, to 16."
-            },
+            "abilities": [
+                {
+                    "name": "Integrated Cargo Bay",
+                    "description": "Increases the Cargo Capacity of the Mule by 10, to 16."
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -41,10 +43,12 @@
             "cargo_cap": 6,
             "tech_level": 1,
             "salvage_value": 4,
-            "ability": {
-                "name": "Hover Drone",
-                "description": "The Mazona has an Integrated Hover Locomotion System which is included in its profile. This allows it to hover over obstacles and terrain."
-            },
+            "abilities": [
+                {
+                    "name": "Hover Drone",
+                    "description": "The Mazona has an Integrated Hover Locomotion System which is included in its profile. This allows it to hover over obstacles and terrain."
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -71,10 +75,12 @@
             "cargo_cap": 6,
             "tech_level": 1,
             "salvage_value": 6,
-            "ability": {
-                "name": "Hazard Protected Chassis",
-                "description": "The Scrapper suffers no effect or damage from hazardous environmental effects such as radiation storms. In addition, when dealing with severe environmental hazards they may Push once for free to circumvent or resist any effects."
-            },
+            "abilities": [
+                {
+                    "name": "Hazard Protected Chassis",
+                    "description": "The Scrapper suffers no effect or damage from hazardous environmental effects such as radiation storms. In addition, when dealing with severe environmental hazards they may Push once for free to circumvent or resist any effects."
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -101,10 +107,12 @@
             "cargo_cap": 6,
             "tech_level": 1,
             "salvage_value": 10,
-            "ability": {
-                "name": "Data Scanner",
-                "description": "The Spectrum is a mobile data repository that has all manner of information stored within it. It is able to scan objects to both gain information about them and store that data to access at a later time."
-            },
+            "abilities": [
+                {
+                    "name": "Data Scanner",
+                    "description": "The Spectrum is a mobile data repository that has all manner of information stored within it. It is able to scan objects to both gain information about them and store that data to access at a later time."
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -131,10 +139,10 @@
             "cargo_cap": 6,
             "tech_level": 1,
             "salvage_value": 9,
-            "ability": {
+            "abilities": [{
               "name": "Heavily Armoured Chassis",
               "description": "Any attack that rolls a 'Nailed It' (20) result against the Thresher counts as a standard hit (11-19) and does not deal 2x damage or have any other bonus effect."
-            },
+            }],
             "patterns": [
                 {
                     "id": 1,
@@ -161,10 +169,38 @@
             "cargo_cap": 6,
             "tech_level": 2,
             "salvage_value": 10,
-            "ability": {
-              "name": "Integrated Epoxy Printer",
-              "description": "The Forge is able to 3D print metallic structures via a specialised epoxy."
-            },
+            "abilities": [
+                {
+                    "name": "Integrated Epoxy Printer",
+                    "description": "The Forge is able to 3D print metallic structures via a specialised epoxy.",
+                    "actions": [
+                        {
+                            "name": "",
+                            "description": "When this Ability is activated, pick from the following options to craft. Anything crafted with the Forge cannot be salvaged for Scrap.",
+                            "traits": ["Short Action"],
+                            "ep_cost": 3,
+                            "options": [
+                                {
+                                    "name": "Armour Plating",
+                                    "description": "You craft an Armour Plating System."
+                                },
+                                {
+                                    "name": "Simple Weapon",
+                                    "description": "You craft a Mech Melee Armament System or 10 Improvised Melee Weapons."
+                                },
+                                {
+                                    "name": "Mech Traps",
+                                    "description": "You craft a series of traps designed to slow and damage encroaching Mechs. Any Mechs that move through the traps take 3 SP damage and move at half their normal speed."
+                                },
+                                {
+                                    "name": "Custom Item",
+                                    "description": "You craft a metallic structure of your own design. This cannot have any complex or moving parts."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -185,10 +221,12 @@
             "cargo_cap": 12,
             "tech_level": 2,
             "salvage_value": 4,
-            "ability": {
-              "name": "Integrated Expanded Transport Hold",
-              "description": "Increases the Cargo Capacity of the Gopher by 6, to 12."
-            },
+            "abilities": [
+                {
+                    "name": "Integrated Expanded Transport Hold",
+                    "description": "Increases the Cargo Capacity of the Gopher by 6, to 12."
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -209,10 +247,12 @@
             "cargo_cap": 6,
             "tech_level": 2,
             "salvage_value": 6,
-            "ability": {
-              "name": "Fast",
-              "description": "The Hussar can move an additional Range band on its turn as a Free Action. In addition, it moves twice as fast across the Campaign, Area, and Region Maps."
-            },
+            "abilities": [
+                {
+                    "name": "Fast",
+                    "description": "The Hussar can move an additional Range band on its turn as a Free Action. In addition, it moves twice as fast across the Campaign, Area, and Region Maps."
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -233,10 +273,34 @@
             "cargo_cap": 6,
             "tech_level": 2,
             "salvage_value": 6,
-            "ability": {
-              "name": "Reinforced Chassis",
-              "description": "The Jackhammer rolls on an alternate Critical Damage Table."
-            },
+            "abilities": [
+                {
+                    "name": "Reinforced Chassis",
+                    "description": "The Jackhammer rolls on this alternate Critical Damage Table:",
+                    "roll_results": [
+                        {
+                            "roll": "20",
+                            "result": "The Jackhammer is intact and operational with 1 SP. The Pilot is unharmed."
+                        },
+                        {
+                            "roll": "11-19",
+                            "result": "The Jackhammer is temporarily Shutdown and becomes inoperable. At the end of its next turn it activates and becomes operational with 1 SP. The Pilot is unharmed."
+                        },
+                        {
+                            "roll": "6-10",
+                            "result": "As per 11-19, but a random Module on the Jackhammer is also Damaged."
+                        },
+                        {
+                            "roll": "2-5",
+                            "result": "As per 11-19, but a random System on the Jackhammer is also Damaged."
+                        },
+                        {
+                            "roll": "1",
+                            "result": "The Jackhammer Mech Chassis is damaged. All of its mounted Systems, Modules, and any carried Cargo are destroyed. The Pilot survives in the reinforced cockpit."
+                        }
+                    ]
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -257,10 +321,12 @@
             "cargo_cap": 6,
             "tech_level": 2,
             "salvage_value": 14,
-            "ability": {
-              "name": "Integrated Amphibious Locomotion System",
-              "description": "The Kraken has an integral Advanced Amphibious Locomotion System included in its profile. This allows the Kraken to operate indefinitely in underwater conditions at significant depths whilst also being able to walk on land. Its sealed Chassis is also airtight and watertight"
-            },
+            "abilities": [
+                {
+                    "name": "Integrated Amphibious Locomotion System",
+                    "description": "The Kraken has an integral Advanced Amphibious Locomotion System included in its profile. This allows the Kraken to operate indefinitely in underwater conditions at significant depths whilst also being able to walk on land. Its sealed Chassis is also airtight and watertight"
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -281,10 +347,12 @@
             "cargo_cap": 6,
             "tech_level": 2,
             "salvage_value": 5,
-            "ability": {
-              "name": "Hot Swap Universal Mounts",
-              "description": "The Magpie allows you to mount and dismount Systems on it in the field significantly faster. This uses the normal rules for mounting, but increases the speed and versatility. A Pilot may Mount a System on the Magpie as a Short Action (10 minutes). A Mech, including the Magpie itself, may Mount a System on the Magpie as a Turn Action."
-            },
+            "abilities": [
+                {
+                    "name": "Hot Swap Universal Mounts",
+                    "description": "The Magpie allows you to mount and dismount Systems on it in the field significantly faster. This uses the normal rules for mounting, but increases the speed and versatility. A Pilot may Mount a System on the Magpie as a Short Action (10 minutes). A Mech, including the Magpie itself, may Mount a System on the Magpie as a Turn Action."
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -305,10 +373,19 @@
             "cargo_cap": 6,
             "tech_level": 2,
             "salvage_value": 8,
-            "ability": {
-              "name": "Integrated Advanced Shield Dome",
-              "description": "The Mirror Ball can project a glowing, protective energy field around its Chassis."
-            },
+            "abilities": [
+                {
+                    "name": "Integrated Advanced Shield Dome",
+                    "description": "The Mirror Ball can project a glowing, protective energy field around its Chassis.",
+                    "actions": [
+                        {
+                            "name": "",
+                            "traits": ["Turn Action", "Shield"],
+                            "ep_cost": "X"
+                        }
+                    ]
+                }
+            ],
             "patterns": [
                 {
                     "id": 1,
@@ -319,8 +396,27 @@
             ]
         },
         {
-            "id": 100,
-            "name": "Survey Drone (Tech 2)",
+            "id": 101,
+            "name": "Survey Drone (Scout)",
+            "structure_pts": 2,
+            "energy_pts": 4,
+            "heat_cap": 2,
+            "system_slots": 3,
+            "module_slots": 1,
+            "cargo_cap": 1,
+            "tech_level": 1,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Integrated Hover Locomotion System",
+                    "description": "Your Survey Drone has the Hover trait."
+                }
+            ],
+            "patterns": []
+        },
+        {
+            "id": 102,
+            "name": "Survey Drone (Scout)",
             "structure_pts": 4,
             "energy_pts": 6,
             "heat_cap": 3,
@@ -329,12 +425,32 @@
             "cargo_cap": 2,
             "tech_level": 2,
             "salvage_value": 2,
-            "ability": {
-              "name": "Integrated Hover Locomotion System",
-              "description": "Your Survey Drone has the Hover trait."
-            },
+            "abilities": [
+                {
+                    "name": "Integrated Hover Locomotion System",
+                    "description": "Your Survey Drone has the Hover trait."
+                }
+            ],
+            "patterns": []
+        },
+        {
+            "id": 103,
+            "name": "Survey Drone (Scout)",
+            "structure_pts": 6,
+            "energy_pts": 8,
+            "heat_cap": 4,
+            "system_slots": 5,
+            "module_slots": 3,
+            "cargo_cap": 3,
+            "tech_level": 3,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Integrated Hover Locomotion System",
+                    "description": "Your Survey Drone has the Hover trait."
+                }
+            ],
             "patterns": []
         }
-
     ]
 }

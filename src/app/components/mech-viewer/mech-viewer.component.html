@@ -38,37 +38,6 @@
                 </div>
             </dl>
 
-            <!-- <div class="row mb-4">
-                <div class="col">
-                    <fieldset class="form-group border p-4">
-                        <legend data-bs-toggle="collapse" href="#adminSection" role="button" aria-expanded="false" aria-controls="adminSection">
-                            <span>Administrative</span>
-                            <div class="float-end">
-                                <i class="bi bi-pen-fill"></i>
-                            </div>
-                        </legend>
-
-                        <hr>
-
-                        <div class="collapse show" id="adminSection">
-                            <div class="row mb-2">
-                                <label class="col-4 col-form-label fw-bold" for="name">Mech Name</label>
-                                <div class="col-8">
-                                    <input class="form-control" type="text" id="name" formControlName="name">
-                                </div>
-                            </div>
-    
-                            <div class="row">
-                                <label class="col-4 col-form-label fw-bold" for="pilot">Pilot Callsign</label>
-                                <div class="col-8">
-                                    <input class="form-control" type="text" id="pilot" formControlName="pilot">
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div> -->
-
             <div class="row mb-4">
                 <div class="col">
                     <fieldset class="form-group border p-4">
@@ -86,8 +55,9 @@
                                 <select class="form-select" id="chassis" formControlName="chassis">
                                     <option [ngValue]="0" disabled hidden>Select a chassis...</option>
                                     <ng-container *ngFor="let tl of techLevels">
-                                        <option disabled *ngIf="chassisListByTechLevel[tl] && chassisListByTechLevel[tl].length > 0">Tech Level {{ tl }}</option>
-                                        <option *ngFor="let chas of chassisListByTechLevel[tl]" [ngValue]="chas.id">{{ chas.name }}</option>
+                                        <optgroup label="Tech Level {{ tl}}" *ngIf="chassisListByTechLevel[tl] && chassisListByTechLevel[tl].length > 0">
+                                            <option *ngFor="let chas of chassisListByTechLevel[tl]" [ngValue]="chas.id">{{ chas.name }}</option>
+                                        </optgroup>
                                     </ng-container>
                                 </select>
                             </div>
@@ -131,8 +101,20 @@
                             <dd class="col-8">{{ chassis.salvage_value }}</dd>
                             
                             <dt class="col-4">Chassis Ability</dt>
-                            <dd class="col-8">{{ chassis.ability?.name }}</dd>
-                            <dd class="col-8 offset-4">{{ chassis.ability?.description }}</dd>
+                            <dd class="col-8">
+                                <dl>
+                                    <ng-container *ngFor="let ability of chassis.abilities">
+                                        <dt class="mb-2">{{ ability.name }}</dt>
+                                        <dd class="mb-2">{{ ability.description }}</dd>
+                                        <dd *ngIf="ability.roll_results">
+                                            <app-roll-results [rollResults]="ability.roll_results"></app-roll-results>
+                                        </dd>
+                                        <dd *ngIf="ability.actions">
+                                            <app-action-list [actions]="ability.actions"></app-action-list>
+                                        </dd>
+                                    </ng-container>
+                                </dl>
+                            </dd>
                         </dl>
                     </fieldset>
                 </div>
@@ -193,12 +175,12 @@
                             <hr>
                         </ng-container>
 
-                        <button class="btn btn-primary float-end" type="button" data-bs-toggle="offcanvas" data-bs-target="#system_picker" aria-controls="system_picker" [disabled]="!chassis">
-                            <i class="bi bi-box-arrow-in-up"></i> Mount Systems
+                        <button class="btn btn-outline-danger float-end" type="button" (click)="clearSystems()" *ngIf="systemSlotCount">
+                            <i class="bi bi-box-arrow-down"></i> Unmount All
                         </button>
 
-                        <button class="btn btn-outline-danger float-end me-2" type="button" (click)="clearSystems()" *ngIf="systemSlotCount">
-                            <i class="bi bi-box-arrow-down"></i> Unmount All
+                        <button class="btn btn-outline-success float-end me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#system_picker" aria-controls="system_picker" [disabled]="!chassis">
+                            <i class="bi bi-box-arrow-in-up"></i> Mount Systems
                         </button>
                     </fieldset>
 
@@ -228,12 +210,12 @@
                             <hr>
                         </ng-container>
 
-                        <button class="btn btn-primary float-end" type="button" data-bs-toggle="offcanvas" data-bs-target="#module_picker" aria-controls="module_picker" [disabled]="!chassis">
-                            <i class="bi bi-box-arrow-in-up"></i> Mount Modules
+                        <button class="btn btn-outline-danger float-end" type="button" (click)="clearModules()" *ngIf="moduleSlotCount">
+                            <i class="bi bi-box-arrow-down"></i> Unmount All
                         </button>
 
-                        <button class="btn btn-outline-danger float-end me-2" type="button" (click)="clearModules()" *ngIf="moduleSlotCount">
-                            <i class="bi bi-box-arrow-down"></i> Unmount All
+                        <button class="btn btn-outline-success float-end me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#module_picker" aria-controls="module_picker" [disabled]="!chassis">
+                            <i class="bi bi-box-arrow-in-up"></i> Mount Modules
                         </button>
                     </fieldset>
                 </div>
@@ -244,7 +226,7 @@
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="system_picker" aria-labelledby="system_picker_label">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="system_picker_label">Add Systems</h5>
+        <h5 class="offcanvas-title" id="system_picker_label">Systems</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body container pt-0">
@@ -258,7 +240,7 @@
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="module_picker" aria-labelledby="module_picker_label">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="module_picker_label">Add Modules</h5>
+        <h5 class="offcanvas-title" id="module_picker_label">Modules</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body container pt-0">
