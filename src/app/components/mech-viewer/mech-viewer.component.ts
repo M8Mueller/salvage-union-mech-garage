@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import * as chassisData from '../../data/chassis.json';
-import * as moduleData from '../../data/modules.json';
-import * as systemData from '../../data/systems.json';
-
 import type { Chassis, MechComponent, Pattern } from '../../types/mech.d';
+
+import { DataService } from '../../services/data.service';
+import { StorageService } from '../../services/storage.service';
+
+import { EpTagComponent } from '../ep-tag/ep-tag.component';
 import { MechComponentPickerComponent } from '../mech-component-picker/mech-component-picker.component';
 
 @Component({
@@ -14,6 +15,7 @@ import { MechComponentPickerComponent } from '../mech-component-picker/mech-comp
   standalone: true,
   imports: [
     CommonModule,
+    EpTagComponent,
     FormsModule,
     MechComponentPickerComponent,
     ReactiveFormsModule,
@@ -24,35 +26,11 @@ import { MechComponentPickerComponent } from '../mech-component-picker/mech-comp
 export class MechViewerComponent implements OnInit{
   techLevels = [1, 2, 3, 4, 5, 6];
 
-  chassisList: Chassis[] = chassisData.chassis;
-  moduleList: MechComponent[] = moduleData.modules;
-  systemList: MechComponent[] = systemData.systems;
   patternList: Pattern[] = [];
 
-  sortListByTechLevel(list: any[]) {
-    return list.reduce(
-      (acc: { [tl: number]: any[] }, item: any) => {
-        if (item.tech_level in acc){
-          acc[item.tech_level].push(item);
-        } else {
-          acc[item.tech_level] = [item];
-        }
-        
-        return acc;
-      }, {});
-  }
-
-  chassisListByTechLevel: {
-    [tl: number]: Chassis[]
-  } = this.sortListByTechLevel(this.chassisList);
-
-  moduleListByTechLevel: {
-    [tl: number]: MechComponent[]
-  } = this.sortListByTechLevel(this.moduleList);
-
-  systemListByTechLevel: {
-    [tl: number]: MechComponent[]
-  } = this.sortListByTechLevel(this.systemList);
+  chassisListByTechLevel: { [tl: number]: Chassis[] } = this.data.chassisListByTechLevel;
+  moduleListByTechLevel: { [tl: number]: MechComponent[] } = this.data.moduleListByTechLevel;
+  systemListByTechLevel: { [tl: number]: MechComponent[] } = this.data.systemListByTechLevel;
 
   chassis: any = null;
 
@@ -75,8 +53,6 @@ export class MechViewerComponent implements OnInit{
   }
 
   mechForm: FormGroup = this.fb.group({
-    name: [''],
-    pilot: [''],
     chassis: [0],
     pattern: [0],
     systems: this.fb.array([]),
@@ -85,22 +61,10 @@ export class MechViewerComponent implements OnInit{
 
   showScrapSection = true;
 
-  // Getters
-
-  getChassis(id: number) {
-    return this.chassisList.find((chas) => chas.id === id);
-  }
+  // Get
 
   getPattern(id: number) {
     return this.patternList.find((pat) => pat.id === id);
-  }
-
-  getSystem(id: number) {
-    return this.systemList.find((sys) => sys.id === id);
-  }
-
-  getModule(id: number) {
-    return this.moduleList.find((mod) => mod.id === id);
   }
 
   // Systems
@@ -110,16 +74,26 @@ export class MechViewerComponent implements OnInit{
   }
 
   addSystem(id: number, setCustom: boolean = true) {
-    let system = this.getSystem(id);
+    const system = this.data.getSystem(id);
     this.addToFormArray(this.systemsFormArray(), system, setCustom);
+    this.storeSystems();
   }
 
   removeSystem(index: number, setCustom: boolean = true) {
     this.removeFromFormArray(this.systemsFormArray(), index, setCustom);
+    this.storeSystems();
   }
 
   clearSystems(setCustom: boolean = true) {
     this.clearFormArray(this.systemsFormArray(), setCustom);
+    this.storeSystems();
+  }
+
+  storeSystems() {
+    const systems = this.systemsFormArray().value.map(
+      (s: MechComponent) => s.id);
+
+    this.storage.setData('systems', systems);
   }
 
   // Modules
@@ -129,16 +103,26 @@ export class MechViewerComponent implements OnInit{
   }
 
   addModule(id: number, setCustom: boolean = true) {
-    let module = this.getModule(id);
+    let module = this.data.getModule(id);
     this.addToFormArray(this.modulesFormArray(), module, setCustom);
+    this.storeModules();
   }
 
   removeModule(index: number, setCustom: boolean = true) {
     this.removeFromFormArray(this.modulesFormArray(), index, setCustom);
+    this.storeModules();
   }
 
   clearModules(setCustom: boolean = true) {
     this.clearFormArray(this.modulesFormArray(), setCustom);
+    this.storeModules();
+  }
+
+  storeModules() {
+    const modules = this.modulesFormArray().value.map(
+      (s: MechComponent) => s.id);
+
+    this.storage.setData('modules', modules);
   }
 
   // FormArray functions
@@ -248,19 +232,26 @@ export class MechViewerComponent implements OnInit{
   }
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private data: DataService,
+    private storage: StorageService
   ) {
     this.mechForm.get('chassis')?.valueChanges.subscribe((id) => {
-      this.chassis = this.getChassis(id);
+      this.chassis = this.data.getChassis(id);
       this.patternList = this.chassis.patterns;
+
       if (this.mechForm.get('pattern')?.value > 1) {
         this.mechForm.get('pattern')?.setValue(0);
       }
+
+      this.storage.setData('chassis', id);
 
       this.calculateValues();
     });
 
     this.mechForm.get('pattern')?.valueChanges.subscribe((id) => {
+      this.storage.setData('pattern', id);
+
       if (id === 0) return;
 
       let pattern = this.getPattern(id);
@@ -269,10 +260,31 @@ export class MechViewerComponent implements OnInit{
       this.clearModules(false);
 
       pattern?.systems.forEach((sys: number) => this.addSystem(sys, false));
-      pattern?.modules.forEach((sys: number) => this.addModule(sys, false));
+      pattern?.modules.forEach((mod: number) => this.addModule(mod, false));
 
       this.calculateValues();
     });
+
+    const chassis = this.storage.getData('chassis');
+    const pattern = this.storage.getData('pattern');
+    const systems = storage.getData('systems');
+    const modules = storage.getData('modules');
+
+    console.log('chassis', chassis);
+    console.log('pattern', pattern);
+    console.log('systems', systems);
+    console.log('modules', modules);
+
+    if (chassis) {
+      this.mechForm.get('chassis')?.setValue(chassis);
+    }
+
+    if (pattern) {
+      this.mechForm.get('pattern')?.setValue(pattern);
+    } else {
+      systems.forEach((sys: number) => this.addSystem(sys, false));
+      modules.forEach((mod: number) => this.addModule(mod, false));
+    }
   }
 
   ngOnInit() {

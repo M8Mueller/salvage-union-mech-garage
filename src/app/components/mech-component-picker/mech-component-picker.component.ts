@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { MechComponent } from '../../types/mech';
 
+import { EpTagComponent } from '../ep-tag/ep-tag.component';
+
 @Component({
   selector: 'app-mech-component-picker',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    EpTagComponent,
   ],
   templateUrl: './mech-component-picker.component.html',
   styleUrl: './mech-component-picker.component.css'
