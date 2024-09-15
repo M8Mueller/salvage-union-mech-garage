@@ -249,8 +249,13 @@ export class MechViewerComponent implements OnInit{
     if (pattern) {
       this.mechForm.get('pattern')?.setValue(pattern);
     } else {
-      systems.forEach((sys: number) => this.addSystem(sys, false));
-      modules.forEach((mod: number) => this.addModule(mod, false));
+      if (systems) {
+        systems.forEach((sys: number) => this.addSystem(sys, false));
+      }
+
+      if (modules) {
+        modules.forEach((mod: number) => this.addModule(mod, false));
+      }
     }
 
   }
