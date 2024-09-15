@@ -101,8 +101,20 @@
                             <dd class="col-8">{{ chassis.salvage_value }}</dd>
                             
                             <dt class="col-4">Chassis Ability</dt>
-                            <dd class="col-8">{{ chassis.ability?.name }}</dd>
-                            <dd class="col-8 offset-4">{{ chassis.ability?.description }}</dd>
+                            <dd class="col-8">
+                                <dl>
+                                    <ng-container *ngFor="let ability of chassis.abilities">
+                                        <dt class="mb-2">{{ ability.name }}</dt>
+                                        <dd class="mb-2">{{ ability.description }}</dd>
+                                        <dd *ngIf="ability.roll_results">
+                                            <app-roll-results [rollResults]="ability.roll_results"></app-roll-results>
+                                        </dd>
+                                        <dd *ngIf="ability.actions">
+                                            <app-action-list [actions]="ability.actions"></app-action-list>
+                                        </dd>
+                                    </ng-container>
+                                </dl>
+                            </dd>
                         </dl>
                     </fieldset>
                 </div>

@@ -11,6 +11,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './ep-tag.component.css'
 })
 export class EpTagComponent {
-  @Input() epCost: number = 0;
+  @Input() epCost: string | number = 0;
 
 }

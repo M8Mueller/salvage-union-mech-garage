@@ -32,15 +32,15 @@ export class DataService {
   // Get
 
   getChassis(id: number) {
-    return this.chassisList.find((chas) => chas.id === id);
+    return this.chassisList.find((chas) => chas.id === id) || null;
   }
 
   getSystem(id: number) {
-    return this.systemList.find((sys) => sys.id === id);
+    return this.systemList.find((sys) => sys.id === id) || null;
   }
 
   getModule(id: number) {
-    return this.moduleList.find((mod) => mod.id === id);
+    return this.moduleList.find((mod) => mod.id === id) || null;
   }
 
   // Sort

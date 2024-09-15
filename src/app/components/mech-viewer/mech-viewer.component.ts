@@ -9,16 +9,20 @@ import { StorageService } from '../../services/storage.service';
 
 import { EpTagComponent } from '../ep-tag/ep-tag.component';
 import { MechComponentPickerComponent } from '../mech-component-picker/mech-component-picker.component';
+import { RollResultsComponent } from '../roll-results/roll-results.component';
+import { ActionListComponent } from '../action-list/action-list.component';
 
 @Component({
   selector: 'app-mech-viewer',
   standalone: true,
   imports: [
+    ActionListComponent,
     CommonModule,
     EpTagComponent,
     FormsModule,
     MechComponentPickerComponent,
     ReactiveFormsModule,
+    RollResultsComponent,
   ],
   templateUrl: './mech-viewer.component.html',
   styleUrl: './mech-viewer.component.css'
@@ -32,7 +36,7 @@ export class MechViewerComponent implements OnInit{
   moduleListByTechLevel: { [tl: number]: MechComponent[] } = this.data.moduleListByTechLevel;
   systemListByTechLevel: { [tl: number]: MechComponent[] } = this.data.systemListByTechLevel;
 
-  chassis: any = null;
+  chassis: Chassis | null = null;
 
   bonusHeatCap: number = 0;
   bonusCargoCap: number = 0;
@@ -61,7 +65,7 @@ export class MechViewerComponent implements OnInit{
 
   showScrapSection = true;
 
-  // Get
+  // Pattern
 
   getPattern(id: number) {
     return this.patternList.find((pat) => pat.id === id);
@@ -183,7 +187,9 @@ export class MechViewerComponent implements OnInit{
     this.techLevels.forEach(
       (tl) => this.scrapCost[tl] = 0);
 
-    this.scrapCost[this.chassis.tech_level] = this.chassis.salvage_value;
+    if (this.chassis) {
+      this.scrapCost[this.chassis.tech_level] = this.chassis.salvage_value;
+    }
 
     this.systemsFormArray().value.forEach(
       (sys: any) => this.scrapCost[sys.tech_level] += sys.salvage_value);
@@ -216,7 +222,6 @@ export class MechViewerComponent implements OnInit{
       (count: number, sys: any) => count + sys.module_slots,
       0
     );
-
   }
 
   calculateSlotCounts() {
@@ -231,6 +236,25 @@ export class MechViewerComponent implements OnInit{
     );
   }
 
+  loadValuesFromStorage() {
+    const chassis = this.storage.getData('chassis');
+    const pattern = this.storage.getData('pattern');
+    const systems = this.storage.getData('systems');
+    const modules = this.storage.getData('modules');
+
+    if (chassis) {
+      this.mechForm.get('chassis')?.setValue(chassis);
+    }
+
+    if (pattern) {
+      this.mechForm.get('pattern')?.setValue(pattern);
+    } else {
+      systems.forEach((sys: number) => this.addSystem(sys, false));
+      modules.forEach((mod: number) => this.addModule(mod, false));
+    }
+
+  }
+
   constructor(
     private fb: FormBuilder,
     private data: DataService,
@@ -238,10 +262,15 @@ export class MechViewerComponent implements OnInit{
   ) {
     this.mechForm.get('chassis')?.valueChanges.subscribe((id) => {
       this.chassis = this.data.getChassis(id);
-      this.patternList = this.chassis.patterns;
 
-      if (this.mechForm.get('pattern')?.value > 1) {
-        this.mechForm.get('pattern')?.setValue(0);
+      this.patternList = this.chassis?.patterns || [];
+
+      if (this.mechForm.get('pattern')?.value > 0) {
+        if (this.patternList.length) {
+          this.mechForm.get('pattern')?.setValue(1);
+        } else {
+          this.mechForm.get('pattern')?.setValue(0);
+        }
       }
 
       this.storage.setData('chassis', id);
@@ -265,26 +294,7 @@ export class MechViewerComponent implements OnInit{
       this.calculateValues();
     });
 
-    const chassis = this.storage.getData('chassis');
-    const pattern = this.storage.getData('pattern');
-    const systems = storage.getData('systems');
-    const modules = storage.getData('modules');
-
-    console.log('chassis', chassis);
-    console.log('pattern', pattern);
-    console.log('systems', systems);
-    console.log('modules', modules);
-
-    if (chassis) {
-      this.mechForm.get('chassis')?.setValue(chassis);
-    }
-
-    if (pattern) {
-      this.mechForm.get('pattern')?.setValue(pattern);
-    } else {
-      systems.forEach((sys: number) => this.addSystem(sys, false));
-      modules.forEach((mod: number) => this.addModule(mod, false));
-    }
+    this.loadValuesFromStorage();
   }
 
   ngOnInit() {

@@ -1,0 +1,9 @@
+<div *ngFor="let action of actions">
+    <app-ep-tag [epCost]="action.ep_cost" *ngIf="action.ep_cost"></app-ep-tag>
+    <span class="fw-bold">{{ action.name }} </span>
+    <app-trait-list [traits]="action.traits" *ngIf="action.traits"></app-trait-list>
+    <div class="mb-2" *ngIf="action.description">{{ action.description }}</div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let option of action.options"><span class="fw-bold">{{ option.name }}: </span>{{ option.description }}</li>
+    </ul>
+</div>

@@ -34,17 +34,12 @@
                 <div class="row">
                     <div class="col">
                         <app-ep-tag [epCost]="component.ep_cost" *ngIf="component.ep_cost"></app-ep-tag>
-                        <span class="text-secondary" *ngFor="let trait of component.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
-                        <div *ngFor="let action of component.actions">
-                            <app-ep-tag [epCost]="action.ep_cost" *ngIf="action.ep_cost"></app-ep-tag>
-                            <span class="fw-bold">{{ action.name }} </span>
-                            <span class="text-secondary" *ngFor="let trait of action.traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
-                        </div>
+                        <app-trait-list [traits]="component.traits" *ngIf="component.traits"></app-trait-list>
+                        <app-action-list [actions]="component.actions" *ngIf="component.actions"></app-action-list>
                     </div>
                 </div>
                 <hr>
             </ng-container>
         </div>
-
     </ng-container>
 </div>

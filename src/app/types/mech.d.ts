@@ -1,13 +1,29 @@
-export interface ChassisAbility {
+export interface Action {
     name: string;
-    description: string;
+    description?: string;
+    traits?: string[];
+    ep_cost?: string | number;
+    options?: Option[];
+    roll_results?: RollResult[];
+}
+
+export interface Ability {
+    name: string;
+    description?: string;
+    actions?: Action[];
+    roll_results?: RollResult[];
+}
+
+export interface Option {
+    name: string;
+    description?: string;
 }
 
 export interface Pattern {
-    id: number,
-    name: string,
-    systems: number[],
-    modules: number[]
+    id: number;
+    name: string;
+    systems: number[];
+    modules: number[];
 }
 
 export interface Chassis {
@@ -21,17 +37,25 @@ export interface Chassis {
     cargo_cap: number;
     tech_level: number;
     salvage_value: number;
-    ability: ChassisAbility;
+    abilities?: Ability[];
     patterns: Pattern[];
 }
 
 export interface MechComponent {
     id: number;
     name: string;
-    ep_cost?: number;
     tech_level: number;
     slots: number;
     salvage_value: number;
     traits?: string[];
-    actions?: any[];
+    ep_cost?: string | number;
+    system_slots?: number;
+    module_slots?: number;
+    actions?: Action[];
+    roll_results?: RollResult[];
+}
+
+export interface RollResult {
+    roll: string;
+    result: string;
 }
