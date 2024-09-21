@@ -33,9 +33,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 TODO:
-- Finish data entry
-- Automate build process
-- Add Sass for better theming
-- Routing
-- Export mech
-- Import/modify mech
+- Tech 3 data
+- Tech 4 data
+- Tech 5 data
+- Tech 6 data
+- Custom Patterns
+- Import / Export
+- Combat Management
+- Inventory Management
+- Pilot Management
+- Crawler Management

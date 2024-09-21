@@ -1,0 +1,51 @@
+<div class="card text-center mb-4">
+    <div class="card-body">
+        <div class="card-title h2">
+            <i class="bi bi-shield-fill"></i>
+            <!-- <i class="bi bi-shield-shaded"></i> -->
+            <!-- <i class="bi bi-shield"></i> -->
+        </div>
+
+        <hr />
+
+        <div class="h3 fw-light">
+            <span>{{ structure }}</span>
+            <span *ngIf="bonusStructure">+{{ bonusStructure }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="card text-center mb-4">
+    <div class="card-body">
+        <div class="card-title h2">
+            <i class="bi bi-battery-full"></i>
+            <!-- <i class="bi bi-battery-half"></i>
+            <i class="bi bi-battery"></i> -->
+        </div>
+
+        <hr />
+
+        <div class="h3 fw-light">
+            <span>{{ energy }}</span>
+            <span *ngIf="bonusEnergy">+{{ bonusEnergy }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="card text-center mb-4">
+    <div class="card-body">
+        <div class="card-title h2">
+            <i class="bi bi-thermometer"></i>
+            <!-- <i class="bi bi-thermometer-low"></i>
+            <i class="bi bi-thermometer-half"></i>
+            <i class="bi bi-thermometer-high"></i> -->
+        </div>
+
+        <hr />
+
+        <div class="h3 fw-light">
+            <span>{{ heat }}</span>
+            <span *ngIf="bonusHeat">+{{ bonusHeat }}</span>
+        </div>
+    </div>
+</div>
