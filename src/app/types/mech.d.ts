@@ -9,7 +9,8 @@ export interface Action {
 
 export interface Ability {
     name: string;
-    description?: string | string[];
+    description?: string;
+    long_description?: string[];
     actions?: Action[];
     roll_results?: RollResult[];
 }

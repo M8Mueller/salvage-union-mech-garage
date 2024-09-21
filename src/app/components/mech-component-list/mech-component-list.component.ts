@@ -23,8 +23,6 @@ export class MechComponentListComponent implements OnInit {
 
   @Output() componentsChanged = new EventEmitter<MechComponent[]>();
 
-  techLevels: string[] = Object.keys(this.componentList);
-
   components: MechComponent[] = [];
   usedSlots: number = 0;
 
