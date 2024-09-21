@@ -106,25 +106,23 @@ export class MechViewerComponent {
   calculateBonuses() {
     const components = [...this.systems, ...this.modules];
 
-    console.log(components)
-
     this.bonusHeat = components.reduce(
-      (count: number, comp: any) => count + comp.heat_cap || 0,
+      (count: number, comp: any) => count + (comp.heat_cap || 0),
       0
     );
 
     this.bonusCargo = components.reduce(
-      (count: number, comp: any) => count + comp.cargo_cap || 0,
+      (count: number, comp: any) => count + (comp.cargo_cap || 0),
       0
     );
 
     this.bonusSystemSlots = this.modules.reduce(
-      (count: number, mod: any) => count + mod.system_slots || 0,
+      (count: number, mod: any) => count + (mod.system_slots || 0),
       0
     );
 
     this.bonusModuleSlots = this.systems.reduce(
-      (count: number, sys: any) => count + sys.module_slots,
+      (count: number, sys: any) => count + (sys.module_slots || 0),
       0
     );
   }

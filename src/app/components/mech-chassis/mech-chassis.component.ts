@@ -42,9 +42,7 @@ export class MechChassisComponent implements OnInit {
     private storage: StorageService
   ){
     this.chassisForm.get('chassis')?.valueChanges.subscribe((id) => {
-      console.log('mech-chassis component: chassis updated');
       this.chassis = this.data.getChassis(id) || null;
-      console.log(this.chassis);
 
       this.storage.setData('chassis', id);
 
