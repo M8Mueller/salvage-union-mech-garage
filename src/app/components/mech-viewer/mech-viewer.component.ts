@@ -1,51 +1,54 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 
 import type { Chassis, MechComponent, Pattern } from '../../types/mech.d';
 
 import { DataService } from '../../services/data.service';
-import { StorageService } from '../../services/storage.service';
 
-import { EpTagComponent } from '../ep-tag/ep-tag.component';
-import { MechComponentPickerComponent } from '../mech-component-picker/mech-component-picker.component';
-import { RollResultsComponent } from '../roll-results/roll-results.component';
-import { ActionListComponent } from '../action-list/action-list.component';
+import { MechCargoComponent } from '../mech-cargo/mech-cargo.component';
+import { MechChassisComponent } from "../mech-chassis/mech-chassis.component";
+import { MechComponentListComponent } from '../mech-component-list/mech-component-list.component';
+import { MechScrapCostComponent } from '../mech-scrap-cost/mech-scrap-cost.component';
+import { MechStatusComponent } from '../mech-status/mech-status.component';
 
 @Component({
   selector: 'app-mech-viewer',
   standalone: true,
   imports: [
-    ActionListComponent,
     CommonModule,
-    EpTagComponent,
-    FormsModule,
-    MechComponentPickerComponent,
-    ReactiveFormsModule,
-    RollResultsComponent,
-  ],
+    MechCargoComponent,
+    MechChassisComponent,
+    MechComponentListComponent,
+    MechScrapCostComponent,
+    MechStatusComponent,
+],
   templateUrl: './mech-viewer.component.html',
   styleUrl: './mech-viewer.component.css'
 })
-export class MechViewerComponent implements OnInit{
+export class MechViewerComponent {
   techLevels = [1, 2, 3, 4, 5, 6];
 
-  patternList: Pattern[] = [];
-
-  chassisListByTechLevel: { [tl: number]: Chassis[] } = this.data.chassisListByTechLevel;
-  moduleListByTechLevel: { [tl: number]: MechComponent[] } = this.data.moduleListByTechLevel;
-  systemListByTechLevel: { [tl: number]: MechComponent[] } = this.data.systemListByTechLevel;
+  chassisListByTechLevel: { [tl: number]: Chassis[] } =
+    this.data.chassisListByTechLevel;
+  moduleListByTechLevel: { [tl: number]: MechComponent[] } =
+    this.data.moduleListByTechLevel;
+  systemListByTechLevel: { [tl: number]: MechComponent[] } =
+    this.data.systemListByTechLevel;
 
   chassis: Chassis | null = null;
+  systems: MechComponent[] = [];
+  modules: MechComponent[] = [];
 
-  bonusHeatCap: number = 0;
-  bonusCargoCap: number = 0;
+  // Bonus Stats
 
-  bonusSystemSlotCount: number = 0;
-  bonusModuleSlotCount: number = 0;
+  bonusStructure: number = 0;
+  bonusEnergy: number = 0;
+  bonusHeat: number = 0;
+  bonusCargo: number = 0;
+  bonusSystemSlots: number = 0;
+  bonusModuleSlots: number = 0;
 
-  systemSlotCount: number = 0;
-  moduleSlotCount: number = 0;
+  // Scrap Cost
 
   scrapCost: { [id: number]: number } = {
     1: 0,
@@ -56,122 +59,25 @@ export class MechViewerComponent implements OnInit{
     6: 0
   }
 
-  mechForm: FormGroup = this.fb.group({
-    chassis: [0],
-    pattern: [0],
-    systems: this.fb.array([]),
-    modules: this.fb.array([]),
-  });
-
-  showScrapSection = true;
-
-  // Pattern
-
-  getPattern(id: number) {
-    return this.patternList.find((pat) => pat.id === id);
+  constructor(
+    private data: DataService,
+  ) {
   }
 
-  // Systems
-
-  systemsFormArray() {
-    return this.mechForm.get('systems') as FormArray;
-  }
-
-  addSystem(id: number, setCustom: boolean = true) {
-    const system = this.data.getSystem(id);
-    this.addToFormArray(this.systemsFormArray(), system, setCustom);
-    this.storeSystems();
-  }
-
-  removeSystem(index: number, setCustom: boolean = true) {
-    this.removeFromFormArray(this.systemsFormArray(), index, setCustom);
-    this.storeSystems();
-  }
-
-  clearSystems(setCustom: boolean = true) {
-    this.clearFormArray(this.systemsFormArray(), setCustom);
-    this.storeSystems();
-  }
-
-  storeSystems() {
-    const systems = this.systemsFormArray().value.map(
-      (s: MechComponent) => s.id);
-
-    this.storage.setData('systems', systems);
-  }
-
-  // Modules
-
-  modulesFormArray() {
-    return this.mechForm.get('modules') as FormArray;
-  }
-
-  addModule(id: number, setCustom: boolean = true) {
-    let module = this.data.getModule(id);
-    this.addToFormArray(this.modulesFormArray(), module, setCustom);
-    this.storeModules();
-  }
-
-  removeModule(index: number, setCustom: boolean = true) {
-    this.removeFromFormArray(this.modulesFormArray(), index, setCustom);
-    this.storeModules();
-  }
-
-  clearModules(setCustom: boolean = true) {
-    this.clearFormArray(this.modulesFormArray(), setCustom);
-    this.storeModules();
-  }
-
-  storeModules() {
-    const modules = this.modulesFormArray().value.map(
-      (s: MechComponent) => s.id);
-
-    this.storage.setData('modules', modules);
-  }
-
-  // FormArray functions
-
-  addToFormArray(formArray: FormArray, item: any, setCustom: boolean = true) {
-    if (setCustom) {
-      this.mechForm.get('pattern')?.setValue(0);
+  setChassis(chassis: Chassis | null) {
+    if (chassis) {
+      this.chassis = chassis;
+      this.calculateValues();
     }
+  }
 
-    formArray.push(
-      this.fb.group({
-        'id': item.id,
-        'name': item.name,
-        'tech_level': item.tech_level,
-        'slots': item.slots,
-        'salvage_value': item.salvage_value,
-        'heat_cap': item.heat_cap | 0,
-        'cargo_cap': item.cargo_cap | 0,
-        'system_slots': item.system_slots | 0,
-        'module_slots': item.module_slots | 0
-      })
-    );
-
+  setModules(modules: MechComponent[]) {
+    this.modules = modules;
     this.calculateValues();
-  }
+  } 
 
-  removeFromFormArray(formArray: FormArray, index: number, setCustom: boolean = true) {
-    if (setCustom) {
-      this.mechForm.get('pattern')?.setValue(0);
-    }
-
-    formArray.removeAt(index);
-
-    this.calculateValues();
-  }
-
-  clearFormArray(formArray: FormArray, setCustom: boolean = true) {
-    if (setCustom) {
-      this.mechForm.get('pattern')?.setValue(0);
-    }
-
-    while (formArray.length !== 0) {
-      formArray.removeAt(0);
-    }
-
+  setSystems(systems: MechComponent[]) {
+    this.systems = systems;
     this.calculateValues();
   }
 
@@ -180,7 +86,6 @@ export class MechViewerComponent implements OnInit{
   calculateValues() {
     this.calculateScrapCost();
     this.calculateBonuses();
-    this.calculateSlotCounts();
   }
 
   calculateScrapCost() {
@@ -191,118 +96,37 @@ export class MechViewerComponent implements OnInit{
       this.scrapCost[this.chassis.tech_level] = this.chassis.salvage_value;
     }
 
-    this.systemsFormArray().value.forEach(
+    this.systems.forEach(
       (sys: any) => this.scrapCost[sys.tech_level] += sys.salvage_value);
 
-    this.modulesFormArray().value.forEach(
+    this.modules.forEach(
       (mod: any) => this.scrapCost[mod.tech_level] += mod.salvage_value);
   }
 
   calculateBonuses() {
-    const systems = this.systemsFormArray().value;
-    const modules = this.modulesFormArray().value;
-    const components = [...systems, ...modules];
+    const components = [...this.systems, ...this.modules];
 
-    this.bonusHeatCap = components.reduce(
-      (count: number, comp: any) => count + comp.heat_cap | 0,
+    console.log(components)
+
+    this.bonusHeat = components.reduce(
+      (count: number, comp: any) => count + comp.heat_cap || 0,
       0
     );
 
-    this.bonusCargoCap = components.reduce(
-      (count: number, comp: any) => count + comp.cargo_cap | 0,
+    this.bonusCargo = components.reduce(
+      (count: number, comp: any) => count + comp.cargo_cap || 0,
       0
     );
 
-    this.bonusSystemSlotCount = modules.reduce(
-      (count: number, mod: any) => count + mod.system_slots | 0,
+    this.bonusSystemSlots = this.modules.reduce(
+      (count: number, mod: any) => count + mod.system_slots || 0,
       0
     );
 
-    this.bonusModuleSlotCount = systems.reduce(
+    this.bonusModuleSlots = this.systems.reduce(
       (count: number, sys: any) => count + sys.module_slots,
       0
     );
-  }
-
-  calculateSlotCounts() {
-    this.systemSlotCount = this.systemsFormArray().value.reduce(
-      (count: number, sys: any) => count + sys.slots,
-      0
-    );
-
-    this.moduleSlotCount = this.modulesFormArray().value.reduce(
-      (count: number, mod: any) => count + mod.slots,
-      0
-    );
-  }
-
-  loadValuesFromStorage() {
-    const chassis = this.storage.getData('chassis');
-    const pattern = this.storage.getData('pattern');
-    const systems = this.storage.getData('systems');
-    const modules = this.storage.getData('modules');
-
-    if (chassis) {
-      this.mechForm.get('chassis')?.setValue(chassis);
-    }
-
-    if (pattern) {
-      this.mechForm.get('pattern')?.setValue(pattern);
-    } else {
-      if (systems) {
-        systems.forEach((sys: number) => this.addSystem(sys, false));
-      }
-
-      if (modules) {
-        modules.forEach((mod: number) => this.addModule(mod, false));
-      }
-    }
-
-  }
-
-  constructor(
-    private fb: FormBuilder,
-    private data: DataService,
-    private storage: StorageService
-  ) {
-    this.mechForm.get('chassis')?.valueChanges.subscribe((id) => {
-      this.chassis = this.data.getChassis(id);
-
-      this.patternList = this.chassis?.patterns || [];
-
-      if (this.mechForm.get('pattern')?.value > 0) {
-        if (this.patternList.length) {
-          this.mechForm.get('pattern')?.setValue(1);
-        } else {
-          this.mechForm.get('pattern')?.setValue(0);
-        }
-      }
-
-      this.storage.setData('chassis', id);
-
-      this.calculateValues();
-    });
-
-    this.mechForm.get('pattern')?.valueChanges.subscribe((id) => {
-      this.storage.setData('pattern', id);
-
-      if (id === 0) return;
-
-      let pattern = this.getPattern(id);
-
-      this.clearSystems(false);
-      this.clearModules(false);
-
-      pattern?.systems.forEach((sys: number) => this.addSystem(sys, false));
-      pattern?.modules.forEach((mod: number) => this.addModule(mod, false));
-
-      this.calculateValues();
-    });
-
-    this.loadValuesFromStorage();
-  }
-
-  ngOnInit() {
   }
 
 }

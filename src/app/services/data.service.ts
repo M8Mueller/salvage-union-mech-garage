@@ -31,6 +31,20 @@ export class DataService {
 
   // Get
 
+  getComponent(id: number, key: string) {
+    switch(key) {
+      case "modules": {
+        return this.getModule(id);
+      }
+      case "systems": {
+        return this.getSystem(id);
+      }
+      default: {
+        return null;
+      }
+    }
+  }
+
   getChassis(id: number) {
     return this.chassisList.find((chas) => chas.id === id) || null;
   }

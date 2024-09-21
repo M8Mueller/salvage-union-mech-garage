@@ -379,7 +379,6 @@
                     "description": "The Mirror Ball can project a glowing, protective energy field around its Chassis.",
                     "actions": [
                         {
-                            "name": "",
                             "traits": ["Turn Action", "Shield"],
                             "ep_cost": "X"
                         }
@@ -393,6 +392,169 @@
                     "systems": [10, 5],
                     "modules": [1]
                 }
+            ]
+        },
+        {
+            "id": 13,
+            "name": "Atlas",
+            "structure_pts": 30,
+            "energy_pts": 10,
+            "heat_cap": 14,
+            "system_slots": 21,
+            "module_slots": 2,
+            "cargo_cap": 30,
+            "tech_level": 3,
+            "salvage_value": 12,
+            "abilities": [
+                {
+                    "name": "Integrated Colossal Cargo Bay",
+                    "description": "Increases the Cargo Capacity of the Atlas by 24, to 30",
+                    "actions": [
+                        {
+                            "traits": ["Turn Action", "Shield"],
+                            "ep_cost": "X"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "name": "Brawler",
+            "structure_pts": 25,
+            "energy_pts": 10,
+            "heat_cap": 14,
+            "system_slots": 16,
+            "module_slots": 3,
+            "cargo_cap": 6,
+            "tech_level": 3,
+            "salvage_value": 5,
+            "abilities": [
+                {
+                    "name": "Close Range Protocols",
+                    "description": "The Brawler deals an additional 2 SP damage when it makes an attack at any target within Close Range of it. This bonus is applied before other modifiers."
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "name": "Little Sestra",
+            "structure_pts": 15,
+            "energy_pts": 8,
+            "heat_cap": 10,
+            "system_slots": 9,
+            "module_slots": 3,
+            "cargo_cap": 6,
+            "tech_level": 3,
+            "salvage_value": 7,
+            "abilities": [
+                {
+                    "name": "Sestra Drone Controller",
+                    "description": [
+                        "The Little Sestra comes with a single Sestra Drone that it controls up to Far Range. Roll on the A.I. Personality Table for the drone’s personality.",
+                        "The Sestra Drone acts separately to the Little Sestra on its own turn, and is controlled by the Pilot. It functions effectively as a Mech, but cannot Push. It can be installed with Systems and Modules and restores its SP and EP in a T3 or higher Mech Bay during Downtime. If the Drone is damaged it can be repaired as though it was a Mech. If it is destroyed you may craft a new Sestra Drone for 2 Tech 3 Scrap as per the crafting rules. The Little Sestra may have one active Sestra Drone at a time."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "name": "Sestra Drone (Little Sestra)",
+            "structure_pts": 7,
+            "energy_pts": 8,
+            "heat_cap": 6,
+            "system_slots": 7,
+            "module_slots": 2,
+            "cargo_cap": 3,
+            "tech_level": 3,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Integrated Hover Locomotion System",
+                    "description": "The Sestra Drone has the Hover trait."
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "name": "Mantis",
+            "structure_pts": 7,
+            "energy_pts": 8,
+            "heat_cap": 6,
+            "system_slots": 7,
+            "module_slots": 2,
+            "cargo_cap": 3,
+            "tech_level": 3,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Integrated Frog Prince Module",
+                    "description": "This specialised hacking module developed for the Mantis allows you to take control of defensive and security systems.",
+                    "actions": [
+                        {
+                            "traits": ["Turn Action", "Range: Medium", "Hacking"],
+                            "ep_cost": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "name": "Photon",
+            "structure_pts": 20,
+            "energy_pts": 10,
+            "heat_cap": 12,
+            "system_slots": 15,
+            "module_slots": 4,
+            "cargo_cap": 6,
+            "tech_level": 3,
+            "salvage_value": 8,
+            "abilities": [
+                {
+                    "name": "Solar Reactor",
+                    "description": "As a Long Action you may fully restore the Energy Points of the Photon to its maximum value. You must be in an area of sunlight to do this. You may only use this Ability once every 24 hours."
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "name": "Solo",
+            "structure_pts": 16,
+            "energy_pts": 13,
+            "heat_cap": 10,
+            "system_slots": 12,
+            "module_slots": 4,
+            "cargo_cap": 6,
+            "tech_level": 3,
+            "salvage_value": 4,
+            "abilities": [
+                {
+                    "name": "Polycarbonate Stealth Chassis",
+                    "description": "The Solo cannot be targeted with anything that uses the Targeter Trait such as targeting Modules. It also cannot be seen by anything with the Optics Trait or Scanner Trait. It does not appear on sensors, radar systems, or scanners, and needs clear and direct visual confirmation to be spotted."
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "name": "Terra",
+            "structure_pts": 12,
+            "energy_pts": 12,
+            "heat_cap": 13,
+            "system_slots": 18,
+            "module_slots": 3,
+            "cargo_cap": 6,
+            "tech_level": 3,
+            "salvage_value": 9,
+            "abilities": [
+                {
+                    "name": "Terraforming Bubble",
+                    "actions": [
+                        {
+                            "traits": ["Turn Action"],
+                            "ep_cost": 2
+                        }
+                    ]                }
             ]
         },
         {
@@ -449,8 +611,7 @@
                     "name": "Integrated Hover Locomotion System",
                     "description": "Your Survey Drone has the Hover trait."
                 }
-            ],
-            "patterns": []
+            ]
         }
     ]
 }

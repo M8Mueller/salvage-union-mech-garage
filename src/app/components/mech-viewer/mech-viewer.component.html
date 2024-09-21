@@ -1,253 +1,57 @@
+<div class="row">
 
-<form class="form-horizontal" [formGroup]="mechForm">
-    <div class="row">
-        <div class="col-lg">
-            <dl class="row mb-0">
-                <div class="col-6 col-xxl-4 mb-4">
-                    <fieldset class="form-group border p-4">
-                        <legend>Structure
-                            <div class="float-end">
-                                <i class="bi bi-shield-fill"></i>
-                            </div>
-                        </legend>
-                        <hr>
-                        <dd class="display-4 text-center">{{ chassis?.structure_pts || "?" }}</dd>
-                    </fieldset>
-                </div>
-                <div class="col-6 col-xxl-4 mb-4">
-                    <fieldset class="form-group border p-4">
-                        <legend>Energy
-                            <div class="float-end">
-                                <i class="bi bi-lightning-fill"></i>
-                            </div>
-                        </legend>
-                        <hr>
-                        <dd class="display-4 text-center">{{ chassis?.energy_pts || "?" }}</dd>
-                    </fieldset>
-                </div>
-                <div class="col-6 offset-3 col-xxl-4 offset-xxl-0 mb-4">
-                    <fieldset class="form-group border p-4">
-                        <legend>Heat Cap
-                            <div class="float-end">
-                                <i class="bi bi-thermometer-half"></i>
-                            </div>
-                        </legend>
-                        <hr>
-                        <dd class="display-4 text-center">{{ chassis?.heat_cap || "?" }}<span *ngIf="bonusHeatCap">+{{ bonusHeatCap }}</span></dd>
-                    </fieldset>
-                </div>
-            </dl>
-
-            <div class="row mb-4">
-                <div class="col">
-                    <fieldset class="form-group border p-4">
-                        <legend>Mech Core
-                            <div class="float-end">
-                                <i class="bi bi-cpu-fill"></i>
-                            </div>
-                        </legend>
-
-                        <hr>
-
-                        <div class="row mb-2">
-                            <label class="col-4 col-form-label fw-bold" for="chassis">Chassis</label>
-                            <div class="col-8">
-                                <select class="form-select" id="chassis" formControlName="chassis">
-                                    <option [ngValue]="0" disabled hidden>Select a chassis...</option>
-                                    <ng-container *ngFor="let tl of techLevels">
-                                        <optgroup label="Tech Level {{ tl}}" *ngIf="chassisListByTechLevel[tl] && chassisListByTechLevel[tl].length > 0">
-                                            <option *ngFor="let chas of chassisListByTechLevel[tl]" [ngValue]="chas.id">{{ chas.name }}</option>
-                                        </optgroup>
-                                    </ng-container>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row mb-2" *ngIf="chassis">
-                            <label class="col-4 col-form-label fw-bold" for="pattern">Pattern</label>
-                            <div class="col-8">
-                                <select class="form-select" id="pattern" formControlName="pattern">
-                                    <option [ngValue]="0">Custom</option>
-                                    <option *ngFor="let pat of patternList" [ngValue]="pat.id">{{ pat.name }}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <hr *ngIf="chassis">
-
-                        <dl class="row" *ngIf="chassis">
-                            <dt class="col-4">Structure Points</dt>
-                            <dd class="col-8">{{ chassis.structure_pts }}</dd>
-                            
-                            <dt class="col-4">Energy Points</dt>
-                            <dd class="col-8">{{ chassis.energy_pts }}</dd>
-                            
-                            <dt class="col-4">Heat Capacity</dt>
-                            <dd class="col-8">{{ chassis.heat_cap }}</dd>
-                            
-                            <dt class="col-4">System Slots</dt>
-                            <dd class="col-8">{{ chassis.system_slots }}</dd>
-                            
-                            <dt class="col-4">Module Slots</dt>
-                            <dd class="col-8">{{ chassis.module_slots }}</dd>
-                            
-                            <dt class="col-4">Cargo Capacity</dt>
-                            <dd class="col-8">{{ chassis.cargo_cap }}<span *ngIf="bonusCargoCap">+{{ bonusCargoCap }}</span></dd>
-                            
-                            <dt class="col-4">Tech Level</dt>
-                            <dd class="col-8">{{ chassis.tech_level }}</dd>
-                            
-                            <dt class="col-4">Salvage Value</dt>
-                            <dd class="col-8">{{ chassis.salvage_value }}</dd>
-                            
-                            <dt class="col-4">Chassis Ability</dt>
-                            <dd class="col-8">
-                                <dl>
-                                    <ng-container *ngFor="let ability of chassis.abilities">
-                                        <dt class="mb-2">{{ ability.name }}</dt>
-                                        <dd class="mb-2">{{ ability.description }}</dd>
-                                        <dd *ngIf="ability.roll_results">
-                                            <app-roll-results [rollResults]="ability.roll_results"></app-roll-results>
-                                        </dd>
-                                        <dd *ngIf="ability.actions">
-                                            <app-action-list [actions]="ability.actions"></app-action-list>
-                                        </dd>
-                                    </ng-container>
-                                </dl>
-                            </dd>
-                        </dl>
-                    </fieldset>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg">
-            <div class="row mb-4">
-                <div class="col">
-                    <fieldset class="form-group border p-4">
-                        <legend data-bs-toggle="collapse" href="#scrapSection" role="button" aria-expanded="false" aria-controls="scrapSection">
-                            <span>Scrap Required</span>
-                            <div class="float-end">
-                                <i class="bi bi-gear-fill"></i>
-                            </div>
-                        </legend>
-
-                        <hr>
-
-                        <div class="row text-center collapse show" id="scrapSection">
-                            <div class="col-4 col-sm-2" *ngFor="let techLevel of techLevels">
-                                <fieldset class="form-group p-2">
-                                    <legend>T{{ techLevel }}</legend>
-                                    <hr>
-                                    <span class="text-secondary fs-3">{{ scrapCost[techLevel] }}</span>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
+    <div class="col-md-9 col-xl-10">
+        <div class="row">
+            <div class="col-xl">
+                <app-mech-chassis
+                    (chassisChanged)="setChassis($event)">
+                </app-mech-chassis>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <fieldset class="form-group border p-4 mb-4">
-                        <legend>Systems
-                            <div class="float-end">
-                                <i class="bi bi-triangle-fill"></i> {{ systemSlotCount }}/{{ chassis?.system_slots || "?" }}<span *ngIf="bonusSystemSlotCount">+{{ bonusSystemSlotCount }}</span>
-                            </div>
-                        </legend>
+            <div class="col-xl">
+                <app-mech-component-list
+                    [key]="'systems'"
+                    [slots]="chassis?.system_slots || 0"
+                    [bonusSlots]="bonusSystemSlots"
+                    [componentList]="systemListByTechLevel"
+                    (componentsChanged)="setSystems($event)">
+                </app-mech-component-list>
 
-                        <hr>
-
-                        <ng-container *ngFor="let system of systemsFormArray().value; let i = index">
-                            <div class="row">
-                                <div class="col-6"><span class="align-middle">{{ system.name }}</span></div>
-                                <div class="col-4">
-                                    <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ system.tech_level }}</span>
-                                    <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ system.slots }}</span>
-                                    <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ system.salvage_value }}</span>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn btn-outline-danger btn-sm float-end" (click)="removeSystem(i)">
-                                        <i class="bi bi-box-arrow-down"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <hr>
-                        </ng-container>
-
-                        <button class="btn btn-outline-danger float-end" type="button" (click)="clearSystems()" *ngIf="systemSlotCount">
-                            <i class="bi bi-box-arrow-down"></i> Unmount All
-                        </button>
-
-                        <button class="btn btn-outline-success float-end me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#system_picker" aria-controls="system_picker" [disabled]="!chassis">
-                            <i class="bi bi-box-arrow-in-up"></i> Mount Systems
-                        </button>
-                    </fieldset>
-
-                    <fieldset class="form-group border p-4">
-                        <legend>Modules
-                            <div class="float-end">
-                                <i class="bi bi-triangle-fill"></i> {{ moduleSlotCount }}/{{ chassis?.module_slots || "?" }}<span *ngIf="bonusModuleSlotCount">+{{ bonusModuleSlotCount }}</span>
-                            </div>
-                        </legend>
-
-                        <hr>
-
-                        <ng-container *ngFor="let module of modulesFormArray().value; let i = index">
-                            <div class="row">
-                                <div class="col-6"><span class="align-middle">{{ module.name }}</span></div>
-                                <div class="col-4">
-                                    <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ module.tech_level }}</span>
-                                    <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ module.slots }}</span>
-                                    <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ module.salvage_value }}</span>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn btn-outline-danger btn-sm float-end" (click)="removeModule(i)">
-                                        <i class="bi bi-box-arrow-down"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <hr>
-                        </ng-container>
-
-                        <button class="btn btn-outline-danger float-end" type="button" (click)="clearModules()" *ngIf="moduleSlotCount">
-                            <i class="bi bi-box-arrow-down"></i> Unmount All
-                        </button>
-
-                        <button class="btn btn-outline-success float-end me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#module_picker" aria-controls="module_picker" [disabled]="!chassis">
-                            <i class="bi bi-box-arrow-in-up"></i> Mount Modules
-                        </button>
-                    </fieldset>
-                </div>
+                <app-mech-component-list
+                    [key]="'modules'"
+                    [slots]="chassis?.module_slots || 0"
+                    [bonusSlots]="bonusModuleSlots"
+                    [componentList]="moduleListByTechLevel"
+                    (componentsChanged)="setModules($event)">
+                </app-mech-component-list>
             </div>
         </div>
     </div>
-</form>
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="system_picker" aria-labelledby="system_picker_label">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="system_picker_label">Systems</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body container pt-0">
-        <app-mech-component-picker
-            [componentListByTechLevel]="systemListByTechLevel"
-            [availableSlots]="chassis.system_slots + bonusSystemSlotCount - systemSlotCount"
-            (componentSelected)="addSystem($event)"
-            *ngIf="chassis"></app-mech-component-picker>
-    </div>
-</div>
+    <div class="col-md">
+        <div class="row">
+            <div class="col-6 col-md-12">
+                <app-mech-status
+                    [structure]="chassis?.structure_pts || 0"
+                    [bonusStructure]="bonusStructure"
+                    [energy]="chassis?.energy_pts || 0"
+                    [bonusEnergy]="bonusEnergy"
+                    [heat]="chassis?.heat_cap || 0"
+                    [bonusHeat]="bonusHeat">
+                </app-mech-status>
+            </div>
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="module_picker" aria-labelledby="module_picker_label">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="module_picker_label">Modules</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body container pt-0">
-        <app-mech-component-picker
-            [componentListByTechLevel]="moduleListByTechLevel"
-            [availableSlots]="chassis.module_slots + bonusModuleSlotCount - moduleSlotCount"
-            (componentSelected)="addModule($event)"
-            *ngIf="chassis"></app-mech-component-picker>
+            <div class="col-6 col-md-12">
+                <app-mech-cargo
+                    [cargo]="chassis?.cargo_cap || 0"
+                    [bonusCargo]="bonusCargo">
+                </app-mech-cargo>
+
+                <app-mech-scrap-cost
+                    [scrapCost]="scrapCost"
+                    *ngIf="scrapCost">
+                </app-mech-scrap-cost>
+            </div>
+        </div>
     </div>
 </div>

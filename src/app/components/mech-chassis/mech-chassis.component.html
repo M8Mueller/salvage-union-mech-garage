@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="card-title h4 text-center">
+                    <span>Chassis</span>
+                </div>
+
+                <hr>
+
+                <form class="form-horizontal" [formGroup]="chassisForm">
+                    <div class="row mb-2">
+                        <label class="col-4 col-sm-6 col-form-label fw-bold text-sm-end" for="chassis">Chassis</label>
+                        <div class="col">
+                            <select class="form-select" id="chassis" formControlName="chassis">
+                                <option [ngValue]="0" disabled hidden>Select a chassis...</option>
+                                <ng-container *ngFor="let tl of techLevels">
+                                    <optgroup label="Tech Level {{ tl }}" *ngIf="chassisListByTechLevel[tl] && chassisListByTechLevel[tl].length > 0">
+                                        <option *ngFor="let chas of chassisListByTechLevel[tl]" [ngValue]="chas.id">{{ chas.name }}</option>
+                                    </optgroup>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="chassis">
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="card-title h4 text-center" data-bs-toggle="collapse" href="#baseStats" role="button" aria-expanded="false" aria-controls="baseStats">
+                        <span>Base Stats</span>
+                    </div>
+
+                    <hr>
+
+                    <div class="collapse show" id="baseStats">
+                        <dl class="row">
+                            <dt class="col-9 col-sm-6 text-sm-end">Structure Points</dt>
+                            <dd class="col">{{ chassis.structure_pts }}</dd>
+                            
+                            <dt class="col-9 col-sm-6 text-sm-end">Energy Points</dt>
+                            <dd class="col">{{ chassis.energy_pts }}</dd>
+                            
+                            <dt class="col-9 col-sm-6 text-sm-end">Heat Cap</dt>
+                            <dd class="col">{{ chassis.heat_cap }}</dd>
+                            
+                            <dt class="col-9 col-sm-6 text-sm-end">System Slots</dt>
+                            <dd class="col">{{ chassis.system_slots }}</dd>
+                            
+                            <dt class="col-9 col-sm-6 text-sm-end">Module Slots</dt>
+                            <dd class="col">{{ chassis.module_slots }}</dd>
+                            
+                            <dt class="col-9 col-sm-6 text-sm-end">Cargo Capacity</dt>
+                            <dd class="col">{{ chassis.cargo_cap }}</dd>
+                            
+                            <dt class="col-9 col-sm-6 text-sm-end">Tech Level</dt>
+                            <dd class="col">{{ chassis.tech_level }}</dd>
+                            
+                            <dt class="col-9 col-sm-6 text-sm-end">Salvage Value</dt>
+                            <dd class="col">{{ chassis.salvage_value }}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="card-title h4 text-center">Ability</div>
+
+                    <hr>
+
+                    <dl>
+                        <ng-container *ngFor="let ability of chassis.abilities">
+                            <dt class="mb-2">{{ ability.name }}</dt>
+                            <ng-container *ngIf="ability.description && forceDescriptionArray(ability.description) as descriptionArray">
+                                <dd class="mb-2" *ngFor="let paragraph of descriptionArray">{{ paragraph }}</dd>
+                            </ng-container>
+                            <dd *ngIf="ability.roll_results">
+                                <app-roll-results [rollResults]="ability.roll_results"></app-roll-results>
+                            </dd>
+                            <dd *ngIf="ability.actions">
+                                <app-action-list [actions]="ability.actions"></app-action-list>
+                            </dd>
+                        </ng-container>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
