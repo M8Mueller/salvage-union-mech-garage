@@ -37,16 +37,17 @@
     </div>
 </div>
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="{{ key }}_picker" [attr.aria-labelledby]="key + '_picker_label'">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="{{ key }}_picker" [attr.aria-labelledby]="key + '_picker_label'" *ngIf="componentList">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="{{ key }}_picker_label">{{ key | titlecase }}</h5>
+        <h4 class="offcanvas-title" id="{{ key }}_picker_label">{{ key | titlecase }}</h4>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body container pt-0">
+    <div class="offcanvas-body pt-0">
         <app-mech-component-picker
-            [componentListByTechLevel]="componentList"
+            [componentList]="componentList"
             [availableSlots]="slots + bonusSlots - usedSlots"
             (componentSelected)="addComponent($event)"
-            *ngIf="slots"></app-mech-component-picker>
+            *ngIf="slots">
+        </app-mech-component-picker>
     </div>
 </div>

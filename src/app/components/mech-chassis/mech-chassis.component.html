@@ -82,9 +82,12 @@
                     <dl>
                         <ng-container *ngFor="let ability of chassis.abilities">
                             <dt class="mb-2">{{ ability.name }}</dt>
-                            <ng-container *ngIf="ability.description && forceDescriptionArray(ability.description) as descriptionArray">
-                                <dd class="mb-2" *ngFor="let paragraph of descriptionArray">{{ paragraph }}</dd>
-                            </ng-container>
+                            <dd class="mb-2" *ngIf="ability.description">
+                                <p class="text-justify">{{ ability.description }}</p>
+                            </dd>
+                            <dd class="mb-2" *ngIf="ability.long_description">
+                                <p class="text-justify" *ngFor="let p of ability.long_description">{{ p }}</p>
+                            </dd>
                             <dd *ngIf="ability.roll_results">
                                 <app-roll-results [rollResults]="ability.roll_results"></app-roll-results>
                             </dd>

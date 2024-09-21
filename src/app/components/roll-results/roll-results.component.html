@@ -1,4 +1,8 @@
 <div class="text-center"><span class="bg-light text-dark fw-bold px-1">ROLL THE DIE</span></div>
+
 <ul class="list-group">
-    <li *ngFor="let rr of rollResults" class="list-group-item"><span class="fw-bold">{{ rr.roll }}: </span>{{ rr.result }}</li>
+    <li class="list-group-item text-justify" *ngFor="let rr of rollResults">
+        <span class="fw-bold">{{ rr.roll }}: </span>
+        <span>{{ rr.result }}</span>
+    </li>
 </ul>
