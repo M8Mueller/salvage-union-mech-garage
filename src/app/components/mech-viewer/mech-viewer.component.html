@@ -3,32 +3,24 @@
     <div class="col-md-9 col-xl-10">
         <div class="row">
             <div class="col-xl">
-                <app-mech-chassis
-                    (chassisChanged)="setChassis($event)">
-                </app-mech-chassis>
+                <app-mech-chassis></app-mech-chassis>
             </div>
 
             <div class="col-xl">
-                <app-mech-component-list
-                    [key]="'systems'"
+                <app-mech-systems
                     [slots]="chassis?.system_slots || 0"
-                    [bonusSlots]="bonusSystemSlots"
-                    [componentList]="systemListByTechLevel"
-                    (componentsChanged)="setSystems($event)">
-                </app-mech-component-list>
+                    [bonusSlots]="bonusSystemSlots">
+                </app-mech-systems>
 
-                <app-mech-component-list
-                    [key]="'modules'"
+                <app-mech-modules
                     [slots]="chassis?.module_slots || 0"
-                    [bonusSlots]="bonusModuleSlots"
-                    [componentList]="moduleListByTechLevel"
-                    (componentsChanged)="setModules($event)">
-                </app-mech-component-list>
+                    [bonusSlots]="bonusModuleSlots">
+                </app-mech-modules>
             </div>
         </div>
     </div>
 
-    <div class="col-md">
+    <div class="col-md-3 col-xl-2">
         <div class="row">
             <div class="col-6 col-md-12">
                 <app-mech-status

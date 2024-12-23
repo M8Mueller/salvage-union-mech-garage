@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { Chassis, Pattern } from '../../types/mech';
+import { Component, OnInit } from '@angular/core';
+import { Chassis, MechComponent, Pattern } from '../../types/mech';
 import { CommonModule } from '@angular/common';
 import { RollResultsComponent } from '../roll-results/roll-results.component';
 import { ActionListComponent } from '../action-list/action-list.component';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataService } from '../../services/data.service';
+import { CurrentMechService } from '../../services/current-mech.service';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
@@ -21,52 +22,98 @@ import { StorageService } from '../../services/storage.service';
   styleUrl: './mech-chassis.component.css'
 })
 export class MechChassisComponent implements OnInit {
-  @Output() chassisChanged = new EventEmitter<Chassis | null>();
-
   chassisListByTechLevel: { [tl: string]: Chassis[] } =
     this.data.chassisListByTechLevel;
 
   techLevels: string[] = Object.keys(this.chassisListByTechLevel);
 
   chassisForm: FormGroup = this.fb.group({
-    chassis: [0],
+    chassis: [0]
+  });
+
+  patternForm: FormGroup = this.fb.group({
+    name: ['', Validators.required]
   });
 
   chassis: Chassis | null = null;
-
-  locked: boolean = false;
+  patterns: Pattern[] = [];
+  patternChassis: (Chassis | null)[] = [];
 
   constructor(
-    private fb: FormBuilder,
+    private currentMech: CurrentMechService,
     private data: DataService,
+    private fb: FormBuilder,
     private storage: StorageService
   ){
+    this.currentMech.chassis$.subscribe((chassis) => {
+      if (chassis) {
+        this.chassisForm.get('chassis')?.setValue(
+          chassis?.id, { emitEvent: false});
+
+        this.chassis = chassis;
+        console.log(this.chassis)
+      }
+    });
+
     this.chassisForm.get('chassis')?.valueChanges.subscribe((id) => {
-      this.chassis = this.data.getChassis(id) || null;
+      this.currentMech.setChassis(id);
+    });
 
-      this.storage.setData('chassis', id);
-
-      this.chassisChanged.emit(this.chassis);
+    this.patternForm.get('name')?.valueChanges.subscribe((name) => {
+      this.storage.setData('pattern', name);
     });
   }
 
   ngOnInit() {
-    this.loadChassis();
-  }
+    const pattern = this.storage.getData('pattern');
+    const patterns = this.storage.getData('patterns');
 
-  loadChassis() {
-    const chassis = this.storage.getData('chassis');
+    if (pattern) {
+      this.patternForm.get('name')?.setValue(pattern);
+    }
 
-    if (chassis) {
-      this.chassisForm.get('chassis')?.setValue(chassis);
+    if (patterns) {
+      this.patterns = patterns;
+      this.patternChassis = this.patterns.map(
+        (p) => this.data.getChassis(p.chassis));
     }
   }
 
-  forceDescriptionArray(desc: string | string[]): string[] {
-    if (Array.isArray(desc)) {
-      return desc;
-    }
+  savePattern() {
+    const name = this.patternForm.get('name')?.value;
+    const chassis = this.chassis?.id;
 
-    return [desc];
+    if (name && chassis) {
+      const pattern = {
+        'name': name,
+        'chassis': chassis,
+        'systems': this.currentMech.getSystems().map((s) => s.id),
+        'modules': this.currentMech.getModules().map((m) => m.id),
+      };
+
+      this.patterns.push(pattern);
+      this.patternChassis.push(this.chassis);
+
+      this.storage.setData('patterns', this.patterns);
+    }
+  }
+
+  deletePattern(index: number) {
+    this.patterns.splice(index, 1);
+    this.patternChassis.splice(index, 1);
+
+    this.storage.setData('patterns', this.patterns);
+
+    if (this.patterns.length === 0) {
+      console.log("no more saved patterns")
+      // var modal = bootstrap.Modal.getInstance(document.getElementById('savedPatternsModal'));
+      // modal?.hide();
+    }
+  }
+
+  loadPattern(pattern: Pattern) {
+    this.patternForm.get('name')?.setValue(pattern.name);
+
+    this.currentMech.setPattern(pattern);
   }
 }

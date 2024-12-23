@@ -4,6 +4,7 @@ import { DataService } from '../../services/data.service';
 import { StorageService } from '../../services/storage.service';
 import { MechComponentPickerComponent } from '../mech-component-picker/mech-component-picker.component';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-mech-component-list',
@@ -20,6 +21,7 @@ export class MechComponentListComponent implements OnInit {
   @Input() slots: number = 0;
   @Input() bonusSlots: number = 0;
   @Input() componentList: { [tl: string]: MechComponent[] } = {};
+  @Input() components$: Observable<MechComponent[]> = new Observable<MechComponent[]>();
 
   @Output() componentsChanged = new EventEmitter<MechComponent[]>();
 

@@ -226,7 +226,7 @@
                     "traits": [
                         "Long Action",
                         "Range: Close"
-                        
+
                     ]
                 }
             ]
@@ -443,6 +443,7 @@
         {
             "id": 35,
             "name": "Refractive Shield Projector",
+            "ep_cost": 2,
             "tech_level": 2,
             "slots": 2,
             "salvage_value": 2,
@@ -530,7 +531,7 @@
                     "traits": [
                         "Long Action",
                         "Range: Close"
-                        
+
                     ]
                 }
             ]
