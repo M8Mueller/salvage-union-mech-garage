@@ -12,8 +12,10 @@ export class StorageService {
   }
 
   public getData(key: string) {
+    console.log('loading', key);
     const value = localStorage.getItem(key);
 
+    console.log(value);
     if (value) {
       return JSON.parse(value);
     }

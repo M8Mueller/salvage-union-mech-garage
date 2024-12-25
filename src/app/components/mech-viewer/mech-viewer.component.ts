@@ -10,11 +10,11 @@ import { StorageService } from '../../services/storage.service';
 
 import { MechCargoComponent } from '../mech-cargo/mech-cargo.component';
 import { MechChassisComponent } from "../mech-chassis/mech-chassis.component";
-import { MechComponentListComponent } from '../mech-component-list/mech-component-list.component';
 import { MechModulesComponent } from '../mech-modules/mech-modules.component';
 import { MechScrapCostComponent } from '../mech-scrap-cost/mech-scrap-cost.component';
 import { MechStatusComponent } from '../mech-status/mech-status.component';
 import { MechSystemsComponent } from '../mech-systems/mech-systems.component';
+import { MechPatternComponent } from '../mech-pattern/mech-pattern.component';
 
 @Component({
   selector: 'app-mech-viewer',
@@ -24,8 +24,8 @@ import { MechSystemsComponent } from '../mech-systems/mech-systems.component';
     FormsModule,
     MechCargoComponent,
     MechChassisComponent,
-    MechComponentListComponent,
     MechModulesComponent,
+    MechPatternComponent,
     MechScrapCostComponent,
     MechStatusComponent,
     MechSystemsComponent,
@@ -89,11 +89,6 @@ export class MechViewerComponent implements OnInit {
   }
 
   ngOnInit() {
-    const patterns = this.storage.getData('patterns');
-
-    if (patterns) {
-      this.patterns = patterns;
-    }
   }
 
   loadChassis(id: number) {
@@ -117,29 +112,6 @@ export class MechViewerComponent implements OnInit {
     this.systems = systems;
     this.systemIds = systems.map((s) => s.id);
     this.calculateValues();
-  }
-
-  savePattern() {
-    const pattern = {
-      'name': this.patternForm.get('name')?.value || 'NO NAME',
-      'chassis': this.chassis?.id || 1,
-      'systems': this.systemIds,
-      'modules': this.moduleIds,
-    };
-
-    this.patterns.push(pattern);
-
-    this.storage.setData('patterns', this.patterns);
-  }
-
-  deletePattern(index: number) {
-    this.patterns.splice(index, 1);
-
-    this.storage.setData('patterns', this.patterns);
-  }
-
-  loadPattern(pattern: Pattern) {
-    this.currentMech.setPattern(pattern);
   }
 
   // Calculations

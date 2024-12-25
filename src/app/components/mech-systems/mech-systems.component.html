@@ -19,7 +19,7 @@
                 </div>
                 <div class="col">
                     <button class="btn btn-outline-danger btn-sm float-end" (click)="removeSystem(i)">
-                        <i class="bi bi-trash"></i>
+                        <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
             </div>
@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col text-end">
                 <button type="button" class="btn btn-outline-danger me-2" (click)="resetSystems()" *ngIf="systems.length">
-                    <i class="bi bi-trash"></i> Unmount All
+                    <i class="bi bi-x-lg"></i> Remove All
                 </button>
 
                 <button type="button" class="btn btn-outline-primary" data-bs-toggle="offcanvas" data-bs-target="#system_picker" aria-controls="system_picker" [disabled]="!slots">
