@@ -60,15 +60,18 @@ export class DataService {
   // Sort
 
   sortListByTechLevel(list: any[]) {
-    return list.reduce(
+    return list.sort(
+      (a: any, b: any) => a.name.localeCompare(b.name)
+    ).reduce(
       (acc: { [tl: number]: any[] }, item: any) => {
         if (item.tech_level in acc){
           acc[item.tech_level].push(item);
         } else {
           acc[item.tech_level] = [item];
         }
-        
+
         return acc;
-      }, {});
+      }, {}
+    );
   }
 }

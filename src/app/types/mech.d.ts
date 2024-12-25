@@ -27,7 +27,6 @@ export interface Chassis {
     tech_level: number;
     salvage_value: number;
     abilities?: Ability[];
-    patterns?: Pattern[];
 }
 
 export interface Option {
@@ -36,8 +35,8 @@ export interface Option {
 }
 
 export interface Pattern {
-    id: number;
     name: string;
+    chassis: number;
     systems: number[];
     modules: number[];
 }

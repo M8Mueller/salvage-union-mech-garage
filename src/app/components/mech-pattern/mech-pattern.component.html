@@ -1,0 +1,204 @@
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="card-title h4 text-center">Pattern</div>
+
+                <hr>
+
+                <!-- <form class="form-horizontal" [formGroup]="patternForm">
+                    <div class="row mb-2">
+                        <label class="col-4 col-sm-6 col-form-label fw-bold text-sm-end" for="patternName">Pattern</label>
+                        <div class="col">
+                            <input type="text" id="patternName" class="form-control" placeholder="Enter a name" formControlName="name">
+                        </div>
+                    </div>
+                </form> -->
+
+                <div class="row mb-2">
+                    <div class="col-4 text-sm-end">
+                        <label class="fw-bold" for="patternName">Pattern</label>
+                    </div>
+                    <div class="col">
+                        <span class="text-secondary">{{ pattern?.name || "Not Saved" }}</span>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col text-end">
+                        <!-- <span class="text-secondary align-middle me-2">{{ patterns.length }} saved pattern<span *ngIf="patterns.length != 1">s</span></span> -->
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#savedPatternsModal">
+                            <i class="bi bi-list-nested"></i>
+                            Manage Patterns
+                        </button>
+
+                        <!-- <button
+                            type="button"
+                            class="btn btn-outline-primary ms-2"
+                            data-bs-toggle="modal"
+                            data-bs-target="#savedPatternsModal">
+                            <i class="bi bi-floppy-fill"></i>
+                            Save
+                        </button> -->
+
+                        <!-- <button
+                            type="button"
+                            class="btn btn-outline-primary ms-2"
+                            (click)="savePattern()"
+                            [disabled]="!patternForm.valid">
+                            <i class="bi bi-floppy-fill"></i>
+                            Save
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="savedPatternsModal" tabindex="-1" aria-labelledby="savedPatternsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-4" id="savedPatternsModalLabel">Patterns</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row" *ngIf="patterns.length === 0">
+                        <div class="col">
+                            <span class="text-secondary">No saved patterns</span>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngFor="let pattern of patterns; let i=index; let last=last">
+                        <div class="col-6 my-auto">
+                            <div class="me-2">{{ pattern.name }}</div>
+                            <div class="text-secondary ms-2">
+                                {{ patternChassis[i]?.name }}
+                            </div>
+                            <div class="text-secondary ms-3">
+                                {{ pattern.systems.length }} systems,
+                                {{ pattern.modules.length }} modules
+                            </div>
+                        </div>
+
+                        <div class="col-6 text-end">
+                            <ng-container *ngIf="patternIndex === i; else inactive">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-check-square"
+                                    (click)="loadPattern(null)"></i>
+                                    Active
+                                </button>
+                            </ng-container>
+
+                            <ng-template #inactive>
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary btn-sm"
+                                    (click)="loadPattern(i)">
+                                    <i class="bi bi-square"></i>
+                                    Inactive
+                                </button>
+                            </ng-template>
+
+                            <button
+                                type="button"
+                                class="btn btn-outline-danger btn-sm ms-2"
+                                (click)="deletePattern(i)">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </div>
+
+                        <hr *ngIf="!last" class="my-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="h5 text-center text-toggle" data-bs-toggle="collapse" href="#patternDetails" role="button" aria-expanded="true" aria-controls="patternDetails">
+                                <span>Current</span>
+                                <div class="float-end">
+                                    <i class="bi bi-chevron-up text-expanded"></i>
+                                    <i class="bi bi-chevron-down text-collapsed"></i>
+                                </div>
+                            </h2>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <form class="form-horizontal" [formGroup]="patternForm">
+                        <div class="collapse show" id="patternDetails">
+
+                            <dl class="row mb-0">
+                                <dt class="col-3 text-end">Chassis</dt>
+                                <dd class="col-9 text-secondary">{{ chassis?.name || "None"}}</dd>
+
+                                <dt class="col-3 text-end">Systems</dt>
+                                <dd class="col-3 text-secondary">{{ systems.length }}</dd>
+
+                                <dt class="col-3 text-end">Modules</dt>
+                                <dd class="col-3 text-secondary">{{ modules.length }}</dd>
+                            </dl>
+                        </div>
+
+                        <div class="row mb-2">
+                            <label class="col-3 col-form-label fw-bold text-end" for="name">Name</label>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Enter a name" formControlName="name">
+                            </div>
+                        </div>
+
+                        <!-- <hr> -->
+
+                        <div class="row">
+                            <div class="col text-end">
+                                <!-- <button
+                                    type="button"
+                                    class="btn btn-outline-danger me-2"
+                                    (click)="clearData()"
+                                    *ngIf="patterns.length > 0">
+                                    <i class="bi bi-trash"></i>
+                                    Delete All
+                                </button> -->
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    (click)="savePattern()"
+                                    [disabled]="!chassis || !patternForm.valid">
+                                    <i class="bi bi-floppy-fill"></i>
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-primary">Save changes</button>
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary"
+                        (click)="savePattern()"
+                        [disabled]="!patternForm.valid">
+                        <i class="bi bi-floppy-fill"></i>
+                        Save
+                    </button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

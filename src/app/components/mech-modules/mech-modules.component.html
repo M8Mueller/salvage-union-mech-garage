@@ -1,0 +1,56 @@
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="card-title h4 text-center">
+            <span>Modules</span>
+            <div class="float-end fw-light">
+                <i class="bi bi-triangle-fill"></i> {{ usedSlots }}/{{ slots }}<span *ngIf="bonusSlots">+{{ bonusSlots }}</span>
+            </div>
+        </div>
+
+        <hr>
+
+        <ng-container *ngFor="let m of modules; let i = index">
+            <div class="row">
+                <div class="col-5 col-md-6"><span class="align-middle">{{ m.name }}</span></div>
+                <div class="col-5 col-md-4">
+                    <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ m.tech_level }}</span>
+                    <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ m.slots }}</span>
+                    <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ m.salvage_value }}</span>
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-danger btn-sm float-end" (click)="removeModule(i)">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <hr>
+        </ng-container>
+
+        <div class="row">
+            <div class="col text-end">
+                <button type="button" class="btn btn-outline-danger me-2" (click)="resetModules()" *ngIf="modules.length">
+                    <i class="bi bi-x-lg"></i> Remove All
+                </button>
+
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="offcanvas" data-bs-target="#module_picker" aria-controls="module_picker" [disabled]="!slots">
+                    <i class="bi bi-plus-lg"></i> Mount Modules
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="module_picker" aria-labelledby="module_picker_label" *ngIf="moduleList">
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title" id="module_picker_label">Modules</h4>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-0">
+        <app-mech-component-picker
+            [componentList]="moduleList"
+            [availableSlots]="slots + bonusSlots - usedSlots"
+            (componentSelected)="addModule($event)"
+            *ngIf="slots">
+        </app-mech-component-picker>
+    </div>
+</div>
