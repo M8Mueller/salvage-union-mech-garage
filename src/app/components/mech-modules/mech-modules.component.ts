@@ -1,26 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
-import { MechComponent } from '../../types/mech';
+import { CurrentMechService } from '@salvage-union-app/services/current-mech.service';
+import { DataService } from '@salvage-union-app/services/data.service';
 
-import { CurrentMechService } from '../../services/current-mech.service';
-import { DataService } from '../../services/data.service';
+import { MechComponent } from '@salvage-union-app/types/mech';
 
-import { MechComponentPickerComponent } from '../mech-component-picker/mech-component-picker.component';
+import { MechComponentBrowserComponent } from '../mech-component-browser/mech-component-browser.component';
+import { CardComponent } from '../elements/card/card.component';
 
 @Component({
   selector: 'app-mech-modules',
   standalone: true,
   imports: [
+    CardComponent,
     CommonModule,
-    MechComponentPickerComponent
+    MechComponentBrowserComponent
   ],
   templateUrl: './mech-modules.component.html',
   styleUrl: './mech-modules.component.css'
 })
 export class MechModulesComponent {
-  @Input() slots: number = 0;
-  @Input() bonusSlots: number = 0;
+  slots: number = 0;
+  bonusSlots: number = 0;
 
   @Output() componentsChanged = new EventEmitter<MechComponent[]>();
 
@@ -38,6 +40,22 @@ export class MechModulesComponent {
     private currentMech: CurrentMechService,
     private data: DataService,
   ){
+    // Chassis subscription - base slots
+    this.currentMech.chassis$.subscribe((chassis) => {
+      if (chassis) {
+        this.slots = chassis.module_slots;
+      }
+    });
+
+    // Systems subscription - bonus slots
+    this.currentMech.systems$.subscribe((components) => {
+      this.bonusSlots = components.reduce(
+        (count: number, component: any) => count + (component.module_slots || 0),
+        0
+      );
+    });
+
+    // Modules subscription - used slots
     this.currentMech.modules$.subscribe((modules) => {
       this.modules = modules;
       this.moduleIds = modules.map((m) => m.id);

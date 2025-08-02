@@ -22,14 +22,20 @@ export class MechPatternComponent {
     name: ['', Validators.required]
   });
 
-  patternIndex: number | null = null;
-  pattern: Pattern | null = null;
   patterns: Pattern[] = [];
   patternChassis: (Chassis | null)[] = [];
+
+  patternIndex: number | null = null;
+  pattern: Pattern | null = null;
 
   chassis: Chassis | null = null;
   systems: MechComponent[] = [];
   modules: MechComponent[] = [];
+
+  currentPattern: Pattern | null = null;
+  currentChassis: Chassis | null = null;
+  currentSystems: MechComponent[] = [];
+  currentModules: MechComponent[] = [];
 
   constructor(
     private currentMech: CurrentMechService,
@@ -46,38 +52,73 @@ export class MechPatternComponent {
     }
 
     this.currentMech.patternIndex$.subscribe((index) => {
-      if (index !== null) {
-        const pattern = this.patterns[index];
-        this.pattern = pattern;
-        this.patternIndex = index;
-
-        this.patternForm.get('name')?.setValue(
-          pattern?.name, { emitEvent: false}
-        );
-      } else {
-        this.pattern = null;
-        this.patternIndex = null;
-
-        this.patternForm.get('name')?.setValue(
-          '', { emitEvent: false}
-        );
-      }
+      this.currentPattern = index !== null ? this.patterns[index] : null;
+      this.selectPattern(index);
     });
 
     this.currentMech.chassis$.subscribe((chassis) => {
-      this.chassis = chassis;
+      this.currentChassis = chassis;
     });
 
     this.currentMech.systems$.subscribe((systems) => {
-      this.systems = systems;
+      this.currentSystems = systems;
     });
 
     this.currentMech.modules$.subscribe((modules) => {
-      this.modules = modules;
+      this.currentModules = modules;
     });
   }
 
-  savePattern() {
+  selectPattern(index: number | null) {
+    this.patternIndex = index;
+
+    if (index !== null) {
+      const pattern = this.patterns[index];
+
+      this.pattern = pattern;
+      this.chassis = this.data.getChassis(pattern.chassis);
+      this.systems = pattern.systems.flatMap((s) => this.data.getSystem(s) || []);
+      this.modules = pattern.modules.flatMap((m) => this.data.getModule(m) || []);
+
+      this.patternForm.get('name')?.setValue(pattern.name);
+
+    } else {
+      this.pattern = null;
+      this.chassis = null;
+      this.systems = [];
+      this.modules = [];
+    }
+  }
+
+  applyPattern() {
+    this.currentMech.setPattern(this.patternIndex);
+  }
+
+  updatePattern(index: number) {
+    let name = this.patternForm.get('name')?.value;
+    const chassis = this.currentMech.getChassis();
+
+    if (!name) {
+      name = this.patterns[index].name;
+    }
+
+    if (name && chassis) {
+      const pattern = {
+        'name': name,
+        'chassis': chassis.id,
+        'systems': this.currentMech.getSystems().map((s) => s.id),
+        'modules': this.currentMech.getModules().map((m) => m.id),
+      };
+
+      this.patterns.splice(index, 1, pattern);
+      this.patternChassis.splice(index, 1, this.data.getChassis(pattern.chassis));
+
+      this.currentMech.setPatterns(this.patterns);
+      this.currentMech.setPattern(index);
+    }
+  }
+
+  newPattern() {
     const name = this.patternForm.get('name')?.value;
     const chassis = this.currentMech.getChassis();
 
@@ -93,7 +134,10 @@ export class MechPatternComponent {
       this.patternChassis.push(chassis);
 
       this.currentMech.setPatterns(this.patterns);
-      this.currentMech.setPattern(this.patterns.length - 1);
+
+      const newIndex = this.patterns.length - 1;
+
+      this.currentMech.setPattern(newIndex);
     }
   }
 
@@ -111,13 +155,4 @@ export class MechPatternComponent {
       }
     }
   }
-
-  loadPattern(index: number | null) {
-    this.currentMech.setPattern(index);
-  }
-
-  clearData() {
-    this.storage.clearData();
-  }
-
 }

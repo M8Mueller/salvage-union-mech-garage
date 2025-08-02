@@ -13,8 +13,8 @@ export class CurrentMechService {
     new BehaviorSubject<Pattern[]>([]);
   private pattern: BehaviorSubject<Pattern | null> =
     new BehaviorSubject<Pattern | null>(null);
-    private patternIndex: BehaviorSubject<number | null> =
-      new BehaviorSubject<number | null>(null);
+  private patternIndex: BehaviorSubject<number | null> =
+    new BehaviorSubject<number | null>(null);
 
   private chassis: BehaviorSubject<Chassis | null> =
     new BehaviorSubject<Chassis | null>(null);

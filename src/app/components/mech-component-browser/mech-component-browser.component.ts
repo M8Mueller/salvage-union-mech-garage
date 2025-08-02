@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { MechComponent } from '../../types/mech';
-
-import { ActionListComponent } from '../action-list/action-list.component';
-import { EpTagComponent } from '../ep-tag/ep-tag.component';
-import { TraitListComponent } from '../trait-list/trait-list.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+import { ActionListComponent } from '../elements/action-list/action-list.component';
+import { EpTagComponent } from '../elements/ep-tag/ep-tag.component';
+import { TraitListComponent } from '../elements/trait-list/trait-list.component';
+
+import { MechComponent } from '@salvage-union-app/types/mech';
+
 @Component({
-  selector: 'app-mech-component-picker',
+  selector: 'app-mech-component-browser',
   standalone: true,
   imports: [
     ActionListComponent,
@@ -18,10 +18,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     TraitListComponent
   ],
-  templateUrl: './mech-component-picker.component.html',
-  styleUrl: './mech-component-picker.component.css'
+  templateUrl: './mech-component-browser.component.html',
+  styleUrl: './mech-component-browser.component.css'
 })
-export class MechComponentPickerComponent implements OnChanges, OnInit {
+export class MechComponentBrowserComponent implements OnChanges, OnInit {
   @Input() componentList: { [tl: string]: MechComponent[] } = {};
   @Input() availableSlots: number = 0;
 
@@ -51,6 +51,10 @@ export class MechComponentPickerComponent implements OnChanges, OnInit {
   ngOnChanges(changes: SimpleChanges) {
     const search = this.filterForm.get('search')?.value || null;
     this.filterComponents(search);
+  }
+
+  clearFilter() {
+    this.filterForm.get('search')?.setValue(null);
   }
 
   filterComponents(search: string | null = null) {

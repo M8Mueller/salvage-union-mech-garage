@@ -478,14 +478,14 @@
         {
             "id": 17,
             "name": "Mantis",
-            "structure_pts": 7,
-            "energy_pts": 8,
-            "heat_cap": 6,
-            "system_slots": 7,
-            "module_slots": 2,
-            "cargo_cap": 3,
+            "structure_pts": 15,
+            "energy_pts": 17,
+            "heat_cap": 7,
+            "system_slots": 9,
+            "module_slots": 6,
+            "cargo_cap": 6,
             "tech_level": 3,
-            "salvage_value": 2,
+            "salvage_value": 7,
             "abilities": [
                 {
                     "name": "Integrated Frog Prince Module",

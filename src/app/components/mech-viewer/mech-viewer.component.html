@@ -1,49 +1,25 @@
 <div class="row">
-
     <div class="col-md-9 col-xl-10">
         <div class="row">
             <div class="col-xl">
-                <app-mech-pattern></app-mech-pattern>
                 <app-mech-chassis></app-mech-chassis>
             </div>
 
             <div class="col-xl">
-                <app-mech-systems
-                    [slots]="chassis?.system_slots || 0"
-                    [bonusSlots]="bonusSystemSlots">
-                </app-mech-systems>
-
-                <app-mech-modules
-                    [slots]="chassis?.module_slots || 0"
-                    [bonusSlots]="bonusModuleSlots">
-                </app-mech-modules>
+                <app-mech-systems></app-mech-systems>
+                <app-mech-modules></app-mech-modules>
             </div>
         </div>
     </div>
-
     <div class="col-md-3 col-xl-2">
         <div class="row">
             <div class="col-6 col-md-12">
-                <app-mech-status
-                    [structure]="chassis?.structure_pts || 0"
-                    [bonusStructure]="bonusStructure"
-                    [energy]="chassis?.energy_pts || 0"
-                    [bonusEnergy]="bonusEnergy"
-                    [heat]="chassis?.heat_cap || 0"
-                    [bonusHeat]="bonusHeat">
-                </app-mech-status>
+                <app-mech-status></app-mech-status>
             </div>
 
             <div class="col-6 col-md-12">
-                <app-mech-cargo
-                    [cargo]="chassis?.cargo_cap || 0"
-                    [bonusCargo]="bonusCargo">
-                </app-mech-cargo>
-
-                <app-mech-scrap-cost
-                    [scrapCost]="scrapCost"
-                    *ngIf="scrapCost">
-                </app-mech-scrap-cost>
+                <app-mech-cargo></app-mech-cargo>
+                <app-mech-scrap-cost></app-mech-scrap-cost>
             </div>
         </div>
     </div>

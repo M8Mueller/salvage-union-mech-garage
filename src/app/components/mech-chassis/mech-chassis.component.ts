@@ -1,22 +1,29 @@
 import { Component } from '@angular/core';
-import { Chassis } from '../../types/mech';
 import { CommonModule } from '@angular/common';
-import { RollResultsComponent } from '../roll-results/roll-results.component';
-import { ActionListComponent } from '../action-list/action-list.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DataService } from '../../services/data.service';
-import { CurrentMechService } from '../../services/current-mech.service';
+
+import { RollResultsComponent } from '../elements/roll-results/roll-results.component';
+import { ActionListComponent } from '../elements/action-list/action-list.component';
+
+import { CurrentMechService } from '@salvage-union-app/services/current-mech.service';
+import { DataService } from '@salvage-union-app/services/data.service';
+
+import { Chassis } from '@salvage-union-app/types/mech';
+import { CardComponent } from '../elements/card/card.component';
+import { MechPatternComponent } from "../mech-pattern/mech-pattern.component";
 
 @Component({
   selector: 'app-mech-chassis',
   standalone: true,
   imports: [
     ActionListComponent,
+    CardComponent,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RollResultsComponent
-  ],
+    RollResultsComponent,
+    MechPatternComponent
+],
   templateUrl: './mech-chassis.component.html',
   styleUrl: './mech-chassis.component.css'
 })
