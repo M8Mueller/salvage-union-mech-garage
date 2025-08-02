@@ -3,7 +3,7 @@
     <span class="fw-bold">{{ action.name }} </span>
     <app-trait-list [traits]="action.traits" *ngIf="action.traits"></app-trait-list>
     <div class="mb-2" *ngIf="action.description">{{ action.description }}</div>
-    <ul class="list-group">
+    <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let option of action.options"><span class="fw-bold">{{ option.name }}: </span>{{ option.description }}</li>
     </ul>
 </div>

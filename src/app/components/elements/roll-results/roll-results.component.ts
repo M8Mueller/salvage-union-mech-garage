@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RollResult } from '../../types/mech';
+import { RollResult } from '@salvage-union-app/types/mech';
 
 @Component({
   selector: 'app-roll-results',

@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "docs/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
@@ -16,6 +17,9 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
+    "paths": {
+      "@salvage-union-app/*": ["src/app/*"],
+    },
     "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": [

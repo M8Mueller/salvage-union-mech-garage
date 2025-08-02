@@ -1,23 +1,6 @@
-<div class="card text-center mb-4">
-    <div class="card-body">
-        <h2 class="card-title">
-            <i class="bi bi-gear-wide"></i>
-        </h2>
-
-        <hr />
-
-        <!-- <div class="row" *ngFor="let techLevel of techLevels">
-            <div class="col text-end">
-                <span class="h3 fw-light">T{{ techLevel }}</span>
-            </div>
-            <div class="col text-start">
-                <span class="h3 fw-light text-secondary">{{ scrapCost[techLevel] }}</span>
-            </div>
-        </div> -->
-
-        <div class="h3 fw-light" *ngFor="let techLevel of techLevels">
-            <span>T{{ techLevel }}: </span>
-            <span class="text-secondary">{{ scrapCost[techLevel] }}</span>
-        </div>
+<app-card titleText="Scrap">
+    <div class="h3 fw-light text-center">
+        <i class="bi bi-gear-fill me-2"></i>
+        <span>{{ totalScrapCost }}</span>
     </div>
-</div>
+</app-card>

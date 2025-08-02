@@ -1,0 +1,1 @@
+<span class="text-secondary" [class.text-success]="trait == 'Recommended System' || trait == 'Recommended Module'" *ngFor="let trait of traits; let isLast=last">{{ trait }}{{ isLast ? "" : " // " }}</span>
