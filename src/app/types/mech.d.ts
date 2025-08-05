@@ -1,16 +1,15 @@
 export interface Action {
     name?: string;
-    description?: string;
+    description?: string[];
     traits?: string[];
-    ep_cost?: string | number;
+    ep_cost?: number | string;
     options?: Option[];
     roll_results?: RollResult[];
 }
 
 export interface Ability {
     name: string;
-    description?: string;
-    long_description?: string[];
+    description?: string[];
     actions?: Action[];
     roll_results?: RollResult[];
 }
@@ -31,7 +30,7 @@ export interface Chassis {
 
 export interface Option {
     name: string;
-    description?: string;
+    description?: string[];
 }
 
 export interface Pattern {
@@ -48,7 +47,7 @@ export interface MechComponent {
     slots: number;
     salvage_value: number;
     traits?: string[];
-    ep_cost?: string | number;
+    ep_cost?: number | string;
     system_slots?: number;
     module_slots?: number;
     actions?: Action[];

@@ -14,21 +14,7 @@
             "abilities": [
                 {
                     "name": "Integrated Cargo Bay",
-                    "description": "Increases the Cargo Capacity of the Mule by 10, to 16."
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
-                },
-                {
-                    "id": 2,
-                    "name": "Hauler",
-                    "systems": [1, 5, 6, 10, 11, 16],
-                    "modules": [1, 8]
+                    "description": ["Increases the Cargo Capacity of the Mule by 10, to 16."]
                 }
             ]
         },
@@ -46,21 +32,7 @@
             "abilities": [
                 {
                     "name": "Hover Drone",
-                    "description": "The Mazona has an Integrated Hover Locomotion System which is included in its profile. This allows it to hover over obstacles and terrain."
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [5],
-                    "modules": [1]
-                },
-                {
-                    "id": 2,
-                    "name": "Buzzard",
-                    "systems": [7, 7, 11],
-                    "modules": [1, 7, 9]
+                    "description": ["The Mazona has an Integrated Hover Locomotion System which is included in its profile. This allows it to hover over obstacles and terrain."]
                 }
             ]
         },
@@ -78,21 +50,7 @@
             "abilities": [
                 {
                     "name": "Hazard Protected Chassis",
-                    "description": "The Scrapper suffers no effect or damage from hazardous environmental effects such as radiation storms. In addition, when dealing with severe environmental hazards they may Push once for free to circumvent or resist any effects."
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
-                },
-                {
-                    "id": 2,
-                    "name": "Leaky",
-                    "systems": [4, 5, 10, 17, 16],
-                    "modules": [1, 5]
+                    "description": ["The Scrapper suffers no effect or damage from hazardous environmental effects such as radiation storms. In addition, when dealing with severe environmental hazards they may Push once for free to circumvent or resist any effects."]
                 }
             ]
         },
@@ -110,21 +68,17 @@
             "abilities": [
                 {
                     "name": "Data Scanner",
-                    "description": "The Spectrum is a mobile data repository that has all manner of information stored within it. It is able to scan objects to both gain information about them and store that data to access at a later time."
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
-                },
-                {
-                    "id": 2,
-                    "name": "Settler",
-                    "systems": [1, 5, 10],
-                    "modules": [1, 6, 5, 4]
+                    "description": ["The Spectrum is a mobile data repository that has all manner of information stored within it. It is able to scan objects to both gain information about them and store that data to access at a later time."],
+                    "actions": [
+                        {
+                            "ep_cost": 2,
+                            "traits": ["Short Action", "Range: Close", "Scanner"],
+                            "description": [
+                                "You scan a single object in Range. This can be a Mech, System, Module, Vehicle, Creature, artefact, structure, fauna, or flora, or anything else appropriate in the world. You may ask the Mediator two questions about this object and the answers they give must be true.",
+                                "If you scan an Intact Mech Chassis, System, or Module in the field, you now have its blueprint. You and everyone on your Union Crawler is now able to craft this item even if you would not normally be able to do so."
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -139,22 +93,10 @@
             "cargo_cap": 6,
             "tech_level": 1,
             "salvage_value": 9,
-            "abilities": [{
-              "name": "Heavily Armoured Chassis",
-              "description": "Any attack that rolls a 'Nailed It' (20) result against the Thresher counts as a standard hit (11-19) and does not deal 2x damage or have any other bonus effect."
-            }],
-            "patterns": [
+            "abilities": [
                 {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
-                },
-                {
-                    "id": 2,
-                    "name": "Shepherd",
-                    "systems": [15, 2, 5, 6, 10],
-                    "modules": [1, 10]
+                    "name": "Heavily Armoured Chassis",
+                    "description": ["Any attack that rolls a 'Nailed It' (20) result against the Thresher counts as a standard hit (11-19) and does not deal 2x damage or have any other bonus effect."]
                 }
             ]
         },
@@ -172,41 +114,32 @@
             "abilities": [
                 {
                     "name": "Integrated Epoxy Printer",
-                    "description": "The Forge is able to 3D print metallic structures via a specialised epoxy.",
+                    "description": ["The Forge is able to 3D print metallic structures via a specialised epoxy."],
                     "actions": [
                         {
-                            "name": "",
-                            "description": "When this Ability is activated, pick from the following options to craft. Anything crafted with the Forge cannot be salvaged for Scrap.",
+                            "description": ["When this Ability is activated, pick from the following options to craft. Anything crafted with the Forge cannot be salvaged for Scrap."],
                             "traits": ["Short Action"],
                             "ep_cost": 3,
                             "options": [
                                 {
                                     "name": "Armour Plating",
-                                    "description": "You craft an Armour Plating System."
+                                    "description": ["You craft an Armour Plating System."]
                                 },
                                 {
                                     "name": "Simple Weapon",
-                                    "description": "You craft a Mech Melee Armament System or 10 Improvised Melee Weapons."
+                                    "description": ["You craft a Mech Melee Armament System or 10 Improvised Melee Weapons."]
                                 },
                                 {
                                     "name": "Mech Traps",
-                                    "description": "You craft a series of traps designed to slow and damage encroaching Mechs. Any Mechs that move through the traps take 3 SP damage and move at half their normal speed."
+                                    "description": ["You craft a series of traps designed to slow and damage encroaching Mechs. Any Mechs that move through the traps take 3 SP damage and move at half their normal speed."]
                                 },
                                 {
                                     "name": "Custom Item",
-                                    "description": "You craft a metallic structure of your own design. This cannot have any complex or moving parts."
+                                    "description": ["You craft a metallic structure of your own design. This cannot have any complex or moving parts."]
                                 }
                             ]
                         }
                     ]
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
                 }
             ]
         },
@@ -224,15 +157,7 @@
             "abilities": [
                 {
                     "name": "Integrated Expanded Transport Hold",
-                    "description": "Increases the Cargo Capacity of the Gopher by 6, to 12."
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
+                    "description": ["Increases the Cargo Capacity of the Gopher by 6, to 12."]
                 }
             ]
         },
@@ -250,15 +175,7 @@
             "abilities": [
                 {
                     "name": "Fast",
-                    "description": "The Hussar can move an additional Range band on its turn as a Free Action. In addition, it moves twice as fast across the Campaign, Area, and Region Maps."
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
+                    "description": ["The Hussar can move an additional Range band on its turn as a Free Action. In addition, it moves twice as fast across the Campaign, Area, and Region Maps."]
                 }
             ]
         },
@@ -276,7 +193,7 @@
             "abilities": [
                 {
                     "name": "Reinforced Chassis",
-                    "description": "The Jackhammer rolls on this alternate Critical Damage Table:",
+                    "description": ["The Jackhammer rolls on this alternate Critical Damage Table:"],
                     "roll_results": [
                         {
                             "roll": "20",
@@ -300,14 +217,6 @@
                         }
                     ]
                 }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
-                }
             ]
         },
         {
@@ -324,15 +233,7 @@
             "abilities": [
                 {
                     "name": "Integrated Amphibious Locomotion System",
-                    "description": "The Kraken has an integral Advanced Amphibious Locomotion System included in its profile. This allows the Kraken to operate indefinitely in underwater conditions at significant depths whilst also being able to walk on land. Its sealed Chassis is also airtight and watertight"
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [5],
-                    "modules": [1]
+                    "description": ["The Kraken has an integral Advanced Amphibious Locomotion System included in its profile. This allows the Kraken to operate indefinitely in underwater conditions at significant depths whilst also being able to walk on land. Its sealed Chassis is also airtight and watertight"]
                 }
             ]
         },
@@ -350,15 +251,7 @@
             "abilities": [
                 {
                     "name": "Hot Swap Universal Mounts",
-                    "description": "The Magpie allows you to mount and dismount Systems on it in the field significantly faster. This uses the normal rules for mounting, but increases the speed and versatility. A Pilot may Mount a System on the Magpie as a Short Action (10 minutes). A Mech, including the Magpie itself, may Mount a System on the Magpie as a Turn Action."
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
+                    "description": ["The Magpie allows you to mount and dismount Systems on it in the field significantly faster. This uses the normal rules for mounting, but increases the speed and versatility. A Pilot may Mount a System on the Magpie as a Short Action (10 minutes). A Mech, including the Magpie itself, may Mount a System on the Magpie as a Turn Action."]
                 }
             ]
         },
@@ -376,21 +269,18 @@
             "abilities": [
                 {
                     "name": "Integrated Advanced Shield Dome",
-                    "description": "The Mirror Ball can project a glowing, protective energy field around its Chassis.",
+                    "description": ["The Mirror Ball can project a glowing, protective energy field around its Chassis."],
                     "actions": [
                         {
                             "traits": ["Turn Action", "Shield"],
-                            "ep_cost": "X"
+                            "ep_cost": "X",
+                            "description": [
+                                "When activated, you project a Shield Dome around your Mech. Choose any amount of Energy Points when you activate this Ability. The Shield Dome has a number of Structure Points equal to 3× the Energy Points you spend on this Ability. You may only have one Shield Dome active at a time. You may deactivate the Shield Dome as a Free Action.",
+                                "When you or any allied target within Close Range of your Mech is dealt damage, the damage is instead dealt to the Shield Dome.",
+                                "If the attack deals 0 damage to the target then they also suffer no additional effect from the hit. Any excess damage that penetrates the shield is dealt to the target instead."
+                            ]
                         }
                     ]
-                }
-            ],
-            "patterns": [
-                {
-                    "id": 1,
-                    "name": "Recommended",
-                    "systems": [10, 5],
-                    "modules": [1]
                 }
             ]
         },
@@ -408,13 +298,7 @@
             "abilities": [
                 {
                     "name": "Integrated Colossal Cargo Bay",
-                    "description": "Increases the Cargo Capacity of the Atlas by 24, to 30",
-                    "actions": [
-                        {
-                            "traits": ["Turn Action", "Shield"],
-                            "ep_cost": "X"
-                        }
-                    ]
+                    "description": ["Increases the Cargo Capacity of the Atlas by 24, to 30"]
                 }
             ]
         },
@@ -432,7 +316,7 @@
             "abilities": [
                 {
                     "name": "Close Range Protocols",
-                    "description": "The Brawler deals an additional 2 SP damage when it makes an attack at any target within Close Range of it. This bonus is applied before other modifiers."
+                    "description": ["The Brawler deals an additional 2 SP damage when it makes an attack at any target within Close Range of it. This bonus is applied before other modifiers."]
                 }
             ]
         },
@@ -450,7 +334,7 @@
             "abilities": [
                 {
                     "name": "Sestra Drone Controller",
-                    "long_description": [
+                    "description": [
                         "The Little Sestra comes with a single Sestra Drone that it controls up to Far Range. Roll on the A.I. Personality Table for the drone’s personality.",
                         "The Sestra Drone acts separately to the Little Sestra on its own turn, and is controlled by the Pilot. It functions effectively as a Mech, but cannot Push. It can be installed with Systems and Modules and restores its SP and EP in a T3 or higher Mech Bay during Downtime. If the Drone is damaged it can be repaired as though it was a Mech. If it is destroyed you may craft a new Sestra Drone for 2 Tech 3 Scrap as per the crafting rules. The Little Sestra may have one active Sestra Drone at a time."
                     ]
@@ -459,7 +343,7 @@
         },
         {
             "id": 16,
-            "name": "Sestra Drone (Little Sestra)",
+            "name": "[Little Sestra] Sestra Drone",
             "structure_pts": 7,
             "energy_pts": 8,
             "heat_cap": 6,
@@ -471,7 +355,7 @@
             "abilities": [
                 {
                     "name": "Integrated Hover Locomotion System",
-                    "description": "The Sestra Drone has the Hover trait."
+                    "description": ["The Sestra Drone has the Hover trait."]
                 }
             ]
         },
@@ -489,11 +373,20 @@
             "abilities": [
                 {
                     "name": "Integrated Frog Prince Module",
-                    "description": "This specialised hacking module developed for the Mantis allows you to take control of defensive and security systems.",
+                    "description": ["This specialised hacking module developed for the Mantis allows you to take control of defensive and security systems."],
                     "actions": [
                         {
                             "traits": ["Turn Action", "Range: Medium", "Hacking"],
-                            "ep_cost": 2
+                            "ep_cost": 2,
+                            "description": [
+                                "You take control of one of the following devices within Range, whilst it is under your control you may send it commands such as attack, move, activate, or power down/up as well as read any data it receives. You may not take other actions whilst it is under your control. Relinquishing control is a Free Action.",
+                                "• Security Cameras (Free Action to Command)",
+                                "• Automated Doors (Free Action to Command)",
+                                "• Lights (Free Action to Command)",
+                                "• Defensive Turrets (Turn Action to Command)",
+                                "• Drones (Turn Action to Command)",
+                                "When this Module is activated you may pay 1 EP per additional device you would like to control."
+                            ]
                         }
                     ]
                 }
@@ -513,7 +406,7 @@
             "abilities": [
                 {
                     "name": "Solar Reactor",
-                    "description": "As a Long Action you may fully restore the Energy Points of the Photon to its maximum value. You must be in an area of sunlight to do this. You may only use this Ability once every 24 hours."
+                    "description": ["As a Long Action you may fully restore the Energy Points of the Photon to its maximum value. You must be in an area of sunlight to do this. You may only use this Ability once every 24 hours."]
                 }
             ]
         },
@@ -531,7 +424,7 @@
             "abilities": [
                 {
                     "name": "Polycarbonate Stealth Chassis",
-                    "description": "The Solo cannot be targeted with anything that uses the Targeter Trait such as targeting Modules. It also cannot be seen by anything with the Optics Trait or Scanner Trait. It does not appear on sensors, radar systems, or scanners, and needs clear and direct visual confirmation to be spotted."
+                    "description": ["The Solo cannot be targeted with anything that uses the Targeter Trait such as targeting Modules. It also cannot be seen by anything with the Optics Trait or Scanner Trait. It does not appear on sensors, radar systems, or scanners, and needs clear and direct visual confirmation to be spotted."]
                 }
             ]
         },
@@ -552,14 +445,197 @@
                     "actions": [
                         {
                             "traits": ["Turn Action"],
-                            "ep_cost": 2
+                            "ep_cost": 2,
+                            "description": ["When activated, the Terra projects a safe, oxygenated, and habitable atmospheric bubble around it for 1 hour, or until shut off as a Free Action. Within the bubble gravity levels, pressure, heat, and other environmental factors are comparable to an Earth-like planet. This extends to Medium Range, and everything within it is safe from all harmful environmental effects irrespective of their severity."]
                         }
-                    ]                }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "name": "Aegis",
+            "structure_pts": 24,
+            "energy_pts": 16,
+            "heat_cap": 14,
+            "system_slots": 18,
+            "module_slots": 5,
+            "cargo_cap": 6,
+            "tech_level": 4,
+            "salvage_value": 8,
+            "abilities": [
+                {
+                    "name": "Integrated Advanced Shield Projector",
+                    "actions": [
+                        {
+                            "traits": ["Reaction", "Range: Medium", "Shield"],
+                            "ep_cost": "X",
+                            "description": ["When a target within Range is hit by an attack or something that would deal damage, you may activate the Advanced Shield Projector. The damage of the attack is reduced by 3× the amount of Energy Points you expend on this Ability. If this reduces the damage to 0 or less the attack also has no additional effects."]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "name": "Colossus",
+            "structure_pts": 36,
+            "energy_pts": 12,
+            "heat_cap": 16,
+            "system_slots": 24,
+            "module_slots": 4,
+            "cargo_cap": 6,
+            "tech_level": 4,
+            "salvage_value": 16,
+            "abilities": [
+                {
+                    "name": "Eradication Protocols",
+                    "description": ["If the Colossus rolls a ‘Nailed It’ result (20) with an attack roll, it deals 4× damage instead of 2× damage."]
+                },
+                {
+                    "name": "Heavily Armoured Chassis",
+                    "description": ["Any attack that rolls a 'Nailed It' (20) result against the Colossus counts as a standard hit (11-19) and does not deal 2x damage or have any other bonus effect."]
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "name": "Consul",
+            "structure_pts": 15,
+            "energy_pts": 16,
+            "heat_cap": 12,
+            "system_slots": 12,
+            "module_slots": 5,
+            "cargo_cap": 6,
+            "tech_level": 4,
+            "salvage_value": 3,
+            "abilities": [
+                {
+                    "name": "Flashy",
+                    "description": ["The Consul has the Flashy Trait. It looks incredibly impressive, never being less than mint and pristine to onlookers, and fills them with much awe and admiration."]
+                },
+                {
+                    "name": "Morph Sphere",
+                    "description": ["This advanced anti-matter tech developed by Ascension PLC enables the Consul to reconstruct its form into a spherical mechanical ball around People size."],
+                    "actions": [
+                        {
+                            "ep_cost": 2,
+                            "traits": ["Turn Action"],
+                            "description": [
+                                "When activated, the Consul transforms into a sphere that encases the Pilot or passenger. As a sphere, the Consul gains the Fast Trait, which it can make use of immediately after transforming. The sphere is quick and mobile, and slightly flexible, able to squeeze into tunnels and other hard to enter spots whilst transformed. The Consul cannot attack or activate any Systems whilst transformed but may activate Modules.",
+                                "When in this form the Consul takes up only 3 Cargo Slots if carried. The Consul may transform from a sphere back into its standard form as a Free Action at no EP cost."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "name": "Drop Bear",
+            "structure_pts": 26,
+            "energy_pts": 14,
+            "heat_cap": 14,
+            "system_slots": 16,
+            "module_slots": 4,
+            "cargo_cap": 6,
+            "tech_level": 4,
+            "salvage_value": 7,
+            "abilities": [
+                {
+                    "name": "Integrated Advanced Vectored Thrust Unit",
+                    "description": ["The Drop Bear has an Integrated Advanced Vectored Thrust Unit. This acts as a standard Vectored Thrust Unit System. In addition, when the Drop Bear activates the Advanced VTU System it can move an additional Range Band, ignoring all obstacles, Mechs, and terrain, and still move on its turn as normal."]
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "name": "Vorpal",
+            "structure_pts": 18,
+            "energy_pts": 12,
+            "heat_cap": 15,
+            "system_slots": 15,
+            "module_slots": 4,
+            "cargo_cap": 6,
+            "tech_level": 4,
+            "salvage_value": 4,
+            "abilities": [
+                {
+                    "name": "Heat Efficient Reactor",
+                    "description": ["Everytime the Vorpal gains Heat, reduce the amount gained to 1. Treat each source of Heat separately when using this Ability. For example if the Vorpal fires a Blue Mining Laser with the Hot (3) Trait it gains 1 Heat instead of 3. If the Vorpal then chooses to Push it would gain an additional 1 Heat instead of 2 for the Push."]
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "name": "Carrier",
+            "structure_pts": 35,
+            "energy_pts": 16,
+            "heat_cap": 12,
+            "system_slots": 21,
+            "module_slots": 5,
+            "cargo_cap": 6,
+            "tech_level": 5,
+            "salvage_value": 9,
+            "abilities": [
+                {
+                    "name": "Integrated Mech Bay",
+                    "description": ["The Carrier has an integrated Tech 4 Mech Bay which can carry up to 5 Tech 4 or lower Mechs in an active and ready state. This acts as a Tech 4 Mech Bay allowing you to fully heal the SP, EP, and Heat of all Mechs within it over a week of Downtime and mount or remove any number of Systems or Modules as well as anything else the Mech Bay would be capable of."]
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "name": "Eidolon",
+            "structure_pts": 21,
+            "energy_pts": 15,
+            "heat_cap": 12,
+            "system_slots": 15,
+            "module_slots": 7,
+            "cargo_cap": 6,
+            "tech_level": 5,
+            "salvage_value": 5,
+            "abilities": [
+                {
+                    "name": "Polycarbonate Stealth Chassis",
+                    "description": ["The Eidolon cannot be targeted with anything that uses the Targeter Trait such as targeting Modules. It also cannot be seen by anything with the Optics Trait or Scanner Trait. It does not appear on sensors, radar systems, or scanners, and needs clear and direct visual confirmation to be spotted."]
+                },
+                {
+                    "name": "Stealth Projector",
+                    "actions": [
+                        {
+                            "ep_cost": 4,
+                            "description": ["When activated, the Stealth Projector makes the Eidolon effectively invisible. It cannot be spotted via any form of visual confirmation. This effect lasts for 1 hour or until the Eidolon Pilot deactivates it as a Free Action."]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "name": "Neura-Phage",
+            "structure_pts": 29,
+            "energy_pts": 11,
+            "heat_cap": 13,
+            "system_slots": 18,
+            "module_slots": 6,
+            "cargo_cap": 6,
+            "tech_level": 5,
+            "salvage_value": 9,
+            "abilities": [
+                {
+                    "name": "Cybernetic Neuralink",
+                    "description": [
+                        "The Neura-Phage connects directly to the Pilot with an advanced neuralink mesh that allows their thoughts to be directly translated to the actions of the Mech, merging them into one entity.",
+                        "They may spend their Pilot Ability Points on any Energy Point Abilities the Neura-Phage has access to. They may spend their Energy Points on any Pilot Abilities their Pilot has access to that the Neura-Phage would reasonably be able to perform. In addition, they always count as having a Neuralink Communicator installed in their Mech.",
+                        "Neuralinking is a painful, lengthy, and risky process. A Pilot can only exit the Neura-Phage during Downtime within a Tech 5 or higher Mech Bay after a lengthy surgical process that takes a day to perform, and further requires a Tech 5 or higher Med Bay to recover in. If a Pilot attempts to remove themselves from the Neura-Phage in the field, is removed without access to the appropriate facilities, or is forcibly removed in any way, they will die in the process."
+                    ]
+                }
             ]
         },
         {
             "id": 101,
-            "name": "Survey Drone (Scout)",
+            "name": "[Scout] Survey Drone (1)",
             "structure_pts": 2,
             "energy_pts": 4,
             "heat_cap": 2,
@@ -571,14 +647,13 @@
             "abilities": [
                 {
                     "name": "Integrated Hover Locomotion System",
-                    "description": "Your Survey Drone has the Hover trait."
+                    "description": ["Your Survey Drone has the Hover trait."]
                 }
-            ],
-            "patterns": []
+            ]
         },
         {
             "id": 102,
-            "name": "Survey Drone (Scout)",
+            "name": "[Scout] Survey Drone (2)",
             "structure_pts": 4,
             "energy_pts": 6,
             "heat_cap": 3,
@@ -590,14 +665,13 @@
             "abilities": [
                 {
                     "name": "Integrated Hover Locomotion System",
-                    "description": "Your Survey Drone has the Hover trait."
+                    "description": ["Your Survey Drone has the Hover trait."]
                 }
-            ],
-            "patterns": []
+            ]
         },
         {
             "id": 103,
-            "name": "Survey Drone (Scout)",
+            "name": "[Scout] Survey Drone (3)",
             "structure_pts": 6,
             "energy_pts": 8,
             "heat_cap": 4,
@@ -609,9 +683,81 @@
             "abilities": [
                 {
                     "name": "Integrated Hover Locomotion System",
-                    "description": "Your Survey Drone has the Hover trait."
+                    "description": ["Your Survey Drone has the Hover trait."]
                 }
             ]
+        },
+        {
+            "id": 104,
+            "name": "[Scout] Survey Drone (4)",
+            "structure_pts": 8,
+            "energy_pts": 10,
+            "heat_cap": 5,
+            "system_slots": 6,
+            "module_slots": 4,
+            "cargo_cap": 4,
+            "tech_level": 4,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Integrated Hover Locomotion System",
+                    "description": ["Your Survey Drone has the Hover trait."]
+                }
+            ]
+        },
+        {
+            "id": 105,
+            "name": "[Scout] Survey Drone (5)",
+            "structure_pts": 10,
+            "energy_pts": 12,
+            "heat_cap": 6,
+            "system_slots": 7,
+            "module_slots": 5,
+            "cargo_cap": 5,
+            "tech_level": 5,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Integrated Hover Locomotion System",
+                    "description": ["Your Survey Drone has the Hover trait."]
+                }
+            ]
+        },
+        {
+            "id": 113,
+            "name": "[Ranger] Mecha Companion (3)",
+            "structure_pts": 12,
+            "energy_pts": 5,
+            "heat_cap": 8,
+            "system_slots": 12,
+            "module_slots": 2,
+            "cargo_cap": 3,
+            "tech_level": 3,
+            "salvage_value": 2
+        },
+        {
+            "id": 114,
+            "name": "[Ranger] Mecha Companion (4)",
+            "structure_pts": 16,
+            "energy_pts": 6,
+            "heat_cap": 10,
+            "system_slots": 15,
+            "module_slots": 3,
+            "cargo_cap": 4,
+            "tech_level": 4,
+            "salvage_value": 2
+        },
+        {
+            "id": 115,
+            "name": "[Ranger] Mecha Companion (5)",
+            "structure_pts": 20,
+            "energy_pts": 7,
+            "heat_cap": 12,
+            "system_slots": 18,
+            "module_slots": 4,
+            "cargo_cap": 5,
+            "tech_level": 5,
+            "salvage_value": 2
         }
     ]
 }

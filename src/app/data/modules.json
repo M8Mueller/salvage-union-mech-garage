@@ -284,11 +284,14 @@
         {
             "id": 23,
             "name": "Reactor Overload",
+            "ep_cost": 2,
             "tech_level": 2,
             "slots": 1,
-            "salvage_value": 2,
+            "salvage_value": 3,
             "traits": [
-                "Passive"
+                "Turn Action",
+                "Range: Medium",
+                "Hacking"
             ]
         },
         {
@@ -322,6 +325,210 @@
             "traits": [
                 "Turn Action",
                 "Range: Far"
+            ]
+        },
+        {
+            "id": 27,
+            "name": "Advanced Weapon Link",
+            "tech_level": 3,
+            "slots": 2,
+            "salvage_value": 3,
+            "traits": [
+                "Turn Action",
+                "Heat Spike",
+                "Hot (X)"
+            ]
+        },
+        {
+            "id": 28,
+            "name": "Auto-Doctor",
+            "tech_level": 3,
+            "slots": 2,
+            "salvage_value": 4,
+            "actions": [
+                {
+                    "name": "Heal",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Short Action",
+                        "Range: Close"
+                    ]
+                },
+                {
+                    "name": "Physio",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Short Action",
+                        "Range: Close"
+                    ]
+                },
+                {
+                    "name": "Therapy",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Short Action",
+                        "Range: Close"
+                    ]
+                },
+                {
+                    "name": "First Aid",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Free Action",
+                        "Range: Close"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "name": "Comms Tapper",
+            "ep_cost": 2,
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Long",
+                "Hacking"
+            ]
+        },
+        {
+            "id": 30,
+            "name": "Concealed Locker",
+            "tech_level": 3,
+            "slots": 2,
+            "salvage_value": 3,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 31,
+            "name": "Coolant Flow Manifold",
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 2,
+            "actions": [
+                {
+                    "name": "Coolant Flow",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Free Action"
+                    ]
+                },
+                {
+                    "name": "Coolant Flush",
+                    "ep_cost": 1,
+                    "traits": [
+                        "Short Action"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "name": "ECM Transmitter",
+            "ep_cost": 3,
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 3,
+            "traits": [
+                "Turn Action",
+                "Range: Long"
+            ]
+        },
+        {
+            "id": 33,
+            "name": "Emergency Power Conduit",
+            "tech_level": 3,
+            "slots": 2,
+            "salvage_value": 3,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 34,
+            "name": "Encrypted Comms",
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 35,
+            "name": "Hacking Repeater Node",
+            "ep_cost": 1,
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Free Action",
+                "Range: Long",
+                "Hacking"
+            ]
+        },
+        {
+            "id": 36,
+            "name": "Multi-Targeter",
+            "ep_cost": "X",
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 3,
+            "traits": [
+                "Turn Action",
+                "Targeter"
+            ]
+        },
+        {
+            "id": 37,
+            "name": "Offensive Protocols",
+            "ep_cost": 2,
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Free Action",
+                "Heat Spike",
+                "Hot (2)"
+            ]
+        },
+        {
+            "id": 38,
+            "name": "Panda Sneeze",
+            "ep_cost": 2,
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Medium",
+                "Hacking"
+            ]
+        },
+        {
+            "id": 39,
+            "name": "Sonic Screecher",
+            "ep_cost": 2,
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Medium"
+            ]
+        },
+        {
+            "id": 40,
+            "name": "Voice Modulator",
+            "tech_level": 3,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Free Action"
             ]
         }
     ]
