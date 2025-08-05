@@ -1,6 +1,18 @@
-<app-card titleText="Scrap">
+<app-card titleText="Scrap Cost">
     <div class="h3 fw-light text-center">
         <i class="bi bi-gear-fill me-2"></i>
         <span>{{ totalScrapCost }}</span>
+    </div>
+
+    <hr class="hr">
+
+    <div class="row" *ngFor="let level of levels">
+        <div class="col-6 border-end text-end">
+            T{{ level }}
+        </div>
+
+        <div class="col-6 text-secondary">
+            {{ leveledChassisScrapCost[level] + leveledSystemsScrapCost[level] + leveledModulesScrapCost[level] }}
+        </div>
     </div>
 </app-card>

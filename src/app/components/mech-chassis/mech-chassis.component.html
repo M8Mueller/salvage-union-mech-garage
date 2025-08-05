@@ -22,13 +22,13 @@
     <ng-container *ngIf="chassis">
         <div class="collapse show" id="baseStats">
             <dl class="row">
-                <dt class="col-8 col-sm-4 text-sm-end">Structure Points</dt>
+                <dt class="col-8 col-sm-4 text-sm-end">Structure (SP)</dt>
                 <dd class="col col-sm-2"><i class="bi bi-shield-fill"></i> {{ chassis.structure_pts }}</dd>
 
                 <dt class="col-8 col-sm-4 text-sm-end">System Slots</dt>
                 <dd class="col col-sm-2"><i class="bi bi-triangle-fill"></i> {{ chassis.system_slots }}</dd>
 
-                <dt class="col-8 col-sm-4 text-sm-end">Energy Points</dt>
+                <dt class="col-8 col-sm-4 text-sm-end">Energy (EP)</dt>
                 <dd class="col col-sm-2"><i class="bi bi-battery-full"></i> {{ chassis.energy_pts }}</dd>
 
                 <dt class="col-8 col-sm-4 text-sm-end">Module Slots</dt>
@@ -40,31 +40,34 @@
                 <dt class="col-8 col-sm-4 text-sm-end">Tech Level</dt>
                 <dd class="col col-sm-2"><i class="bi bi-square-fill"></i> T{{ chassis.tech_level }}</dd>
 
-                <dt class="col-8 col-sm-4 text-sm-end">Cargo Capacity</dt>
+                <dt class="col-8 col-sm-4 text-sm-end">Cargo Cap</dt>
                 <dd class="col col-sm-2"><i class="bi bi-boxes"></i> {{ chassis.cargo_cap }}</dd>
 
                 <dt class="col-8 col-sm-4 text-sm-end">Salvage Value</dt>
                 <dd class="col col-sm-2"><i class="bi bi-gear-fill"></i> {{ chassis.salvage_value }}</dd>
             </dl>
         </div>
-        <hr>
 
-        <dl>
-            <ng-container *ngFor="let ability of chassis.abilities">
-                <dt class="mb-2">{{ ability.name }}</dt>
-                <dd class="mb-2" *ngIf="ability.description">
-                    <p class="text-justify">{{ ability.description }}</p>
-                </dd>
-                <dd class="mb-2" *ngIf="ability.long_description">
-                    <p class="text-justify" *ngFor="let p of ability.long_description">{{ p }}</p>
-                </dd>
-                <dd *ngIf="ability.roll_results">
-                    <app-roll-results [rollResults]="ability.roll_results"></app-roll-results>
-                </dd>
-                <dd *ngIf="ability.actions">
-                    <app-action-list [actions]="ability.actions"></app-action-list>
-                </dd>
-            </ng-container>
-        </dl>
+        <ng-container *ngIf="chassis.hasOwnProperty('abilities')">
+            <hr class="hr">
+
+            <dl>
+                <ng-container *ngFor="let ability of chassis.abilities">
+                    <dt class="mb-2">{{ ability.name }}</dt>
+
+                    <dd class="mb-2" *ngIf="ability.description">
+                        <p class="text-justify" *ngFor="let paragraph of ability.description">{{ paragraph }}</p>
+                    </dd>
+
+                    <dd *ngIf="ability.roll_results">
+                        <app-roll-results [rollResults]="ability.roll_results"></app-roll-results>
+                    </dd>
+
+                    <dd *ngIf="ability.actions">
+                        <app-action-list [actions]="ability.actions"></app-action-list>
+                    </dd>
+                </ng-container>
+            </dl>
+        </ng-container>
     </ng-container>
 </app-card>

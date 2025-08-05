@@ -91,10 +91,12 @@
                             <dt class="col-3 text-end">Systems</dt>
                             <dd class="col-9 text-secondary">
                                 <ng-container *ngIf="patternIndex !== null; else currentSystemList;">
+                                    <span *ngIf="systems.length === 0">None</span>
                                     <span *ngFor="let sys of systems; let isLast=last">{{ sys.name }}{{ isLast ? '' : ' // ' }}</span>
                                 </ng-container>
 
                                 <ng-template #currentSystemList>
+                                    <span *ngIf="currentSystems.length === 0">None</span>
                                     <span *ngFor="let sys of currentSystems; let isLast=last">{{ sys.name }}{{ isLast ? '' : ' // ' }}</span>
                                 </ng-template>
                             </dd>
@@ -102,10 +104,12 @@
                             <dt class="col-3 text-end">Modules</dt>
                             <dd class="col-9 text-secondary">
                                 <ng-container *ngIf="patternIndex !== null; else currentModuleList;">
+                                    <span *ngIf="modules.length === 0">None</span>
                                     <span *ngFor="let mod of modules; let isLast=last">{{ mod.name }}{{ isLast ? '' : ' // ' }}</span>
                                 </ng-container>
 
                                 <ng-template #currentModuleList>
+                                    <span *ngIf="currentModules.length === 0">None</span>
                                     <span *ngFor="let mod of currentModules; let isLast=last">{{ mod.name }}{{ isLast ? '' : ' // ' }}</span>
                                 </ng-template>
                             </dd>
@@ -126,8 +130,9 @@
                                         (click)="updatePattern(patternIndex)"
                                         [disabled]="!patternForm.valid">
                                         <i class="bi bi-floppy-fill"></i>
-                                        Update
+                                        Update Pattern
                                     </button>
+                                    <span class="me-2">|</span>
                                 </ng-container>
 
                                 <button
