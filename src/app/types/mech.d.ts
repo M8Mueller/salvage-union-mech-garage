@@ -4,14 +4,14 @@ export interface Action {
     traits?: string[];
     ep_cost?: number | string;
     options?: Option[];
-    roll_results?: RollResult[];
+    roll_the_die?: RollResult[];
 }
 
 export interface Ability {
     name: string;
     description?: string[];
     actions?: Action[];
-    roll_results?: RollResult[];
+    roll_the_die?: RollResult[];
 }
 
 export interface Chassis {
@@ -51,7 +51,7 @@ export interface MechComponent {
     system_slots?: number;
     module_slots?: number;
     actions?: Action[];
-    roll_results?: RollResult[];
+    roll_the_die?: RollResult[];
 }
 
 export interface RollResult {

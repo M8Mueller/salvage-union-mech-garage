@@ -10,7 +10,6 @@
             <div class="col">
                 <button class="btn btn-sm btn-outline-danger bg-danger-subtle float-end" (click)="removeModule(i)">
                     <i class="bi bi-trash-fill"></i>
-                    <!-- <i class="bi bi-x-lg"></i> -->
                 </button>
             </div>
         </div>
@@ -21,15 +20,13 @@
         <div class="col">
             <button type="button" class="btn btn-outline-success bg-success-subtle" data-bs-toggle="offcanvas" data-bs-target="#module_browser" aria-controls="module_browser" [disabled]="!slots">
                 <i class="bi bi-tools"></i>
-                <!-- <i class="bi bi-usb-symbol"></i> -->
-                Install Modules
+                Install
             </button>
         </div>
 
         <div class="col text-end">
             <button type="button" class="btn btn-outline-danger bg-danger-subtle" (click)="resetModules()" *ngIf="modules.length">
                 <i class="bi bi-trash-fill"></i> Remove All
-                <!-- <i class="bi bi-x-lg"></i> Remove All -->
             </button>
         </div>
     </div>

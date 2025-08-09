@@ -530,6 +530,127 @@
             "traits": [
                 "Free Action"
             ]
+        },
+        {
+            "id": 401,
+            "name": "Advanced Reactor Safety Protocols",
+            "tech_level": 4,
+            "slots": 2,
+            "salvage_value": 2,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 402,
+            "name": "Alpha Strike Module",
+            "ep_cost": "X",
+            "tech_level": 4,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Hot (X)",
+                "Targeter"
+            ]
+        },
+        {
+            "id": 403,
+            "name": "Auto-Repair Droid",
+            "ep_cost": 2,
+            "tech_level": 4,
+            "slots": 2,
+            "salvage_value": 3,
+            "traits": [
+                "Turn Action"
+            ]
+        },
+        {
+            "id": 404,
+            "name": "Dash Protocols",
+            "tech_level": 4,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Free Action",
+                "Heat Spike",
+                "Hot (2)"
+            ]
+        },
+        {
+            "id": 405,
+            "name": "EM Self-Destruct",
+            "tech_level": 4,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Reaction"
+            ]
+        },
+        {
+            "id": 406,
+            "name": "Laser Guidance",
+            "ep_cost": 3,
+            "tech_level": 4,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Free Action",
+                "Range: Long",
+                "Targeter"
+            ]
+        },
+        {
+            "id": 407,
+            "name": "Mech Scrambler",
+            "ep_cost": "X",
+            "tech_level": 4,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Close",
+                "Hacking"
+            ]
+        },
+        {
+            "id": 408,
+            "name": "MRSI Co-Ordinator",
+            "ep_cost": 4,
+            "tech_level": 4,
+            "slots": 1,
+            "salvage_value": 2,
+            "traits": [
+                "Turn Action",
+                "Range: Medium",
+                "Targeter"
+            ]
+        },
+        {
+            "id": 409,
+            "name": "Thermal Optics",
+            "ep_cost": 1,
+            "tech_level": 4,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Free Action",
+                "Range: Long",
+                "Optics"
+            ]
+        },
+        {
+            "id": 410,
+            "name": "Weapon Guidance",
+            "ep_cost": 1,
+            "tech_level": 4,
+            "slots": 1,
+            "salvage_value": 1,
+            "traits": [
+                "Free Action",
+                "Targeter",
+                "Guided"
+            ]
         }
     ]
 }

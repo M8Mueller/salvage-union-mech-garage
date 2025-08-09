@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RollResultsComponent } from './roll-results.component';
+import { RollTheDieComponent } from './roll-the-die.component';
 
-describe('RollResultsComponent', () => {
-  let component: RollResultsComponent;
-  let fixture: ComponentFixture<RollResultsComponent>;
+describe('RollTheDieComponent', () => {
+  let component: RollTheDieComponent;
+  let fixture: ComponentFixture<RollTheDieComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RollResultsComponent]
+      imports: [RollTheDieComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(RollResultsComponent);
+
+    fixture = TestBed.createComponent(RollTheDieComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -815,6 +815,273 @@
                 "Free Action",
                 "Hot (2)"
             ]
+        },
+        {
+            "id": 401,
+            "name": "Advanced Fabrication Arm",
+            "tech_level": 4,
+            "slots": 3,
+            "salvage_value": 3,
+            "actions": [
+                {
+                    "name": "Patch",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Turn Action",
+                        "Range: Close"
+                    ]
+                },
+                {
+                    "name": "System Repair",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Short Action",
+                        "Range: Close"
+                    ]
+                },
+                {
+                    "name": "Chassis Repair",
+                    "ep_cost": 4,
+                    "traits": [
+                        "Long Action",
+                        "Range: Close"
+
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 402,
+            "name": "Anti-Mech Mine Layer",
+            "ep_cost": 1,
+            "tech_level": 4,
+            "slots": 5,
+            "salvage_value": 4,
+            "traits": [
+                "Short Action",
+                "Range: Close",
+                "Uses (5)"
+            ]
+        },
+        {
+            "id": 403,
+            "name": "Automated Machine Gun Turret",
+            "tech_level": 4,
+            "slots": 5,
+            "salvage_value": 2,
+            "traits": [
+                "Range: Close",
+                "Damage: 2 SP",
+                "Ballistic",
+                "Pinning"
+            ]
+        },
+        {
+            "id": 404,
+            "name": "Automated Green Laser Turret",
+            "tech_level": 4,
+            "slots": 7,
+            "salvage_value": 3,
+            "traits": [
+                "Range: Medium",
+                "Damage: 4 SP",
+                "Energy",
+                "Hot (2)"
+            ]
+        },
+        {
+            "id": 405,
+            "name": "Automated 120mm Cannon Turret",
+            "tech_level": 4,
+            "slots": 9,
+            "salvage_value": 4,
+            "traits": [
+                "Range: Long",
+                "Damage: 6 SP",
+                "Ballistic",
+                "Explosive (1)"
+            ]
+        },
+        {
+            "id": 406,
+            "name": "CACB Laser",
+            "tech_level": 4,
+            "slots": 7,
+            "salvage_value": 5,
+            "traits": [
+                "Range: Long",
+                "Damage: 5 SP",
+                "Energy",
+                "Hot (2)"
+            ]
+        },
+        {
+            "id": 407,
+            "name": "Corpo Body Kit",
+            "tech_level": 4,
+            "slots": 3,
+            "salvage_value": 3,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 408,
+            "name": "Electro-Magnetic Hardening",
+            "tech_level": 4,
+            "slots": 3,
+            "salvage_value": 2,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 409,
+            "name": "Grav-Assisted Cargo Bay",
+            "tech_level": 4,
+            "slots": 5,
+            "salvage_value": 4,
+            "cargo_cap": 20,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 410,
+            "name": "Hover Locomotion System",
+            "tech_level": 4,
+            "slots": 5,
+            "salvage_value": 4,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 411,
+            "name": "Laser Anti-Missile System",
+            "ep_cost": 1,
+            "tech_level": 4,
+            "slots": 2,
+            "salvage_value": 3,
+            "traits": [
+                "Reaction"
+            ]
+        },
+        {
+            "id": 412,
+            "name": "Needle Missile Pod",
+            "tech_level": 4,
+            "slots": 3,
+            "salvage_value": 4,
+            "traits": [
+                "Range: Long",
+                "Damage: 1 SP",
+                "Guided",
+                "Targeter",
+                "Uses (30)"
+            ]
+        },
+        {
+            "id": 413,
+            "name": "Radomes",
+            "tech_level": 4,
+            "slots": 3,
+            "salvage_value": 3,
+            "traits": [
+                "Passive"
+            ]
+        },
+        {
+            "id": 414,
+            "name": "Railgun",
+            "tech_level": 4,
+            "slots": 9,
+            "salvage_value": 8,
+            "traits": [
+                "Range: Long",
+                "Damage: 9 SP",
+                "Ballistic",
+                "Hot (2)"
+            ]
+        },
+        {
+            "id": 415,
+            "name": "Shield Dome",
+            "ep_cost": "X",
+            "tech_level": 4,
+            "slots": 4,
+            "salvage_value": 4,
+            "traits": [
+                "Turn Action",
+                "Range: Close",
+                "Shield"
+            ]
+        },
+        {
+            "id": 416,
+            "name": "Snub-Nosed Blue Laser",
+            "tech_level": 4,
+            "slots": 5,
+            "salvage_value": 2,
+            "traits": [
+                "Range: Medium",
+                "Damage: 3 SP",
+                "Energy",
+                "Hot (3)"
+            ]
+        },
+        {
+            "id": 417,
+            "name": "Stabilising Locomotion System",
+            "tech_level": 4,
+            "slots": 5,
+            "salvage_value": 3,
+            "traits": [
+                "Passive"
+            ],
+            "actions": [
+                {
+                    "name": "Stabilise",
+                    "ep_cost": 3,
+                    "traits": [
+                        "Turn Action"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 418,
+            "name": "Tesla Coils",
+            "tech_level": 4,
+            "slots": 5,
+            "salvage_value": 3,
+            "actions": [
+                {
+                    "name": "Tesla Arc",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Turn Action",
+                        "Range: Medium"
+                    ]
+                },
+                {
+                    "name": "Tesla Charge",
+                    "ep_cost": 3,
+                    "traits": [
+                        "Turn Action",
+                        "Range: Close"
+                    ]
+                },
+                {
+                    "name": "Tesla Shield",
+                    "ep_cost": 2,
+                    "traits": [
+                        "Turn Action",
+                        "Range: Close",
+                        "Shield"
+                    ]
+                }
+            ]
         }
     ]
 }
