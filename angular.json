@@ -19,6 +19,7 @@
             },
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "baseHref": "https://M8mueller.github.io/salvage-union-mech-garage/",
             "polyfills": [
               "zone.js"
             ],
