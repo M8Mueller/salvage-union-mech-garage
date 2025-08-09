@@ -53,6 +53,16 @@ export class MechComponentBrowserComponent implements OnChanges, OnInit {
     this.filterComponents(search);
   }
 
+  setFilter(value: string) {
+    const search = this.filterForm.get('search');
+
+    if (search?.value === value) {
+      this.clearFilter();
+    } else {
+      search?.setValue(value);
+    }
+  }
+
   clearFilter() {
     this.filterForm.get('search')?.setValue(null);
   }

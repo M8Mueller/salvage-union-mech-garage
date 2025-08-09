@@ -194,7 +194,7 @@
                 {
                     "name": "Reinforced Chassis",
                     "description": ["The Jackhammer rolls on this alternate Critical Damage Table:"],
-                    "roll_results": [
+                    "roll_the_die": [
                         {
                             "roll": "20",
                             "result": "The Jackhammer is intact and operational with 1 SP. The Pilot is unharmed."

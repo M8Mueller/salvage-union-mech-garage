@@ -1,5 +1,5 @@
 <div class="row mb-2">
-    <label class="col-4 fw-bold text-sm-end mt-1" for="pattern">Pattern</label>
+    <label class="col-sm-4 fw-bold text-sm-end mt-1" for="pattern">Pattern</label>
     <div class="col">
         <div class="text-secondary float-start mt-1 me-2">{{ currentPattern?.name || "None selected" }}</div>
 
@@ -122,7 +122,7 @@
                                         type="button"
                                         class="btn btn-dark me-2"
                                         (click)="applyPattern()">
-                                        Apply Pattern
+                                        Load Pattern
                                     </button>
                                     <button
                                         type="button"
@@ -130,7 +130,7 @@
                                         (click)="updatePattern(patternIndex)"
                                         [disabled]="!patternForm.valid">
                                         <i class="bi bi-floppy-fill"></i>
-                                        Update Pattern
+                                        Update
                                     </button>
                                     <span class="me-2">|</span>
                                 </ng-container>

@@ -4,15 +4,15 @@ import { CommonModule } from '@angular/common';
 import { RollResult } from '@salvage-union-app/types/mech';
 
 @Component({
-  selector: 'app-roll-results',
+  selector: 'app-roll-the-die',
   standalone: true,
   imports: [
     CommonModule
   ],
-  templateUrl: './roll-results.component.html',
-  styleUrl: './roll-results.component.css'
+  templateUrl: './roll-the-die.component.html',
+  styleUrl: './roll-the-die.component.css'
 })
-export class RollResultsComponent {
+export class RollTheDieComponent {
   @Input() rollResults: RollResult[] = [];
 
 }

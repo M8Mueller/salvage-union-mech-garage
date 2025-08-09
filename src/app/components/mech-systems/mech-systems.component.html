@@ -10,7 +10,6 @@
             <div class="col">
                 <button class="btn btn-sm btn-outline-danger bg-danger-subtle float-end" (click)="removeSystem(i)">
                     <i class="bi bi-trash-fill"></i>
-                    <!-- <i class="bi bi-x-lg"></i> -->
                 </button>
             </div>
         </div>
@@ -21,13 +20,12 @@
         <div class="col">
             <button type="button" class="btn btn-outline-success bg-success-subtle" data-bs-toggle="offcanvas" data-bs-target="#system_picker" aria-controls="system_picker" [disabled]="!slots">
                 <i class="bi bi-tools"></i>
-                Install Systems
+                Install
             </button>
         </div>
         <div class="col text-end">
             <button type="button" class="btn btn-outline-danger bg-danger-subtle" (click)="resetSystems()" *ngIf="systems.length">
                 <i class="bi bi-trash-fill"></i> Remove All
-                <!-- <i class="bi bi-x-lg"></i> Remove All -->
             </button>
         </div>
     </div>

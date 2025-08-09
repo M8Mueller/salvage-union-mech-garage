@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { RollResultsComponent } from '../elements/roll-results/roll-results.component';
+import { RollTheDieComponent } from '../elements/roll-the-die/roll-the-die.component';
 import { ActionListComponent } from '../elements/action-list/action-list.component';
 
 import { CurrentMechService } from '@salvage-union-app/services/current-mech.service';
@@ -21,7 +21,7 @@ import { MechPatternComponent } from "../mech-pattern/mech-pattern.component";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RollResultsComponent,
+    RollTheDieComponent,
     MechPatternComponent
 ],
   templateUrl: './mech-chassis.component.html',
