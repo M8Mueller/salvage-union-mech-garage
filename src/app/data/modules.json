@@ -11,6 +11,10 @@
                 "Range: Long",
                 "Communicator",
                 "Recommended Module"
+            ],
+            "description": [
+                "This Opus Institute-developed array of telecommunications wires and receivers allows communication with anything with the Communicator Trait in Range. This allows for both voice and text communications via your Mech’s HUD. You may also use your Comms Module to send and receive images and data, such as data you gather when using a Scanner.",
+                "If the Mech does not have a Comms Module or equivalent with the Communicator Trait you cannot talk to your Allies from their Mech whilst out in the field."
             ]
         },
         {
@@ -24,7 +28,12 @@
                 "Turn Action",
                 "Range: Medium",
                 "Hacking"
-            ]
+            ],
+            "description": [
+                "This hacking program developed by Stefanus Industries allows you to tap into a Mech, database, or computer system to gather information about it. This can only be used to read data and not to write or manipulate it.",
+                "When activated, choose a target Mech, database, or computer system within Range."
+            ],
+            "roll_the_die": []
         },
         {
             "id": 3,
@@ -34,6 +43,9 @@
             "salvage_value": 1,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "This Module is installed directly into your Mech’s Cockpit and allows storage of up to 10 pieces of Pilot Equipment within it, allowing easy access when in the field."
             ]
         },
         {
@@ -47,7 +59,12 @@
                 "Reaction",
                 "Range: Medium",
                 "Hacking"
-            ]
+            ],
+            "description": [
+                "This Firewall, made open source by the Opus Institute, is designed to block hacking attempts.",
+                "If you or an Ally in Range are the target of any System, Module, or Ability with the Hacking Trait you may attempt to block the hack with your Firewall as a Reaction."
+            ],
+            "roll_the_die": []
         },
         {
             "id": 5,
@@ -58,6 +75,11 @@
             "salvage_value": 1,
             "traits": [
                 "Short Action"
+            ],
+            "description": [
+                "Your Mech is installed with a Personal Recreation Device of your choice. This could be an entertainment box, foot massager, or drinks dispenser, because sometimes a salvager just needs a break.",
+                "When activated, a single Pilot may use the Personal Recreation Device to relax and get themselves into a flow state. The next time they or a Mech they are controlling roll the die, they may re-roll it. They must accept the result of the second roll.",
+                "*It is against Union Regulation to install a Mech with a Personal Recreation Device designed to do what you’re thinking.*"
             ]
         },
         {
@@ -70,6 +92,11 @@
             "traits": [
                 "Turn Action",
                 "Range: Long"
+            ],
+            "description": [
+                "An open source Opus Institute blueprint, this Module is frequently used by emergency or rescue services.",
+                "The Opus Institute developed it for use in the long winters where their headquarters are located; due to the pitch dark environments and constant threat of snowstorms and avalanches.",
+                "When activated, this Module fires a reactor-fuelled flare to any point within Range. The flare is clearly visible up to anywhere within Far Range as well as anyone in any adjacent area to you on the Region Map. The flare burns enough to provide illumination nearly equal to that of daylight. The flare lasts for an hour before dissipating."
             ]
         },
         {
@@ -80,6 +107,12 @@
             "salvage_value": 1,
             "traits": [
                 "Reaction"
+            ],
+            "description": [
+                "When activated, your Mech self-destructs, its reactor going into overdrive and causing a localised thermonuclear explosion.",
+                "Your Mech, as well as all mounted Systems, Modules, and all Cargo, are destroyed. Everything within Close Range of your Mech takes SP damage equal to the Maximum Heat Capacity of your Mech.",
+                "Everything affected by this may take any Turn Action or Reaction in response to attempt to avoid the damage. You may attempt to escape via any System, Module, or Ability with the Escape Trait.",
+                "The area where your Mech was located before the Self-Destruct was activated, is now Irradiated."
             ]
         },
         {
@@ -93,7 +126,11 @@
                 "Short Action",
                 "Range: Long",
                 "Scanner"
-            ]
+            ],
+            "description": [
+                "When activated, a Survey Scanner allows you to scan a specific point of interest within Range. This can be a single point on the Region Map or a specific feature in the world such as a ruin, unique area of terrain, settlement, or base. If a point is not worth scanning because it holds nothing of interest or you have all of the relevant information on it, the Mediator must tell you before you make your scan."
+            ],
+            "roll_the_die": []
         },
         {
             "id": 9,
@@ -105,6 +142,10 @@
                 "Turn Action",
                 "Hot (X)",
                 "Heat Spike"
+            ],
+            "description": [
+                "A Weapons Link Module allows you to connect any number of identical Weapons Systems together. These must be the same Weapons System. For example: you may link two Green Lasers or three 30mm Autocannons. Once you link weapons, this is permanent and they cannot be fired separately via any means until this Module is uninstalled.",
+                "You make an attack with all weapons linked together with this Module against a single target in Range of your choice. Make and resolve each attack separately. You gain 1 Heat for each linked weapon you attack with and must make a Heat Check after the attacks have been resolved."
             ]
         },
         {
@@ -117,6 +158,11 @@
             "traits": [
                 "Free Action",
                 "Optics"
+            ],
+            "description": [
+                "When activated, this optical array extends the Range of any single Ranged Weapons System mounted on your Mech by one band, to a maximum of Long Range. For example, from Medium Range to Long Range or Close Range to Medium Range.",
+                "It further allows you to zoom in and see one Range Band further than you currently are. For example, if you are in Medium Range, you can see a target as though it was in Close Range and pick out finer details about it.",
+                "This effect lasts for 1 hour."
             ]
         },
         {
@@ -128,6 +174,10 @@
             "traits": [
                 "Passive",
                 "Scanner"
+            ],
+            "description": [
+                "Developed by Kombu Tech to detect atmospheric conditions in the vast algae farms of The Great Cape, this Module can quite literally predict the weather.",
+                "This device constantly measures and analyses air pressure, wind speed, temperature, and humidity. When entering an area you are able to get an up to date report on the weather of that area and any potential hazardous environmental conditions. In addition, the Module alerts you when a shift in weather patterns is occurring, giving you advance warning of severe weather such as radiation storms, acid rain, hail, hurricanes, and tornadoes. You also learn all potential negative effects of the current and predicted weather conditions, including mechanical effects."
             ]
         },
         {
@@ -141,6 +191,10 @@
                 "Turn Action",
                 "Range: Medium",
                 "Scanner"
+            ],
+            "description": [
+                "Used by Osiris insurance teams as a means to assess damage and reduce liability following a series of catastrophic industrial accidents and worker deaths in the last attempt to build a space elevator.",
+                "When activated, you scan a Mech or Vehicle in Range to get a full report on it. You learn its Chassis, Systems and Modules, its current and Max Structure Points, Heat, and Energy, and the Condition (Intact, Damaged, Destroyed) of its Chassis, Systems, and Modules."
             ]
         },
         {
@@ -154,6 +208,11 @@
                 "Short Action",
                 "Range: Long",
                 "Scanner"
+            ],
+            "description": [
+                "A scanner designed by Thatcher Steel to analyse underground areas prior to mining excavations.",
+                "When activated, you scan a point within Range to detect the presence of any underground structures, cave networks, ruins, or bases. This can be a specific terrain feature or location such as a mountain range, military complex, settlement, or area in the landscape. If a point is not worth scanning because it holds nothing of interest, the Mediator must tell you before you make your scan.",
+                "The scan returns a basic datamap of the underground area, including its size as well as the first three main sections as well as any passageways between those sections. The Mediator will draw you a rudimentary map noting any major features such as bridges, columns, or crevasses, and lets you know if the area can fit Mechs or Pilots."
             ]
         },
         {
@@ -164,6 +223,9 @@
             "salvage_value": 2,
             "traits": [
                 "Reaction"
+            ],
+            "description": [
+                "For when you need that extra boost of energy on a long haul. This nuclear powered conduit can be drained of energy to provide your Mech’s reactor with a temporary boost. When activated, your Mech regains 3 EP and the Energy Cell Module is destroyed."
             ]
         },
         {
@@ -176,6 +238,10 @@
                 "Reaction",
                 "Heat Spike",
                 "Hot (2)"
+            ],
+            "description": [
+                "This Module enables a Mech to make a series of rapid movements in an attempt to avoid damage from an attack or hazard. The infamous ‘Devils Run’ Pilot training route in the Arid Steppes contains a gauntlet of hazards that the Evasion Protocols Module has proved crucial in avoiding.",
+                "If an attack hits your Mech, you may activate the Evasion Protocols as a Reaction to force the attacker to re-roll the attack and choose the lower result."
             ]
         },
         {
@@ -187,6 +253,11 @@
             "salvage_value": 2,
             "traits": [
                 "Turn Action"
+            ],
+            "description": [
+                "A byproduct of Drontek anti-grav technology, the Hull Magnetiser has become much loved by salvagers who want to slap some extra scrap on their Chassis.",
+                "When activated, the hull of your Mech becomes temporarily magnetised, drawing metallic objects towards it and allowing all manner of scrap and salvage to be easily carried. This increases your Mech’s Cargo Capacity by its System Slot Value. For example, if you are in a Mule Mech with a System Slot Value of 15 you would increase your Cargo Capacity by 15. This effect lasts for 1 hour and can be deactivated any time as a Free Action.",
+                "The Union unofficially encourages creative and unorthodox uses of the Hull Magnetiser."
             ]
         },
         {
@@ -200,6 +271,10 @@
                 "Free Action",
                 "Range: Far",
                 "Optics"
+            ],
+            "description": [
+                "Developed by the old nations in the Great War and later patented by AMS Systems for use in mining operations, this infrared optical device allows you to see in darkness even on a moonless night.",
+                "When activated, this specialised, green tinted optical array allows you to see in darkness from your Mech up to Far Range. This effect lasts for 1 hour."
             ]
         },
         {
@@ -213,6 +288,11 @@
                 "Turn Action",
                 "Range: Medium",
                 "Scanner"
+            ],
+            "description": [
+                "Developed by Sakura Futures to aid in target acquisition, after a classified incident at a mining colony. This scanner is able to detect movement within an area via a high-powered ultrasound scanner.",
+                "When activated, you scan a point within the area map or a specific area of interest such as a ruined building, bunker, or dense area of foliage for any signs of movement.",
+                "You detect if anything is moving in the area, the number of separate things that are moving, and whether they are People or Mech-sized."
             ]
         },
         {
@@ -226,11 +306,18 @@
                 "Heat Spike",
                 "Hot (2)"
             ],
+            "description": [
+                "A favourite of salvage teams across the globe, this Mech-mountable scanner lets you know when any Scrap is nearby."
+            ],
             "actions": [
                 {
                     "name": "Auto-Scan",
                     "traits": [
                         "Passive"
+                    ],
+                    "description": [
+                        "This automated function passively alerts you when you move into an area that can be salvaged.",
+                        "In addition, whenever you move from one area of the map to an location you have not yet visited, roll the die, on the result of a 20 you gain one piece of scrap of the Tech Level of the area as decided by the Mediator. By default this is the Tech Level of your Union Crawler."
                     ]
                 },
                 {
@@ -240,6 +327,9 @@
                         "Short Action",
                         "Range: Medium",
                         "Scanner"
+                    ],
+                    "description": [
+                        "In addition, when activated for its EP cost, this Module scans an area within Range. This reveals any Scrap, Systems, Chassis, or Modules, or Area Salvage points in the location as well as any buried or hidden metallic threats such as mines or Mechs waiting in ambush."
                     ]
                 }
             ]
@@ -255,6 +345,15 @@
                 "Turn Action",
                 "Range: Medium",
                 "Scanner"
+            ],
+            "description": [
+                "This AMS Systems-developed Module is able to provide you with specific navigation data, including specified routes and locations in the wastes, via an internal tracking system and soothing electronic voice.",
+                "When you activate this Module you are able to plot a safe course for you and your allies to either a known location within the Region Map you are in or one of the following locations in the wasteland. The Mediator tells you the location and what the safest route possible to it is, informing you of any potential dangers on the path as well.",
+                "Watering Hole: You find a safe, sheltered spot where there is also a small amount of nourishment available.",
+                "Settlement: You find a settlement within the wasteland that may be able to offer you aid.",
+                "Salvage Spot: You find an area salvaging spot such as a factory, old ruins, or abandoned caravan.",
+                "Encampment: You find an encampment of some kind, this could be a raider base, a corpo forward outpost, or a den of animals.",
+                "*For their safety and mental well-being, Salvage Unions do not condone the changing of the Navigation Module’s soothing electronic voice to anything that would irritate, upset, or enrage their Pilots. However funny it might seem at the time.*"
             ]
         },
         {
@@ -267,6 +366,11 @@
             "traits": [
                 "Turn Action",
                 "Targeter"
+            ],
+            "description": [
+                "Developed by Sakura Futures as a way to disable high profile targets, the Pinpoint Targeter allows you to strip vital components and limbs off of foes.",
+                "When activated, make an attack with a Weapons System of your choice against a target. If the attack hits choose a System, Module, or appendage on the target. You deal damage as normal, but the System, Module, or appendage is now damaged, or injured.",
+                "20: The System, Module, or appendage is instead destroyed."
             ]
         },
         {
@@ -279,6 +383,9 @@
             "traits": [
                 "Turn Action",
                 "Range: Long"
+            ],
+            "description": [
+                "This Module projects a video or series of images of your choice onto a surface of your choice within Range. It utilises mini discs for viewing videos. The projection expands upon the surface and can cover a large area. In addition, any sound from the video recording plays from your Mech."
             ]
         },
         {
@@ -292,6 +399,9 @@
                 "Turn Action",
                 "Range: Medium",
                 "Hacking"
+            ],
+            "description": [
+                "A simple brute force reactor hack developed by Stefanus that sends multiple false heat signals to a Mech triggering an overload response. When you activate this Module, a target Mech in Range must roll on the Reactor Overload Table."
             ]
         },
         {
@@ -302,7 +412,11 @@
             "salvage_value": 2,
             "traits": [
                 "Passive"
-            ]
+            ],
+            "description": [
+                "This Module increases the efficiency and cooling capability of your Mech’s reactor, mitigating damage in the event of an overload. When your Mech rolls on the Reactor Overload Table you may roll on this table instead."
+            ],
+            "roll_the_die": []
         },
         {
             "id": 25,
@@ -313,6 +427,10 @@
             "salvage_value": 2,
             "traits": [
                 "Reaction"
+            ],
+            "description": [
+                "Developed by salvager hackers during the Reclamation as a means to hide from or lay ambushes on corpo patrols by circumventing their scanning systems.",
+                "When activated, you and all allied Mechs within Close Range go into a feigned reactor Shutdown. The Mechs are operational, but appear as though they are Shutdown to sensors. Anything with the Scanner, Targeter, or Hacking Trait cannot be used against them. The Mechs can move, but if they activate any Systems, Modules, Abilities, or attack, they become active again and this effect ceases."
             ]
         },
         {
@@ -325,6 +443,9 @@
             "traits": [
                 "Turn Action",
                 "Range: Far"
+            ],
+            "description": [
+                "This Module records a video from your Mech along with any sound. The device mounts onto the front of your Mech and records anything ahead of it within Range. If you can see it from your Mech’s cockpit, this device records it. It also records any sounds within Range in any direction. When activated, the video begins to record and automatically stops after one hour. The video is saved on a mini disc for watching later and can be kept as a Keepsake."
             ]
         },
         {
