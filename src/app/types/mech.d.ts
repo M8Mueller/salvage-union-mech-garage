@@ -47,6 +47,7 @@ export interface MechComponent {
     slots: number;
     salvage_value: number;
     traits?: string[];
+    description?: string[];
     ep_cost?: number | string;
     system_slots?: number;
     module_slots?: number;

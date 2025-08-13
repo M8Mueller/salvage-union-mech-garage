@@ -12,6 +12,9 @@
                 "Ballistic",
                 "Jamming",
                 "Pinning"
+            ],
+            "description": [
+                "This simple ballistic weapon of the Opus Institute design fires solid, high calibre rounds that can puncture a Mech hull and shred through infantry. It has been a mainstay of battlefields for as long as anyone remembers and remains ubiquitous today."
             ]
         },
         {
@@ -22,6 +25,10 @@
             "salvage_value": 1,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "Slapping some extra layers of scrap on your Mech can make you feel more comfortable about piloting a nuclear reactor-powered death machine.",
+                "The first time that your Mech is hit by an attack, or takes damage, prevent the damage and all effects of the attack. Your Armour Plating System is then destroyed."
             ]
         },
         {
@@ -33,6 +40,10 @@
             "cargo_cap": 1,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "This small cargo pod allows you to squeeze that extra bit of storage space out of your Mech.",
+                "A Cargo Pod increases the Cargo Capacity of a Mech by 1."
             ]
         },
         {
@@ -46,6 +57,9 @@
                 "Damage: 2 SP",
                 "Melee",
                 "Salvaging"
+            ],
+            "description": [
+                "Originally developed as a tool for lumberjack Mechs by Hodgson & Vasquez, an Evantis subsidiary, this saw arm has remained in use for its salvaging capabilities, utility, and stopping power even as the forests have been cut down across the world."
             ]
         },
         {
@@ -58,7 +72,11 @@
                 "Reaction",
                 "Escape",
                 "Recommended System"
-            ]
+            ],
+            "description": [
+                "An Escape Hatch is a sealed hatch that can be opened and escaped through in the event a Mech suffers critical damage or the Pilot needs to make a swift exit. When activated, by pulling a lever, a bolted charge blows the Escape Hatch from the Mech Chassis, allowing for the Pilot to crawl through to safety."
+            ],
+            "roll_the_die": []
         },
         {
             "id": 6,
@@ -69,6 +87,9 @@
             "traits": [
                 "Free Action",
                 "Range: Medium"
+            ],
+            "description": [
+                "Floodlights, light up a wide area up to Medium Range from a Mech as a Free Action. This allows you to see more clearly in dark or foggy conditions. The Floodlights can be adjusted for tight or wide beam illumination."
             ]
         },
         {
@@ -83,6 +104,9 @@
                 "Anti-Organic",
                 "Burn (1)",
                 "Overheat"
+            ],
+            "description": [
+                "Developed by the Opus Institute for use in forestry and demolition operations, or at least that is what they tell themselves. The FM-3 shoots a superheated stream of fire at a target. Most Mechs are armoured enough that this only licks them, but it can mess up internals enough to stop them firing anything hot back at you. Flesh bubbles and screams."
             ]
         },
         {
@@ -96,6 +120,10 @@
                 "Range: Close",
                 "Pinning",
                 "Uses (5)"
+            ],
+            "description": [
+                "A useful tool in the wastes, the Opus Institute originally designed the High Pressure Hose and was the first to make the blueprints freely available for use by fire fighting Mechs following the chaos of Impact Day. Sakura Futures would deploy them as a riot control measure against waves of food protestors. Though somewhat limited by its heavy water tank, this can be refilled in the field.",
+                "You fire a stream of highly pressurised water at any target or location in Range. This can douse fire and make ground boggy and wet. A Mech doused in water reduces its Heat by 1."
             ]
         },
         {
@@ -111,6 +139,10 @@
                 "Rigging",
                 "Salvaging",
                 "Unwieldy"
+            ],
+            "description": [
+                "This hydraulic crushing system can be used to scour an area of salvage or as an impromptu weapon. Sometimes both.",
+                "When you Area Salvage with this System you gain a single additional Scrap of the Tech Level of the area in addition to what you roll on the Area Salvaging Table."
             ]
         },
         {
@@ -122,6 +154,10 @@
             "traits": [
                 "Passive",
                 "Recommended System"
+            ],
+            "description": [
+                "A sturdy and dependable Locomotion System allowing a Mech to traverse most standard terrain types and adaptable to fit on most Chassis. Locomotion Systems vary widely from bipedal to quadrupedal, and beyond. Some esoteric designs are known to have as many as eight legs!",
+                "A Locomotion System allows a Mech to move normally. If a Mech does not have a Locomotion System or it is damaged or destroyed the Mech cannot move."
             ]
         },
         {
@@ -133,6 +169,10 @@
             "traits": [
                 "Free Action",
                 "Range: Medium"
+            ],
+            "description": [
+                "These externally mounted speakers can be clearly heard by anything up to Medium Range from you. They can be used to communicate externally with those outside of your Mech or play some beats from your cassette deck.",
+                "The Immortan Raiders made effective use of Loudspeakers as a crude shock and awe tool during their devastating raids in the Ferrous Wars."
             ]
         },
         {
@@ -144,7 +184,12 @@
             "traits": [
                 "Turn Action",
                 "Range: Long"
-            ]
+            ],
+            "description": [
+                "The Mechapult is an invention that could only have been thought of by salvagers. Scrap has many uses in the wastelands from trade, from crafting to repair and most obviously launching at high velocity towards whoever looked at you the wrong way.",
+                "A Mechapult must be loaded with one piece of Scrap to fire. The effect is randomly determined and differs based on the Tech Level of Scrap you choose. Choose a target in Range to fire the Mechapult at. Instead of making an attack roll, roll the die on the table below to determine the effect. You may Push this roll as normal. The Scrap is always destroyed irrespective of the result."
+            ],
+            "roll_the_die": []
         },
         {
             "id": 13,
@@ -157,6 +202,9 @@
                 "Damage: 5 SP",
                 "Explosive (1)",
                 "Uses (5)"
+            ],
+            "description": [
+                "The Herrsch Pattern Miniaturised Mortar lobs an explosive, high velocity round against a target, flaying everything around it with superheated shrapnel."
             ]
         },
         {
@@ -171,6 +219,9 @@
                 "Melee",
                 "Salvaging",
                 "Unwieldy"
+            ],
+            "description": [
+                "An industrial excavator designed for mining and salvaging operations. Allows drilling, excavating, and salvaging of rock and other dense material. These were used extensively in the Ferrous Range by Thatcher Steel miners and their carcasses still litter the rocky outcrops."
             ]
         },
         {
@@ -184,6 +235,9 @@
                 "Damage: 3 SP",
                 "Energy",
                 "Hot (1)"
+            ],
+            "description": [
+                "Red lasers strike a target with a small, focussed beam of heat. Their blueprint has been made widely available by the Opus Institute and are commonly used by corpos as much as they are by salvagers and wastelanders."
             ]
         },
         {
@@ -195,6 +249,11 @@
             "traits": [
                 "Range: Close",
                 "Rigging"
+            ],
+            "description": [
+                "This industrial rigging arm is designed to enable a Mech to pick up and manipulate objects in its external environment.",
+                "It is important to note that Mechs are not equipped with arms by default.",
+                "To avoid any embarrassment in the field, please remember to install a Rigging Arm on your Mech, as it will be unable to pick up objects without one."
             ]
         },
         {
@@ -203,6 +262,9 @@
             "tech_level": 1,
             "slots": 3,
             "salvage_value": 4,
+            "description": [
+                "This mech-mountable riveting gun can be used to make field repairs to the most basic of Mechs, Systems, and Modules."
+            ],
             "actions": [
                 {
                     "name": "Patch",
@@ -210,6 +272,9 @@
                     "traits": [
                         "Turn Action",
                         "Range: Close"
+                    ],
+                    "description": [
+                        "You restore up to 4 Structure Points to any Mech in Range that has at least 1 SP"
                     ]
                 },
                 {
@@ -218,6 +283,9 @@
                     "traits": [
                         "Short Action",
                         "Range: Close"
+                    ],
+                    "description": [
+                        "You repair a damaged Tech 1 System or Module in Range to Intact Condition. It is now usable."
                     ]
                 },
                 {
@@ -226,7 +294,9 @@
                     "traits": [
                         "Long Action",
                         "Range: Close"
-
+                    ],
+                    "description": [
+                        "You repair a damaged Tech 1 Mech Chassis or Vehicle in Range to Intact Condition. It is now usable with 1 SP."
                     ]
                 }
             ]
@@ -241,6 +311,10 @@
                 "Turn Action",
                 "Range: Close",
                 "Damage: 1 SP"
+            ],
+            "description": [
+                "A compressor and nozzle which propels and abrasive material like sand to slowly erode, clean, or shape a surface.",
+                "Any target hit cannot use any system or module with the targeter trait for 1 turn."
             ]
         },
         {
@@ -252,6 +326,9 @@
             "cargo_cap": 4,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "A simple hold designed to store salvage on a Mech. Not the most flashy option, but nothing beats the feeling of having a hold full of Scrap to bring home to the Crawler. A Transport Hold increases the Cargo Capacity of a Mech by 4."
             ]
         },
         {

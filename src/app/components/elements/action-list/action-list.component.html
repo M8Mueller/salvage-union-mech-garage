@@ -1,11 +1,17 @@
 <div *ngFor="let action of actions">
-    <app-ep-tag [epCost]="action.ep_cost" *ngIf="action.ep_cost"></app-ep-tag>
-    <span class="fw-bold">{{ action.name }} </span>
-    <app-trait-list [traits]="action.traits" *ngIf="action.traits"></app-trait-list>
+    <div class="mb-2">
+        <app-ep-tag [epCost]="action.ep_cost" *ngIf="action.ep_cost"></app-ep-tag>
+        <span class="fw-bold" *ngIf="action.name">{{ action.name }} </span>
+        <app-trait-list [traits]="action.traits" *ngIf="action.traits"></app-trait-list>
+    </div>
+
     <div class="text-justify mb-2" *ngIf="action.description">
         <p *ngFor="let p of action.description">{{ p }}</p>
     </div>
-    <ul class="list-group list-group-flush">
-        <li class="text-justify list-group-item" *ngFor="let option of action.options"><span class="fw-bold">{{ option.name }}: </span>{{ option.description }}</li>
+
+    <ul class="list-group list-group-flush" *ngIf="action.options">
+        <li class="text-justify list-group-item" *ngFor="let option of action.options">
+            <span class="fw-bold">{{ option.name }}: </span>{{ option.description }}
+        </li>
     </ul>
 </div>

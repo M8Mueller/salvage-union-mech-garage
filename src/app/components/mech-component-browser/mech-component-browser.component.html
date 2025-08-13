@@ -19,10 +19,10 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-outline-success bg-success-subtle btn-sm me-2" (click)="setFilter('Recommended')">Recommended</button>
+                            <button class="btn btn-sm btn-outline-success bg-success-subtle me-2" (click)="setFilter('Recommended')">Recommended</button>
                             <!-- <button class="btn btn-outline-danger bg-danger-subtle btn-sm me-2" (click)="setFilter('Damage:')">Weapon</button>
                             <button class="btn btn-outline-primary bg-primary-subtle btn-sm me-2" (click)="setFilter('Shield')">Shield</button> -->
-                            <button class="btn btn-outline-secondary bg-secondary-subtle btn-sm" (click)="setFilter('Passive')">Passive</button>
+                            <button class="btn btn-sm btn-outline-secondary bg-secondary-subtle" (click)="setFilter('Passive')">Passive</button>
                         </div>
                     </div>
                 </form>
@@ -36,7 +36,12 @@
                 <div class="row">
                     <div class="col">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-outline-secondary bg-secondary-subtle text-toggle mb-3" data-bs-toggle="collapse" [attr.href]="'#techLevel' + tl" role="button" aria-expanded="false" [attr.aria-controls]="'techLevel' + tl">
+                            <button class="btn btn-outline-secondary bg-secondary-subtle text-toggle mb-3"
+                                data-bs-toggle="collapse"
+                                [attr.href]="'#techLevel' + tl"
+                                role="button"
+                                aria-expanded="false"
+                                [attr.aria-controls]="'techLevel' + tl">
                                 Tech {{ tl }} ({{ filteredComponentList[tl].length }})
                                 <div class="float-end">
                                     <i class="bi bi-chevron-up text-expanded"></i>
@@ -49,6 +54,66 @@
             </div>
 
             <div class="collapse" [attr.id]="'techLevel' + tl">
+                <ng-container *ngFor="let component of filteredComponentList[tl]">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- <button class="btn btn-outline-secondary bg-secondary-subtle">{{ component.name }}</button> -->
+                                <!-- <div class="fw-bold">{{ component.name }}</div> -->
+                                 <!-- <div><i class="bi bi-triangle-fill" [class.text-danger]="component.slots > availableSlots"></i> {{ component.slots }}</div> -->
+                                <div class="fw-bold">{{ component.name }}</div>
+
+                                <button class="btn btn-sm btn-outline-success bg-success-subtle" (click)="selectComponent(component.id)" [disabled]="component.slots > availableSlots">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <div class="col-7 my-auto"><span class="fw-bold">{{ component.name }}</span></div>
+                        <div class="col-4 my-auto">
+                            <span class="me-1" [class.text-danger]="component.slots > availableSlots"><i class="bi bi-triangle-fill"></i> {{ component.slots }}</span>
+                            <span class="me-1"><i class="bi bi-gear-fill"></i> {{ component.salvage_value }}</span>
+                        </div>
+                        <div class="col-1">
+                        </div> -->
+                    </div>
+
+                    <!-- <div class="row">
+                        <div class="col">
+                            <i class="bi bi-square-fill ms-4"></i> {{ component.tech_level }}
+                            <i class="bi bi-triangle-fill" [class.text-danger]="component.slots > availableSlots"></i> {{ component.slots }}
+                            <i class="bi bi-gear-fill"></i> {{ component.salvage_value }}
+                        </div>
+                    </div> -->
+
+                    <div class="row mb-2">
+                        <div class="col">
+                            <app-ep-tag [epCost]="component.ep_cost" *ngIf="component.ep_cost"></app-ep-tag>
+                            <app-trait-list [traits]="component.traits" *ngIf="component.traits"></app-trait-list>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="bi bi-square-fill"></i> {{ component.tech_level }}
+                            <div [class.text-danger]="component.slots > availableSlots"><i class="bi bi-triangle-fill"></i> {{ component.slots }}</div>
+                            <div><i class="bi bi-gear-fill"></i> {{ component.salvage_value }}</div>
+                        </div>
+                        <div class="col">
+                            <div *ngIf="component.description">
+                                <p class="text-justify" *ngFor="let paragraph of component.description">{{ paragraph }}</p>
+                            </div>
+                            <app-action-list [actions]="component.actions" *ngIf="component.actions"></app-action-list>
+                            <dd *ngIf="component.roll_the_die">
+                                <app-roll-the-die [rollResults]="component.roll_the_die"></app-roll-the-die>
+                            </dd>
+                        </div>
+                    </div>
+
+                    <hr>
+                </ng-container>
+            </div>
+
+            <!-- <div class="collapse" [attr.id]="'techLevel' + tl">
                 <ng-container *ngFor="let component of filteredComponentList[tl]">
                     <div class="row">
                         <div class="col-7 my-auto"><span class="fw-bold">{{ component.name }}</span></div>
@@ -72,9 +137,7 @@
                     </div>
                     <hr>
                 </ng-container>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
-
-

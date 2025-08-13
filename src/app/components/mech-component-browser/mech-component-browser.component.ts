@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { ActionListComponent } from '../elements/action-list/action-list.component';
 import { EpTagComponent } from '../elements/ep-tag/ep-tag.component';
+import { RollTheDieComponent } from '../elements/roll-the-die/roll-the-die.component';
 import { TraitListComponent } from '../elements/trait-list/trait-list.component';
 
 import { MechComponent } from '@salvage-union-app/types/mech';
@@ -16,6 +17,7 @@ import { MechComponent } from '@salvage-union-app/types/mech';
     CommonModule,
     EpTagComponent,
     ReactiveFormsModule,
+    RollTheDieComponent,
     TraitListComponent
   ],
   templateUrl: './mech-component-browser.component.html',
