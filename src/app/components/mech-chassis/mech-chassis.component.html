@@ -25,44 +25,44 @@
                 <div class="col-sm-6">
                     <div class="row">
                         <dt class="col-sm-8 text-sm-end">Structure Pts.</dt>
-                        <dd class="col"><i class="bi bi-shield-fill"></i> {{ chassis.structure_pts }}</dd>
+                        <dd class="col" style="font-size: 1.2em;">{{ chassis.structure_pts }}</dd>
                     </div>
 
                     <div class="row">
                         <dt class="col-sm-8 text-sm-end">Energy Pts.</dt>
-                        <dd class="col"><i class="bi bi-battery-full"></i> {{ chassis.energy_pts }}</dd>
+                        <dd class="col" style="font-size: 1.2em;">{{ chassis.energy_pts }}</dd>
                     </div>
 
                     <div class="row">
                         <dt class="col-sm-8 text-sm-end">Heat Cap.</dt>
-                        <dd class="col"><i class="bi bi-thermometer"></i> {{ chassis.heat_cap }}</dd>
+                        <dd class="col" style="font-size: 1.2em;">{{ chassis.heat_cap }}</dd>
                     </div>
 
                     <div class="row">
                         <dt class="col-sm-8 text-sm-end">Cargo Cap.</dt>
-                        <dd class="col"><i class="bi bi-boxes"></i> {{ chassis.cargo_cap }}</dd>
+                        <dd class="col" style="font-size: 1.2em;">{{ chassis.cargo_cap }}</dd>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="row">
                         <dt class="col-sm-8 text-sm-end">System Slots</dt>
-                        <dd class="col"><i class="bi bi-triangle-fill"></i> {{ chassis.system_slots }}</dd>
+                        <dd class="col"><app-icon class="d-block" type="slots" [value]="chassis.system_slots"></app-icon></dd>
                     </div>
 
                     <div class="row">
                         <dt class="col-sm-8 text-sm-end">Module Slots</dt>
-                        <dd class="col"><i class="bi bi-triangle-fill"></i> {{ chassis.module_slots }}</dd>
+                        <dd class="col"><app-icon class="d-block" type="slots" [value]="chassis.module_slots"></app-icon></dd>
                     </div>
 
                     <div class="row">
                         <dt class="col-sm-8 text-sm-end">Tech Level</dt>
-                        <dd class="col"><i class="bi bi-square-fill"></i> {{ chassis.tech_level }}</dd>
+                        <dd class="col"><app-icon class="d-block" type="tech" [value]="chassis.tech_level"></app-icon></dd>
                     </div>
 
                     <div class="row">
                         <dt class="col-sm-8 text-sm-end">Salvage Value</dt>
-                        <dd class="col"><i class="bi bi-gear-fill"></i> {{ chassis.salvage_value }}</dd>
+                        <dd class="col"><app-icon class="d-block" type="salvage" [value]="chassis.salvage_value"></app-icon></dd>
                     </div>
                 </div>
 

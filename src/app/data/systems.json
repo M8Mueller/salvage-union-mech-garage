@@ -274,7 +274,7 @@
                         "Range: Close"
                     ],
                     "description": [
-                        "You restore up to 4 Structure Points to any Mech in Range that has at least 1 SP"
+                        "You restore up to 4 Structure Points to any Mech in Range that has at least 1 SP."
                     ]
                 },
                 {
@@ -342,6 +342,10 @@
                 "Damage: 4 SP",
                 "Ballistic",
                 "Jamming"
+            ],
+            "description": [
+                "This automatic ballistic weapon fires high calibre slugs at a target.",
+                "Evantis are one of the main manufacturers of heavy duty ballistic weapons, and you can expect to find their designs on their standard mil-tech loadouts."
             ]
         },
         {
@@ -354,7 +358,12 @@
                 "Reaction",
                 "Shield",
                 "Wield"
-            ]
+            ],
+            "description": [
+                "This metallic shield is designed to protect the wielder from melee attacks, handy when a Bio-Titan is chomping down on you.",
+                "When your Mech or a target in Close Range is hit by a Melee Attack you may use your Armoured Shield to block the attack as a Reaction."
+            ],
+            "roll_the_die": []
         },
         {
             "id": 22,
@@ -367,6 +376,11 @@
                 "Damage: 6 SP",
                 "Energy",
                 "Hot (3)"
+            ],
+            "description": [
+                "This heavy duty mining laser fires a concentrated blue beam originally designed to crack through deposits, but equally tears through a Mech.",
+                "In the Night of Red Iron, salvagers tore apart Thatcher Steel defences with these, seizing their production facilities and turning the tide in the Ferrous Wars.",
+                "*Union safety regulation 956.326 (a) requires the use of Reactor Safety Protocols when using this system.*"
             ]
         },
         {
@@ -378,6 +392,9 @@
             "cargo_cap": 10,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "The true staple System of the Union, used as much by our comrades who founded the Salvage Unions as we do today to haul loads across the wastes and back to the crawler. A Cargo Bay increases a Mech’s Cargo Capacity by 10."
             ]
         },
         {
@@ -389,6 +406,10 @@
             "traits": [
                 "Reaction",
                 "Uses (2)"
+            ],
+            "description": [
+                "This System fires a metallic cloud of chaff, made of strips of aluminium and zinc, from your Mech which can detonate missiles harmlessly in flight or scramble targeting systems.",
+                "If you or an Ally in Close Range are hit by a weapon with the Missile Trait or any attack with the Targeter Trait, you may activate the Chaff Launcher. The attack misses, dealing no damage and having no other effect."
             ]
         },
         {
@@ -399,6 +420,10 @@
             "salvage_value": 2,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "A huge, frontal mounted, curved blade for clearing obstacles, used frequently by Osiris Construction.",
+                "This allows your Mech to safely move through and clear any areas of Difficult Terrain such as rubble, ruins, and roadblocks."
             ]
         },
         {
@@ -407,6 +432,9 @@
             "tech_level": 2,
             "slots": 3,
             "salvage_value": 2,
+            "description": [
+                "This System launches a grappling spike attached to a high tensile wire. Fired into a rock or structure and it can be used to help the Mech cross rough terrain. Fired at a Mech, it can be used to pin the Mech down or even pulled towards the attacker. Raiders love using these to pin down targets enabling their mates to strip them apart."
+            ],
             "actions": [
                 {
                     "name": "Pin",
@@ -415,6 +443,9 @@
                         "Turn Action",
                         "Range: Medium",
                         "Pinning"
+                    ],
+                    "description": [
+                        "When activated, choose a target in Range. You deal 1 SP damage to the target and it cannot move beyond Medium Range of your Mech whilst the grappling harpoon is attached. You can detach the grappling harpoon as a Free Action. The target may attempt to remove the harpoon as a Turn Action on their turn, if they have some means to do so."
                     ]
                 },
                 {
@@ -423,6 +454,9 @@
                     "traits": [
                         "Turn Action",
                         "Range: Medium"
+                    ],
+                    "description": [
+                        "When activated, you may swing or rappel up, down, or over any terrain or obstacle within Range such as a tall building, ravine, or stretch of Irradiated river as long as you have something sturdy to attach the grappling hook to."
                     ]
                 }
             ]
@@ -438,6 +472,9 @@
                 "Damage: 4 SP",
                 "Energy",
                 "Hot (2)"
+            ],
+            "description": [
+                "The Green Laser fires a solid beam of superheated energy at a target. This was one of the first lasers developed for military use and was used extensively on all sides of the First Corpo War. It remains ubiquitous to this day."
             ]
         },
         {
@@ -449,6 +486,9 @@
             "heat_cap": 1,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "A large slab of Scrap that acts as a passive temperature exchange harmlessly dissipating Heat from your Mech’s reactor. A Heat Sink increases the Maximum Heat Capacity of a Mech by 1 for each Heat Sink installed."
             ]
         },
         {
@@ -459,6 +499,9 @@
             "salvage_value": 1,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "A simple, scrap-built, extendable antenna that helps pierce through the atomic background noise. This increases the Range band of any of your installed Modules or Pilot Abilities with the Communicator, Hacking, and Scanner Trait by 1. For example, increasing the range of a Comms Module from Long Range to Far Range."
             ]
         },
         {
@@ -469,6 +512,9 @@
             "salvage_value": 3,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "This body kit allows you to change the skin of your Mech to appear as though it is any other Tech 1 or 2 Mech or any design of your choice.This allows them to meld seamlessly with other Mechs of the desired design."
             ]
         },
         {
@@ -481,6 +527,10 @@
                 "Range: Close",
                 "Damage: 3 SP + 2 SP",
                 "Ballistic"
+            ],
+            "description": [
+                "Fires a blast of grapeshot which rips through multiple targets at close quarters. The dirt cheap salvage cost of these made them a favourite of salvagers during the Reclamation of the Wastes, when the remnants of corpo-owned industry were swept away under a hail of shrapnel.",
+                "When you hit with this weapon one other target of your choice in Close Range takes 2 SP damage."
             ]
         },
         {
@@ -492,6 +542,9 @@
             "module_slots": 1,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "A complex adaptation port that lets you install additional Modules onto your Mech. This System increases your Mech’s Module Capacity by 1."
             ]
         },
         {
@@ -504,6 +557,10 @@
             "traits": [
                 "Turn Action",
                 "Range: Close"
+            ],
+            "description": [
+                "This System fires a large, strong nanofibre net at a target, making them easy pickings for salvage.",
+                "When activated, you fire a nanofibre net at a target in Range. The target cannot move, and gains the Vulnerable Trait as it becomes trapped in the net. The target may attempt to escape the net as a Turn Action on their turn, if they have some means to do so."
             ]
         },
         {
@@ -515,6 +572,10 @@
             "traits": [
                 "Passive",
                 "Personnel Capacity (12)"
+            ],
+            "description": [
+                "A self-contained transport pod designed to comfortably transport people on a Mech.",
+                "Grants the Mech a Personnel Capacity of 12, or 2 Squads per Personnel Transport Pod mounted."
             ]
         },
         {
@@ -528,7 +589,12 @@
                 "Reaction",
                 "Range: Close",
                 "Shield"
-            ]
+            ],
+            "description": [
+                "Developed by Aeon as a means to combat solar flares during colony construction and asteroid mining projects, this shield projector is also highly effective against energy weapons.",
+                "When you or a target in Close Range is hit by a weapon with the Energy Trait, you may attempt to use your Refractive Shield Projector to prevent the hit."
+            ],
+            "roll_the_die": []
         },
         {
             "id": 36,
@@ -538,6 +604,12 @@
             "salvage_value": 2,
             "traits": [
                 "Passive"
+            ],
+            "description": [
+                "This is a separate cockpit which is mounted to the side of a Mech, and allows a Pilot to ride ‘shotgun’ on the Mech in support of the main Pilot, though unable to control the Mech itself.",
+                "They may fire from the Shotgun Pit with any equipped weapons and use any of their Pilot Equipment or Abilities.",
+                "When riding in the Shotgun Pit, the Pilot takes half damage from any weapons that deal HP damage and standard damage from any weapons that deal SP damage.",
+                "If the Shotgun Pit is ever damaged or destroyed, the Pilot riding inside it must roll on the Critical Injury Table."
             ]
         },
         {
@@ -549,6 +621,10 @@
             "salvage_value": 2,
             "traits": [
                 "Turn Action"
+            ],
+            "description": [
+                "A smoke machine pumps out large amounts of thick smoke around your Mech, obscuring it from view and scrambling target systems.",
+                "You pump a stream of smoke around you concealing your Mech from view. Any Systems, Modules, or Abilities with the Targeter Trait cannot be used against you. The smoke lasts 10 minutes and then dissipates."
             ]
         },
         {
@@ -564,6 +640,10 @@
                 "Explosive (2)",
                 "Missile",
                 "Uses (6)"
+            ],
+            "description": [
+                "Developed as a highly destructive and versatile armament for underwater Mechs, it is not advisable to use these on land unless you have a good plan. Originally developed by Aegean Dynamics, a subsidiary of Contour Aerospace. Contour conducted a short, highly hostile takeover of the subsidiary and solidified their power over both land and sea.",
+                "When fired in water, Torpedo Tubes are Long Range weapons. When fired out of water they are Close Range weapons."
             ]
         },
         {
@@ -577,6 +657,11 @@
                 "Turn Action",
                 "Range: Long",
                 "Targeter"
+            ],
+            "description": [
+                "A favourite of the Scouts Union, they are often used to track salvage targets over long distances.",
+                "When activated, you fire a bead-sized tracking node from your Mech at any target within Long Range. The tracking node sticks to the target and allows you to track them over Range via your Mech’s heads up display. You know the exact location of the target as long as it remains within Far Range of you. If the target moves further away than Far Range, you also know if the target returns to within Far Range of you. The tracking node adheres to a target for 24 hours. You may have multiple tracking nodes on multiple targets.",
+                "*Union Code § 2211 prohibits the use of unsecured tracking systems on board Union Crawlers to prevent back hacking*"
             ]
         },
         {
@@ -585,6 +670,9 @@
             "tech_level": 2,
             "slots": 3,
             "salvage_value": 3,
+            "description": [
+                "This Mech-mountable welding laser allows you to make a wider range of repairs in the field. An invaluable tool that has become the official symbol of the Engineers’ Union."
+            ],
             "actions": [
                 {
                     "name": "Patch",
@@ -592,6 +680,9 @@
                     "traits": [
                         "Turn Action",
                         "Range: Close"
+                    ],
+                    "description": [
+                        "You restore up to 5 Structure Points to any Mech in Range that has at least 1 SP."
                     ]
                 },
                 {
@@ -600,6 +691,9 @@
                     "traits": [
                         "Short Action",
                         "Range: Close"
+                    ],
+                    "description": [
+                        "You repair a damaged Tech 1 or Tech 2 System or Module in Range to Intact Condition. It is now usable."
                     ]
                 },
                 {
@@ -608,7 +702,9 @@
                     "traits": [
                         "Long Action",
                         "Range: Close"
-
+                    ],
+                    "description": [
+                        "You repair a damaged Tech 1 or Tech 2 Mech Chassis or Vehicle in Range to Intact Condition. It is now usable with 1 SP."
                     ]
                 }
             ]
@@ -664,7 +760,7 @@
         {
             "id": 45,
             "name": "Composite Armor",
-            "sstructure_pts": 5,
+            "structure_pts": 5,
             "tech_level": 3,
             "slots": 3,
             "salvage_value": 1,

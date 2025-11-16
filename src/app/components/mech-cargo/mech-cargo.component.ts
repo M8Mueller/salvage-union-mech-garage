@@ -5,13 +5,15 @@ import { combineLatest } from 'rxjs';
 
 import { CurrentMechService } from '@salvage-union-app/services/current-mech.service';
 import { CardComponent } from "../elements/card/card.component";
+import { IconComponent } from '../elements/icon/icon.component';
 
 @Component({
   selector: 'app-mech-cargo',
   standalone: true,
   imports: [
     CommonModule,
-    CardComponent
+    CardComponent,
+    IconComponent
 ],
   templateUrl: './mech-cargo.component.html',
   styleUrl: './mech-cargo.component.css'

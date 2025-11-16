@@ -1,17 +1,18 @@
 <app-card titleText="Scrap Cost">
     <div class="h3 fw-light text-center">
-        <i class="bi bi-gear-fill me-2"></i>
-        <span>{{ totalScrapCost }}</span>
+        <app-icon class="me-2" type="tech" [value]="1"></app-icon>
+        <app-icon type="salvage" [value]="totalScrapCost"></app-icon>
     </div>
 
     <hr class="hr">
 
     <div class="row" *ngFor="let level of levels">
         <div class="col-6 border-end text-end">
-            {{ level }}
+            <app-icon type="tech" [value]="level"></app-icon>
         </div>
 
         <div class="col-6 text-secondary">
+            <!-- <app-icon type="salvage" [value]="leveledChassisScrapCost[level] + leveledSystemsScrapCost[level] + leveledModulesScrapCost[level]"></app-icon> -->
             {{ leveledChassisScrapCost[level] + leveledSystemsScrapCost[level] + leveledModulesScrapCost[level] }}
         </div>
     </div>

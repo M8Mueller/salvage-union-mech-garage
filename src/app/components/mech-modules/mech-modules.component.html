@@ -1,14 +1,29 @@
 <app-card titleText="Modules" titleIcon="bi bi-triangle-fill" titleIconText="{{ usedSlots }}/{{ slots }}{{ bonusSlots ? '+' + bonusSlots : '' }}">
     <ng-container *ngFor="let m of modules; let i = index">
         <div class="row">
-            <div class="col-5 col-md-6"><span class="align-middle">{{ m.name }}</span></div>
-            <div class="col-5 col-md-4">
-                <span class="align-middle me-2"><i class="bi bi-square-fill"></i> {{ m.tech_level }}</span>
-                <span class="align-middle me-2"><i class="bi bi-triangle-fill"></i> {{ m.slots }}</span>
-                <span class="align-middle me-2"><i class="bi bi-gear-fill"></i> {{ m.salvage_value }}</span>
-            </div>
             <div class="col">
-                <button class="btn btn-sm btn-outline-danger bg-danger-subtle float-end" (click)="removeModule(i)">
+                <div style="display: flex; align-items: center; flex-wrap: wrap;">
+                    <span class="fw-bold">{{ m.name }}</span>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <app-icon class="me-1" type="tech" [value]="m.tech_level"></app-icon>
+                <app-icon class="me-1" type="slots" [value]="m.slots"></app-icon>
+                <app-icon type="salvage" [value]="m.salvage_value"></app-icon>
+            </div>
+
+            <div class="col-3 text-end">
+                <button
+                    class="btn btn-sm btn-outline-secondary bg-secondary-subtle me-2"
+                    href="#moduleInfoModal"
+                    data-bs-toggle="modal"
+                    data-bs-target="#moduleInfoModal"
+                    [attr.data-bs-index]="i">
+                    <i class="bi bi-question-lg"></i>
+                </button>
+
+                <button class="btn btn-sm btn-outline-danger bg-danger-subtle" (click)="removeModule(i)">
                     <i class="bi bi-trash-fill"></i>
                 </button>
             </div>
@@ -18,7 +33,7 @@
 
     <div class="row">
         <div class="col">
-            <button type="button" class="btn btn-outline-success bg-success-subtle" data-bs-toggle="offcanvas" data-bs-target="#module_browser" aria-controls="module_browser" [disabled]="!slots">
+            <button type="button" class="btn btn-outline-success bg-success-subtle" data-bs-toggle="offcanvas" data-bs-target="#moduleBrowser" aria-controls="moduleBrowser" [disabled]="!slots">
                 <i class="bi bi-tools"></i>
                 Install
             </button>
@@ -33,17 +48,86 @@
 </app-card>
 
 
-<div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="module_browser" aria-labelledby="module_browser_label" *ngIf="moduleList">
+<div class="offcanvas offcanvas-start bg-dark" tabindex="-1" id="moduleBrowser" aria-labelledby="moduleBrowserLabel" *ngIf="moduleList">
     <div class="offcanvas-header">
-        <h4 class="offcanvas-title" id="module_browser_label">Modules</h4>
+        <h4 class="offcanvas-title" id="moduleBrowserLabel">Modules</h4>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body pt-0">
         <app-mech-component-browser
+            [prefix]="'module'"
             [componentList]="moduleList"
             [availableSlots]="slots + bonusSlots - usedSlots"
             (componentSelected)="addModule($event)"
             *ngIf="slots">
         </app-mech-component-browser>
+    </div>
+</div>
+
+<div class="modal fade" id="moduleInfoModal" tabindex="-1" aria-labelledby="moduleInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h1 class="modal-title fs-4" id="moduleInfoModalLabel">{{ module?.name || "No Module Selected" }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body" *ngIf="module">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <app-ep-tag [epCost]="module.ep_cost" *ngIf="module.ep_cost"></app-ep-tag>
+                            <app-trait-list [traits]="module.traits" *ngIf="module.traits"></app-trait-list>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="row mb-4">
+                                <div class="col text-center">
+                                    <app-icon class="d-block" type="tech" [value]="module.tech_level"></app-icon>
+                                    <app-icon class="d-block" type="slots" [value]="module.slots"></app-icon>
+                                    <app-icon class="d-block" type="salvage" [value]="module.salvage_value"></app-icon>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col text-center">
+                                    <button
+                                        class="btn btn-sm btn-outline-secondary bg-secondary-subtle mb-1"
+                                        (click)="cycleModule(-1)"
+                                        *ngIf="modules.length > 1">
+                                        <i class="bi bi-chevron-left"></i>
+                                    </button>
+
+                                    <button
+                                        class="btn btn-sm btn-outline-secondary bg-secondary-subtle"
+                                        (click)="cycleModule(1)"
+                                        *ngIf="modules.length > 1">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div *ngIf="module.description">
+                                <p class="text-justify" *ngFor="let paragraph of module.description">
+                                    {{ paragraph }}
+                                </p>
+                            </div>
+
+                            <app-action-list [actions]="module.actions" *ngIf="module.actions"></app-action-list>
+
+                            <app-roll-the-die [rollResults]="module.roll_the_die" *ngIf="module.roll_the_die"></app-roll-the-die>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="modal-footer">
+                <div class="container-fluid"></div>
+            </div> -->
+        </div>
     </div>
 </div>

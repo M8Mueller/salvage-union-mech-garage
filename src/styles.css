@@ -4,10 +4,26 @@
     text-align: justify;
 }
 
-.text-toggle[aria-expanded=false] .text-expanded {
+.input-button {
+    cursor: pointer;
+    right: 10px;
+    z-index: 100;
+}
+
+.collapse-control[aria-expanded=false] .expanded {
     display: none;
 }
 
-.text-toggle[aria-expanded=true] .text-collapsed {
+.collapse-control[aria-expanded=true] .collapsed {
     display: none;
+}
+
+.collapse.collapse-partial:not(.show) {
+    display: block;
+    height: 62px;
+    overflow: hidden;
+}
+
+.collapsing.collapse-partial {
+    height: 62px;
 }

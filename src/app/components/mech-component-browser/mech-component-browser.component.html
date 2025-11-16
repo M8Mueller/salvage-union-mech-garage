@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="{{ prefix }}_browser">
     <div class="sticky-top bg-dark pb-3" style="z-index: 1300;">
         <div class="row">
             <div class="col">
@@ -7,9 +7,11 @@
                         <div class="col">
                             <ng-container *ngIf="filterForm.get('search') as search">
                                 <div class="input-group position-relative d-inline-flex align-items-center">
-                                    <input type="text" class="form-control bg-secondary-subtle" placeholder="Start typing to filter..." formControlName="search">
-                                    <i class="bi bi-x-lg position-absolute"
-                                        style="right: 10px; cursor: pointer; z-index: 100;"
+                                    <input class="form-control bg-secondary-subtle"
+                                        type="text"
+                                        placeholder="Filter by name or trait..."
+                                        formControlName="search">
+                                    <i class="bi bi-x-lg position-absolute input-button"
                                         *ngIf="search.value"
                                         (click)="clearFilter()">
                                     </i>
@@ -20,8 +22,6 @@
                     <div class="row">
                         <div class="col">
                             <button class="btn btn-sm btn-outline-success bg-success-subtle me-2" (click)="setFilter('Recommended')">Recommended</button>
-                            <!-- <button class="btn btn-outline-danger bg-danger-subtle btn-sm me-2" (click)="setFilter('Damage:')">Weapon</button>
-                            <button class="btn btn-outline-primary bg-primary-subtle btn-sm me-2" (click)="setFilter('Shield')">Shield</button> -->
                             <button class="btn btn-sm btn-outline-secondary bg-secondary-subtle" (click)="setFilter('Passive')">Passive</button>
                         </div>
                     </div>
@@ -36,54 +36,51 @@
                 <div class="row">
                     <div class="col">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-outline-secondary bg-secondary-subtle text-toggle mb-3"
-                                data-bs-toggle="collapse"
-                                [attr.href]="'#techLevel' + tl"
+                            <a class="collapse-control btn btn-outline-secondary bg-secondary-subtle mb-3"
                                 role="button"
                                 aria-expanded="false"
-                                [attr.aria-controls]="'techLevel' + tl">
+                                data-bs-toggle="collapse"
+                                attr.href="#tech_level_{{ tl }}"
+                                attr.aria-controls="tech_level_{{ tl }}">
                                 Tech {{ tl }} ({{ filteredComponentList[tl].length }})
                                 <div class="float-end">
-                                    <i class="bi bi-chevron-up text-expanded"></i>
-                                    <i class="bi bi-chevron-down text-collapsed"></i>
+                                    <i class="bi bi-chevron-up expanded"></i>
+                                    <i class="bi bi-chevron-down collapsed"></i>
                                 </div>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="collapse" [attr.id]="'techLevel' + tl">
+            <div class="collapse"
+                attr.id="tech_level_{{ tl }}">
                 <ng-container *ngFor="let component of filteredComponentList[tl]">
                     <div class="row mb-2">
                         <div class="col">
                             <div class="d-flex justify-content-between align-items-center">
-                                <!-- <button class="btn btn-outline-secondary bg-secondary-subtle">{{ component.name }}</button> -->
-                                <!-- <div class="fw-bold">{{ component.name }}</div> -->
-                                 <!-- <div><i class="bi bi-triangle-fill" [class.text-danger]="component.slots > availableSlots"></i> {{ component.slots }}</div> -->
                                 <div class="fw-bold">{{ component.name }}</div>
 
-                                <button class="btn btn-sm btn-outline-success bg-success-subtle" (click)="selectComponent(component.id)" [disabled]="component.slots > availableSlots">
-                                    <i class="bi bi-plus-lg"></i>
-                                </button>
+                                <div>
+                                    <a class="collapse-control btn btn-sm btn-outline-secondary bg-secondary-subtle me-2"
+                                        role="button"
+                                        aria-expanded="false"
+                                        data-bs-toggle="collapse"
+                                        attr.href="#{{ prefix }}_{{ component.id }}_info"
+                                        attr.aria-controls="{{ prefix }}_{{ component.id }}_info">
+                                        <i class="bi bi-chevron-up expanded"></i>
+                                        <i class="bi bi-chevron-down collapsed"></i>
+                                    </a>
+
+                                    <button class="btn btn-sm btn-outline-success bg-success-subtle"
+                                        (click)="selectComponent(component.id)"
+                                        [disabled]="component.slots > availableSlots">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <!-- <div class="col-7 my-auto"><span class="fw-bold">{{ component.name }}</span></div>
-                        <div class="col-4 my-auto">
-                            <span class="me-1" [class.text-danger]="component.slots > availableSlots"><i class="bi bi-triangle-fill"></i> {{ component.slots }}</span>
-                            <span class="me-1"><i class="bi bi-gear-fill"></i> {{ component.salvage_value }}</span>
-                        </div>
-                        <div class="col-1">
-                        </div> -->
                     </div>
-
-                    <!-- <div class="row">
-                        <div class="col">
-                            <i class="bi bi-square-fill ms-4"></i> {{ component.tech_level }}
-                            <i class="bi bi-triangle-fill" [class.text-danger]="component.slots > availableSlots"></i> {{ component.slots }}
-                            <i class="bi bi-gear-fill"></i> {{ component.salvage_value }}
-                        </div>
-                    </div> -->
 
                     <div class="row mb-2">
                         <div class="col">
@@ -93,51 +90,43 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-2">
-                            <i class="bi bi-square-fill"></i> {{ component.tech_level }}
-                            <div [class.text-danger]="component.slots > availableSlots"><i class="bi bi-triangle-fill"></i> {{ component.slots }}</div>
-                            <div><i class="bi bi-gear-fill"></i> {{ component.salvage_value }}</div>
+                        <div class="col-2 col-sm-1">
+                            <app-icon class="d-block" type="tech" [value]="component.tech_level"></app-icon>
+                            <app-icon class="d-block" type="slots" [value]="component.slots"></app-icon>
+                            <app-icon class="d-block" type="salvage" [value]="component.salvage_value"></app-icon>
                         </div>
+
                         <div class="col">
-                            <div *ngIf="component.description">
-                                <p class="text-justify" *ngFor="let paragraph of component.description">{{ paragraph }}</p>
+                            <div class="collapse collapse-partial"
+                                id="{{ prefix }}_{{ component.id }}_info">
+
+                                <div *ngIf="component.description">
+                                    <p class="text-justify" *ngFor="let paragraph of component.description">
+                                        {{ paragraph }}
+                                    </p>
+                                </div>
+
+                                <app-action-list [actions]="component.actions" *ngIf="component.actions"></app-action-list>
+
+                                <app-roll-the-die [rollResults]="component.roll_the_die" *ngIf="component.roll_the_die"></app-roll-the-die>
                             </div>
-                            <app-action-list [actions]="component.actions" *ngIf="component.actions"></app-action-list>
-                            <dd *ngIf="component.roll_the_die">
-                                <app-roll-the-die [rollResults]="component.roll_the_die"></app-roll-the-die>
-                            </dd>
+
+                            <div *ngIf="component.description">
+                                <a class="collapse-control"
+                                    aria-expanded="false"
+                                    data-bs-toggle="collapse"
+                                    attr.href="#{{ prefix }}_{{ component.id }}_info"
+                                    attr.aria-controls="{{ prefix }}_{{ component.id }}_info">
+                                    <span class="expanded">- Less</span>
+                                    <span class="collapsed">+ More</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <hr>
                 </ng-container>
             </div>
-
-            <!-- <div class="collapse" [attr.id]="'techLevel' + tl">
-                <ng-container *ngFor="let component of filteredComponentList[tl]">
-                    <div class="row">
-                        <div class="col-7 my-auto"><span class="fw-bold">{{ component.name }}</span></div>
-                        <div class="col-4 my-auto">
-                            <span class="me-1" [class.text-danger]="component.slots > availableSlots"><i class="bi bi-triangle-fill"></i> {{ component.slots }}</span>
-                            <span class="me-1"><i class="bi bi-gear-fill"></i> {{ component.salvage_value }}</span>
-                        </div>
-                        <div class="col-1">
-                            <button class="btn btn-sm btn-outline-success bg-success-subtle float-end" (click)="selectComponent(component.id)" [disabled]="component.slots > availableSlots">
-                                <i class="bi bi-plus-lg"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <app-ep-tag [epCost]="component.ep_cost" *ngIf="component.ep_cost"></app-ep-tag>
-                            <app-trait-list [traits]="component.traits" *ngIf="component.traits"></app-trait-list>
-                            <app-action-list [actions]="component.actions" *ngIf="component.actions"></app-action-list>
-                        </div>
-                    </div>
-                    <hr>
-                </ng-container>
-            </div> -->
         </div>
     </div>
 </div>

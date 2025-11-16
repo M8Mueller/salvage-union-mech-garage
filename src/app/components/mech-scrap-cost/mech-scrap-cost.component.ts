@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CurrentMechService } from '../../services/current-mech.service';
 import { CardComponent } from "../elements/card/card.component";
+import { IconComponent } from '../elements/icon/icon.component';
 
 interface LeveledValue {
   [level: number]: number,
@@ -24,7 +25,8 @@ function newLeveledValue(levels: number[]): LeveledValue {
   standalone: true,
   imports: [
     CommonModule,
-    CardComponent
+    CardComponent,
+    IconComponent,
 ],
   templateUrl: './mech-scrap-cost.component.html',
   styleUrl: './mech-scrap-cost.component.css'

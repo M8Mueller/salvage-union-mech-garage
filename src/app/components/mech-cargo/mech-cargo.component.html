@@ -1,6 +1,6 @@
 <app-card titleText="Cargo">
     <div class="h3 fw-light text-center">
-        <i class="bi bi-boxes"></i>
-        {{ cargo }}<span *ngIf="bonusCargo">+{{ bonusCargo }}</span>
+        <app-icon type="cargo" [value]="cargo"></app-icon>
+        <span class="ms-1" *ngIf="bonusCargo">+{{ bonusCargo }}</span>
     </div>
 </app-card>
