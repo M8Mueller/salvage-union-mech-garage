@@ -52,7 +52,7 @@ export class MechModulesComponent implements OnInit {
   quickFilters = [
     { label: 'Hacking', value: 'Hacking' },
     { label: 'Scanner', value: 'Scanner' },
-    { label: 'Optics', value: 'Optics' },
+    { label: 'Targeter', value: 'Targeter' },
   ];
 
   constructor(
@@ -80,6 +80,10 @@ export class MechModulesComponent implements OnInit {
       this.moduleIds = modules.map((m) => m.id);
       this.countSlots();
     });
+  }
+
+  hasEpCost(component: any) : boolean {
+    return !!(component.ep_cost || component.actions?.some((a: any) => a.ep_cost));
   }
 
   ngOnInit() {
@@ -114,13 +118,20 @@ export class MechModulesComponent implements OnInit {
   }
 
   addModule(id: number) {
-    this.moduleIds.push(id);
-    this.currentMech.setModules(this.moduleIds);
+    if (id > 0) {
+      this.moduleIds.push(id);
+      this.currentMech.setModules(this.moduleIds);
+    } else {
+      this.removeModule(-id);
+    }
   }
 
-  removeModule(index: number) {
-    this.moduleIds.splice(index, 1);
-    this.currentMech.setModules(this.moduleIds);
+  removeModule(id: number) {
+    const index = this.moduleIds.indexOf(id);
+    if (index !== -1) {
+      this.moduleIds.splice(index, 1);
+      this.currentMech.setModules(this.moduleIds);
+    }
   }
 
   resetModules() {

@@ -14,14 +14,10 @@
                 </span>
 
                 <span class="align-middle">
-                    <!-- <app-ep-tag [epCost]="s.ep_cost" *ngIf="s.ep_cost"></app-ep-tag> -->
-                    <!-- <i class="bi bi-hand-thumbs-up-fill" *ngIf="s.traits && s.traits.includes('Recommended System')"></i> -->
-                    <!-- <i class="bi bi-chevron-double-right" *ngIf="s.name.includes('Locomotion')"></i> -->
-                    <!-- <i class="bi bi-thermometer-high" *ngIf="s.traits && s.traits.includes('Heat Spike')"></i> -->
-                    <!-- <i class="bi bi-card-text" *ngIf="s.roll_the_die || s.actions"></i> -->
-                    <i class="bi bi-lightning-fill" *ngIf="s.ep_cost"></i>
+                    <i class="bi bi-lightning-fill me-1" *ngIf="hasEpCost(s)"></i>
+                    <i class="bi bi-tools me-2" *ngIf="s.traits && s.traits.includes('Rigging')"></i>
+                    <i class="bi bi-recycle me-2" *ngIf="s.traits && s.traits.includes('Salvaging')"></i>
                     <i class="bi bi-dice-5-fill me-2" *ngIf="s.roll_the_die"></i>
-                    <i class="bi bi-list-ul me-2" *ngIf="s.actions"></i>
                     <span>{{ s.name }}</span>
                 </span>
             </div>
@@ -34,7 +30,7 @@
                 </span>
 
                 <span class="float-end">
-                    <button class="btn btn-sm btn-outline-danger bg-danger-subtle" (click)="removeSystem(i)">
+                    <button class="btn btn-sm btn-outline-danger bg-danger-subtle" (click)="removeSystem(s.id)">
                         <i class="bi bi-trash-fill"></i>
                     </button>
                 </span>
@@ -70,6 +66,7 @@
         <app-mech-component-browser
             [prefix]="'system'"
             [componentList]="systemList"
+            [components]="systemIds"
             [extraQuickFilters]="quickFilters"
             [availableSlots]="slots + bonusSlots - usedSlots"
             (componentSelected)="addSystem($event)"

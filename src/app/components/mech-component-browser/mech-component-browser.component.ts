@@ -9,6 +9,7 @@ import { RollTheDieComponent } from '../elements/roll-the-die/roll-the-die.compo
 import { TraitListComponent } from '../elements/trait-list/trait-list.component';
 
 import { MechComponent, QuickFilter } from '@salvage-union-app/types/mech';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-mech-component-browser',
@@ -28,6 +29,7 @@ import { MechComponent, QuickFilter } from '@salvage-union-app/types/mech';
 export class MechComponentBrowserComponent implements OnChanges, OnInit {
   @Input() prefix: string = '';
   @Input() componentList: { [tl: string]: MechComponent[] } = {};
+  @Input() components: number[] = [];
   @Input() availableSlots: number = 0;
   @Input() extraQuickFilters: QuickFilter[] = [];
 
@@ -38,12 +40,14 @@ export class MechComponentBrowserComponent implements OnChanges, OnInit {
   techLevels: string[] = [];
 
   filterForm: FormGroup = this.fb.group({
-    search: [],
+    search: [null],
+    max_slots: [null],
   });
 
   defaultQuickFilters = [
     { label: 'Recommended', value: 'Recommended' },
     { label: 'Passive', value: 'Passive' },
+    { label: 'Reaction', value: 'Reaction' },
   ];
 
   quickFilters: QuickFilter[] = this.defaultQuickFilters;
@@ -56,60 +60,94 @@ export class MechComponentBrowserComponent implements OnChanges, OnInit {
   ngOnInit() {
     this.techLevels = Object.keys(this.componentList);
 
-    this.filterForm.get('search')?.valueChanges.subscribe((search) => {
-      this.filterComponents(search);
+    this.filterForm.get('max_slots')!.valueChanges.subscribe(() => {
+      this.filterComponents();
+    });
+
+    this.filterForm.get('search')!.valueChanges.subscribe(() => {
+      this.filterComponents();
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     const search = this.filterForm.get('search')?.value || null;
-    this.filterComponents(search);
+    const maxSlots = this.filterForm.get('max_slots')?.value || null;
+
+    this.filterComponents();
 
     this.quickFilters = [...this.defaultQuickFilters, ...this.extraQuickFilters]
   }
 
-  setFilter(value: string) {
+  setSearch(value: string) {
     const search = this.filterForm.get('search');
 
     if (search?.value === value) {
-      this.clearFilter();
+      this.clearSearch();
     } else {
       search?.setValue(value);
     }
   }
 
-  clearFilter() {
+  clearSearch() {
     this.filterForm.get('search')?.setValue(null);
   }
 
-  filterComponents(search: string | null = null) {
-    if (search) {
-      const filteredComponentList: { [tl: string]: MechComponent[] } = {};
-      this.techLevels.forEach((tl) => {
-        const matches: MechComponent[] = [];
+  clearMaxSlots() {
+    this.filterForm.get('max_slots')?.setValue(null);
+  }
 
-        this.componentList[tl].forEach((component) => {
-          const searchLower = search.toLowerCase();
+  matchComponent(component: MechComponent, filter: string): boolean {
+    return (
+      component.name.toLowerCase().includes(filter) ||
+      (component.traits?.some(
+        (trait) => trait.toLowerCase().includes(filter)) ?? false) ||
+      (component.actions?.some(
+        (action) => action.traits?.some(
+          (trait) => trait.toLowerCase().includes(filter))) ?? false)
+    );
+  }
 
-          if (
-            component.name.toLowerCase().includes(searchLower) ||
-            component.traits?.some((trait) => trait.toLowerCase().includes(searchLower))
-          ) {
-            matches.push(component);
-          }
-        });
+  filterComponents(remove: string | null = null) {
+    const search = this.filterForm.get('search')?.value || null;
+    const maxSlots = this.filterForm.get('max_slots')?.value || null;
 
-        filteredComponentList[tl] = matches;
-      });
-
-      this.filteredComponentList = filteredComponentList;
-    } else {
+    if (!search && !maxSlots) {
       this.filteredComponentList = this.componentList;
+
+      return;
     }
+
+    const filteredComponentList: { [tl: string]: MechComponent[] } = {};
+    const searchLower = (search || "").toLowerCase();
+
+    this.techLevels.forEach((tl) => {
+      const techLevelMatches: MechComponent[] = this.componentList[tl].filter(
+        (component) => {
+          return (
+            (
+              (maxSlots === null) ||
+              (component.slots <= maxSlots)
+            ) &&
+            (
+              !search ||
+              this.matchComponent(component, searchLower)
+            )
+          );
+        }
+      );
+
+      filteredComponentList[tl] = techLevelMatches;
+    });
+
+    this.filteredComponentList = filteredComponentList;
   }
 
   selectComponent(id: number) {
     this.componentSelected.emit(id);
+  }
+
+  removeComponent(id: number) {
+    this.componentSelected.emit(-id);
   }
 
 }

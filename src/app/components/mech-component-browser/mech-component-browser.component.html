@@ -1,41 +1,67 @@
-<div class="container" id="{{ prefix }}_browser">
-    <div class="sticky-top bg-dark pb-3" style="z-index: 1300;">
-        <div class="row">
-            <div class="col">
-                <form class="form-horizontal" [formGroup]="filterForm">
-                    <div class="row mb-2">
-                        <div class="col">
-                            <ng-container *ngIf="filterForm.get('search') as search">
-                                <div class="input-group position-relative d-inline-flex align-items-center">
-                                    <input class="form-control bg-secondary-subtle"
-                                        type="text"
-                                        placeholder="Filter by name or trait..."
-                                        formControlName="search">
-                                    <i class="bi bi-x-lg position-absolute input-button"
-                                        *ngIf="search.value"
-                                        (click)="clearFilter()">
-                                    </i>
-                                </div>
-                            </ng-container>
+<div class="d-flex flex-column h-100" id="{{ prefix }}_browser">
+    <div class="bg-dark pb-3" style="flex-shrink: 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form class="form-horizontal" [formGroup]="filterForm">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <ng-container *ngIf="filterForm.get('search') as search">
+                                    <div class="input-group position-relative d-inline-flex align-items-center">
+                                        <input class="form-control bg-secondary-subtle"
+                                            type="text"
+                                            placeholder="Filter by name or trait..."
+                                            formControlName="search">
+                                        <i class="bi bi-x-lg position-absolute input-button"
+                                            *ngIf="search.value"
+                                            (click)="clearSearch()">
+                                        </i>
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                            <div class="col">
+                                <ng-container *ngIf="filterForm.get('max_slots') as maxSlots">
+                                    <div class="input-group position-relative d-inline-flex align-items-center">
+                                        <input class="form-control bg-secondary-subtle"
+                                            type="number"
+                                            min="1"
+                                            placeholder="Filter by maximum slots..."
+                                            formControlName="max_slots">
+                                        <i class="bi bi-x-lg position-absolute input-button"
+                                            style="right: 35px"
+                                            *ngIf="maxSlots.value"
+                                            (click)="clearMaxSlots()">
+                                        </i>
+                                    </div>
+                                </ng-container>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <ng-container *ngFor="let qf of quickFilters">
-                                <button class="btn btn-sm btn-outline-secondary bg-secondary-subtle me-2" (click)="setFilter(qf.value)">{{ qf.label }}</button>
-                            </ng-container>
+
+                        <div class="row">
+                            <div class="col" *ngIf="filterForm.get('search') as search">
+                                <ng-container *ngFor="let qf of quickFilters">
+                                    <button
+                                        [ngClass]="{
+                                            'btn-outline-primary bg-primary-subtle': search?.value === qf.value,
+                                            'btn-outline-secondary bg-secondary-subtle': search?.value !== qf.value
+                                        }"
+                                        class="btn btn-sm me-2"
+                                        (click)="setSearch(qf.value)">{{ qf.label }}</button>
+                                </ng-container>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row" *ngFor="let tl of techLevels">
-        <div class="col" *ngIf="filteredComponentList[tl] && filteredComponentList[tl].length > 0">
-            <div class="sticky-top bg-dark" style="top: 93px">
-                <div class="row">
-                    <div class="col">
+    <div class="overflow-auto flex-grow-1">
+        <div class="container">
+            <div class="row" *ngFor="let tl of techLevels">
+                <div class="col" *ngIf="filteredComponentList[tl] && filteredComponentList[tl].length > 0">
+                    <div class="sticky-top bg-dark">
                         <div class="d-grid gap-2">
                             <a class="collapse-control btn btn-outline-secondary bg-secondary-subtle mb-3"
                                 role="button"
@@ -51,84 +77,93 @@
                             </a>
                         </div>
                     </div>
+
+                    <div attr.id="tech_level_{{ tl }}" class="collapse">
+                        <ng-container *ngFor="let component of filteredComponentList[tl]">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="fw-bold">{{ component.name }}</div>
+
+                                        <div>
+                                            <a class="collapse-control btn btn-sm btn-outline-secondary bg-secondary-subtle me-2"
+                                                role="button"
+                                                aria-expanded="false"
+                                                data-bs-toggle="collapse"
+                                                attr.href="#{{ prefix }}_{{ component.id }}_info"
+                                                attr.aria-controls="{{ prefix }}_{{ component.id }}_info">
+                                                <i class="bi bi-chevron-up expanded"></i>
+                                                <i class="bi bi-chevron-down collapsed"></i>
+                                            </a>
+
+                                            <span class="me-2">|</span>
+
+                                            <button class="btn btn-sm btn-outline-danger bg-danger-subtle me-2"
+                                                (click)="removeComponent(component.id)"
+                                                [disabled]="!components.includes(component.id)">
+                                                <i class="bi bi-dash-lg"></i>
+                                            </button>
+
+                                            <button class="btn btn-sm btn-outline-success bg-success-subtle"
+                                                (click)="selectComponent(component.id)"
+                                                [disabled]="component.slots > availableSlots">
+                                                <i class="bi bi-plus-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <app-ep-tag [epCost]="component.ep_cost" *ngIf="component.ep_cost"></app-ep-tag>
+                                    <app-trait-list [traits]="component.traits" *ngIf="component.traits"></app-trait-list>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-2 col-sm-1">
+                                    <app-icon class="d-block" type="tech" [value]="component.tech_level"></app-icon>
+                                    <app-icon class="d-block" type="slots" [value]="component.slots"></app-icon>
+                                    <app-icon class="d-block" type="salvage" [value]="component.salvage_value"></app-icon>
+                                </div>
+
+                                <div class="col">
+                                    <div class="collapse collapse-partial"
+                                        id="{{ prefix }}_{{ component.id }}_info">
+
+                                        <div *ngIf="component.description">
+                                            <p class="text-justify" *ngFor="let paragraph of component.description">
+                                                {{ paragraph }}
+                                            </p>
+                                        </div>
+
+                                        <app-action-list [actions]="component.actions" *ngIf="component.actions"></app-action-list>
+
+                                        <app-roll-the-die [rollResults]="component.roll_the_die" *ngIf="component.roll_the_die"></app-roll-the-die>
+                                    </div>
+
+                                    <div *ngIf="component.description">
+                                        <a class="collapse-control"
+                                            aria-expanded="false"
+                                            data-bs-toggle="collapse"
+                                            attr.href="#{{ prefix }}_{{ component.id }}_info"
+                                            attr.aria-controls="{{ prefix }}_{{ component.id }}_info">
+                                            <span class="expanded">- Less</span>
+                                            <span class="collapsed">+ More</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                        </ng-container>
+                    </div>
                 </div>
             </div>
-
-            <div
-                class="collapse"
-                attr.id="tech_level_{{ tl }}">
-                <ng-container *ngFor="let component of filteredComponentList[tl]">
-                    <div class="row mb-2">
-                        <div class="col">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="fw-bold">{{ component.name }}</div>
-
-                                <div>
-                                    <a class="collapse-control btn btn-sm btn-outline-secondary bg-secondary-subtle me-2"
-                                        role="button"
-                                        aria-expanded="false"
-                                        data-bs-toggle="collapse"
-                                        attr.href="#{{ prefix }}_{{ component.id }}_info"
-                                        attr.aria-controls="{{ prefix }}_{{ component.id }}_info">
-                                        <i class="bi bi-chevron-up expanded"></i>
-                                        <i class="bi bi-chevron-down collapsed"></i>
-                                    </a>
-
-                                    <button class="btn btn-sm btn-outline-success bg-success-subtle"
-                                        (click)="selectComponent(component.id)"
-                                        [disabled]="component.slots > availableSlots">
-                                        <i class="bi bi-plus-lg"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-2">
-                        <div class="col">
-                            <app-ep-tag [epCost]="component.ep_cost" *ngIf="component.ep_cost"></app-ep-tag>
-                            <app-trait-list [traits]="component.traits" *ngIf="component.traits"></app-trait-list>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-2 col-sm-1">
-                            <app-icon class="d-block" type="tech" [value]="component.tech_level"></app-icon>
-                            <app-icon class="d-block" type="slots" [value]="component.slots"></app-icon>
-                            <app-icon class="d-block" type="salvage" [value]="component.salvage_value"></app-icon>
-                        </div>
-
-                        <div class="col">
-                            <div class="collapse collapse-partial"
-                                id="{{ prefix }}_{{ component.id }}_info">
-
-                                <div *ngIf="component.description">
-                                    <p class="text-justify" *ngFor="let paragraph of component.description">
-                                        {{ paragraph }}
-                                    </p>
-                                </div>
-
-                                <app-action-list [actions]="component.actions" *ngIf="component.actions"></app-action-list>
-
-                                <app-roll-the-die [rollResults]="component.roll_the_die" *ngIf="component.roll_the_die"></app-roll-the-die>
-                            </div>
-
-                            <div *ngIf="component.description">
-                                <a class="collapse-control"
-                                    aria-expanded="false"
-                                    data-bs-toggle="collapse"
-                                    attr.href="#{{ prefix }}_{{ component.id }}_info"
-                                    attr.aria-controls="{{ prefix }}_{{ component.id }}_info">
-                                    <span class="expanded">- Less</span>
-                                    <span class="collapsed">+ More</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-                </ng-container>
-            </div>
         </div>
+
     </div>
+
+
 </div>

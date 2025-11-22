@@ -82,6 +82,10 @@ export class MechSystemsComponent implements OnInit {
     });
   }
 
+  hasEpCost(component: any) : boolean {
+    return !!(component.ep_cost || component.actions?.some((a: any) => a.ep_cost));
+  }
+
   ngOnInit() {
     const modal = document.getElementById('systemInfoModal');
 
@@ -115,13 +119,21 @@ export class MechSystemsComponent implements OnInit {
   }
 
   addSystem(id: number) {
-    this.systemIds.push(id);
-    this.currentMech.setSystems(this.systemIds);
+    if (id > 0) {
+      this.systemIds.push(id);
+      this.currentMech.setSystems(this.systemIds);
+    } else {
+      this.removeSystem(-id);
+    }
   }
 
-  removeSystem(index: number) {
-    this.systemIds.splice(index, 1);
-    this.currentMech.setSystems(this.systemIds);
+  removeSystem(id: number) {
+    const index = this.systemIds.indexOf(id);
+
+    if (index !== -1) {
+      this.systemIds.splice(index, 1);
+      this.currentMech.setSystems(this.systemIds);
+    }
   }
 
   resetSystems() {
