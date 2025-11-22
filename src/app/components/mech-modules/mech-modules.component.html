@@ -14,15 +14,8 @@
                 </span>
 
                 <span class="align-middle">
-                    <!-- <app-ep-tag [epCost]="m.ep_cost" *ngIf="m.ep_cost"></app-ep-tag> -->
-                    <!-- <i class="bi bi-hand-thumbs-up-fill" *ngIf="m.traits && m.traits.includes('Recommended Module')"></i> -->
-                    <!-- <i class="bi bi-broadcast-pin" *ngIf="m.traits && m.traits.includes('Hacking')"></i> -->
-                    <!-- <i class="bi bi-radar" *ngIf="m.traits && m.traits.includes('Scanner')"></i> -->
-                    <!-- <i class="bi bi-thermometer-high" *ngIf="m.traits && m.traits.includes('Heat Spike')"></i> -->
-                    <!-- <i class="bi bi-card-text" *ngIf="m.roll_the_die || m.actions"></i> -->
-                    <i class="bi bi-lightning-fill me-1" *ngIf="m.ep_cost"></i>
+                    <i class="bi bi-lightning-fill me-1" *ngIf="hasEpCost(m)"></i>
                     <i class="bi bi-dice-5-fill me-2" *ngIf="m.roll_the_die"></i>
-                    <i class="bi bi-list-ul me-2" *ngIf="m.actions"></i>
                     <span>{{ m.name }}</span>
                 </span>
             </div>
@@ -35,7 +28,7 @@
                 </span>
 
                 <span class="float-end">
-                    <button class="btn btn-sm btn-outline-danger bg-danger-subtle" (click)="removeModule(i)">
+                    <button class="btn btn-sm btn-outline-danger bg-danger-subtle" (click)="removeModule(m.id)">
                         <i class="bi bi-trash-fill"></i>
                     </button>
                 </span>
@@ -67,10 +60,12 @@
         <h4 class="offcanvas-title" id="moduleBrowserLabel">Modules</h4>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+
     <div class="offcanvas-body pt-0">
         <app-mech-component-browser
             [prefix]="'module'"
             [componentList]="moduleList"
+            [components]="moduleIds"
             [extraQuickFilters]="quickFilters"
             [availableSlots]="slots + bonusSlots - usedSlots"
             (componentSelected)="addModule($event)"

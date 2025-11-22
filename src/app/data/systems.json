@@ -1005,46 +1005,7 @@
                 },
                 {
                     "roll": "1",
-                    "result": "The attack hits as normal and your shield overloads.Your Mech gains 2 Heat and must make a Heat Check."
-                }
-            ]
-        },
-        {
-            "id": 47,
-            "name": "Electro-Magnetic Shield Projector",
-            "ep_cost": 2,
-            "tech_level": 3,
-            "slots": 2,
-            "salvage_value": 2,
-            "traits": [
-                "Reaction",
-                "Range: Close",
-                "Shield"
-            ],
-            "description": [
-                "This Aeon-designed shield projector emits an electro-magnetic field that can stop ballistics impacts in their tracks.",
-                "When you or a target in Close Range is hit by a weapon with the Ballistic Trait, you may attempt to use your Electro-Magnetic Shield to prevent the hit."
-            ],
-            "roll_the_die": [
-                {
-                    "roll": "20",
-                    "result": "The attack misses, deals no damage, and is reflected back at the attacker, hitting them for the damage of the weapon."
-                },
-                {
-                    "roll": "11-19",
-                    "result": "The attack misses and deals no damage."
-                },
-                {
-                    "roll": "6-10",
-                    "result": "You may choose to gain Heat equal to the damage of the weapon that attacked you. If you do the attack misses and deals no damage. if you do not, the attack deals damage as normal."
-                },
-                {
-                    "roll": "2-5",
-                    "result": "The attack hits as normal."
-                },
-                {
-                    "roll": "1",
-                    "result": "The attack hits as normal and your shield overloads.Your Mech gains 2 Heat and must make a Heat Check."
+                    "result": "The attack hits as normal and your shield overloads. Your Mech gains 2 Heat and must make a Heat Check."
                 }
             ]
         },
