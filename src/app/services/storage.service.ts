@@ -8,14 +8,16 @@ export class StorageService {
   constructor() { }
 
   public setData(key: string, value: any) {
+    console.log('StorageService.setData', key, value);
+
     localStorage.setItem(key, JSON.stringify(value));
   }
 
   public getData(key: string) {
-    console.log('loading', key);
     const value = localStorage.getItem(key);
 
-    console.log(value);
+    console.log('StorageService.getData', key, value);
+
     if (value) {
       return JSON.parse(value);
     }

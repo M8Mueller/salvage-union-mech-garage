@@ -1,34 +1,47 @@
-<app-card titleText="Systems" titleIcon="bi bi-triangle-fill" titleIconText="{{ usedSlots }}/{{ slots }}{{ bonusSlots ? '+' + bonusSlots : '' }}">
+<app-card titleText="Systems" titleIconType="slots" [titleIconValue]="usedSlots" [titleIconValue2]="slots + bonusSlots">
     <ng-container *ngFor="let s of systems; let i = index">
         <div class="row">
+            <div class="col-sm-8 col-lg-9 col-xl-8">
+                <span class="float-start me-4">
+                    <button
+                        class="btn btn-sm btn-outline-secondary bg-secondary-subtle"
+                        href="#systemInfoModal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#systemInfoModal"
+                        [attr.data-bs-index]="i">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+                </span>
+
+                <span class="align-middle">
+                    <!-- <app-ep-tag [epCost]="s.ep_cost" *ngIf="s.ep_cost"></app-ep-tag> -->
+                    <!-- <i class="bi bi-hand-thumbs-up-fill" *ngIf="s.traits && s.traits.includes('Recommended System')"></i> -->
+                    <!-- <i class="bi bi-chevron-double-right" *ngIf="s.name.includes('Locomotion')"></i> -->
+                    <!-- <i class="bi bi-thermometer-high" *ngIf="s.traits && s.traits.includes('Heat Spike')"></i> -->
+                    <!-- <i class="bi bi-card-text" *ngIf="s.roll_the_die || s.actions"></i> -->
+                    <i class="bi bi-lightning-fill" *ngIf="s.ep_cost"></i>
+                    <i class="bi bi-dice-5-fill me-2" *ngIf="s.roll_the_die"></i>
+                    <i class="bi bi-list-ul me-2" *ngIf="s.actions"></i>
+                    <span>{{ s.name }}</span>
+                </span>
+            </div>
+
             <div class="col">
-                <div style="display: flex; align-items: center; flex-wrap: wrap;">
-                    <span class="fw-bold">{{ s.name }}</span>
-                </div>
-            </div>
+                <span class="align-middle">
+                    <app-icon class="me-1" type="tech" [value]="s.tech_level"></app-icon>
+                    <app-icon class="me-1" type="slots" [value]="s.slots"></app-icon>
+                    <app-icon type="salvage" [value]="s.salvage_value"></app-icon>
+                </span>
 
-            <div class="col-3">
-                <app-icon class="me-1" type="tech" [value]="s.tech_level"></app-icon>
-                <app-icon class="me-1" type="slots" [value]="s.slots"></app-icon>
-                <app-icon type="salvage" [value]="s.salvage_value"></app-icon>
-            </div>
-
-            <div class="col-3 text-end">
-                <button
-                    class="btn btn-sm btn-outline-secondary bg-secondary-subtle me-2"
-                    href="#systemInfoModal"
-                    data-bs-toggle="modal"
-                    data-bs-target="#systemInfoModal"
-                    [attr.data-bs-index]="i">
-                    <i class="bi bi-question-lg"></i>
-                </button>
-
-                <button class="btn btn-sm btn-outline-danger bg-danger-subtle float-end" (click)="removeSystem(i)">
-                    <i class="bi bi-trash-fill"></i>
-                </button>
+                <span class="float-end">
+                    <button class="btn btn-sm btn-outline-danger bg-danger-subtle" (click)="removeSystem(i)">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </span>
             </div>
         </div>
-        <hr>
+
+        <hr class="hr">
     </ng-container>
 
     <div class="row">
@@ -57,6 +70,7 @@
         <app-mech-component-browser
             [prefix]="'system'"
             [componentList]="systemList"
+            [extraQuickFilters]="quickFilters"
             [availableSlots]="slots + bonusSlots - usedSlots"
             (componentSelected)="addSystem($event)"
             *ngIf="slots">
@@ -65,7 +79,7 @@
 </div>
 
 <div class="modal fade" id="systemInfoModal" tabindex="-1" aria-labelledby="systemInfoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h1 class="modal-title fs-4" id="systemInfoModalLabel">{{ system?.name || "No System Selected" }}</h1>
@@ -79,35 +93,29 @@
                             <app-ep-tag [epCost]="system.ep_cost" *ngIf="system.ep_cost"></app-ep-tag>
                             <app-trait-list [traits]="system.traits" *ngIf="system.traits"></app-trait-list>
                         </div>
+
+                        <div class="col-3 text-end">
+                            <button
+                                class="btn btn-sm btn-outline-secondary bg-secondary-subtle me-2"
+                                (click)="cycleSystem(-1)"
+                                *ngIf="systems.length > 1">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+
+                            <button
+                                class="btn btn-sm btn-outline-secondary bg-secondary-subtle float-end"
+                                (click)="cycleSystem(1)"
+                                *ngIf="systems.length > 1">
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-2">
-                            <div class="row mb-4">
-                                <div class="col text-center">
-                                    <app-icon class="d-block" type="tech" [value]="system.tech_level"></app-icon>
-                                    <app-icon class="d-block" type="slots" [value]="system.slots"></app-icon>
-                                    <app-icon class="d-block" type="salvage" [value]="system.salvage_value"></app-icon>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button
-                                        class="btn btn-sm btn-outline-secondary bg-secondary-subtle mb-1"
-                                        (click)="cycleSystem(-1)"
-                                        *ngIf="systems.length > 1">
-                                        <i class="bi bi-chevron-left"></i>
-                                    </button>
-
-                                    <button
-                                        class="btn btn-sm btn-outline-secondary bg-secondary-subtle"
-                                        (click)="cycleSystem(1)"
-                                        *ngIf="systems.length > 1">
-                                        <i class="bi bi-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
+                        <div class="col-1 text-center">
+                            <app-icon class="d-block" type="tech" [value]="system.tech_level"></app-icon>
+                            <app-icon class="d-block" type="slots" [value]="system.slots"></app-icon>
+                            <app-icon class="d-block" type="salvage" [value]="system.salvage_value"></app-icon>
                         </div>
 
                         <div class="col">

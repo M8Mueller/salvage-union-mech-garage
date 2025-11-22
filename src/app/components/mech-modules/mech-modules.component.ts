@@ -49,6 +49,12 @@ export class MechModulesComponent implements OnInit {
 
   usedSlots: number = 0;
 
+  quickFilters = [
+    { label: 'Hacking', value: 'Hacking' },
+    { label: 'Scanner', value: 'Scanner' },
+    { label: 'Optics', value: 'Optics' },
+  ];
+
   constructor(
     private currentMech: CurrentMechService,
     private data: DataService,

@@ -1,34 +1,48 @@
-<app-card titleText="Modules" titleIcon="bi bi-triangle-fill" titleIconText="{{ usedSlots }}/{{ slots }}{{ bonusSlots ? '+' + bonusSlots : '' }}">
+<app-card titleText="Modules" titleIconType="slots" [titleIconValue]="usedSlots" [titleIconValue2]="slots + bonusSlots">
     <ng-container *ngFor="let m of modules; let i = index">
         <div class="row">
+            <div class="col-sm-8 col-lg-9 col-xl-8">
+                <span class="float-start me-4">
+                    <button
+                        class="btn btn-sm btn-outline-secondary bg-secondary-subtle"
+                        href="#moduleInfoModal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#moduleInfoModal"
+                        [attr.data-bs-index]="i">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+                </span>
+
+                <span class="align-middle">
+                    <!-- <app-ep-tag [epCost]="m.ep_cost" *ngIf="m.ep_cost"></app-ep-tag> -->
+                    <!-- <i class="bi bi-hand-thumbs-up-fill" *ngIf="m.traits && m.traits.includes('Recommended Module')"></i> -->
+                    <!-- <i class="bi bi-broadcast-pin" *ngIf="m.traits && m.traits.includes('Hacking')"></i> -->
+                    <!-- <i class="bi bi-radar" *ngIf="m.traits && m.traits.includes('Scanner')"></i> -->
+                    <!-- <i class="bi bi-thermometer-high" *ngIf="m.traits && m.traits.includes('Heat Spike')"></i> -->
+                    <!-- <i class="bi bi-card-text" *ngIf="m.roll_the_die || m.actions"></i> -->
+                    <i class="bi bi-lightning-fill me-1" *ngIf="m.ep_cost"></i>
+                    <i class="bi bi-dice-5-fill me-2" *ngIf="m.roll_the_die"></i>
+                    <i class="bi bi-list-ul me-2" *ngIf="m.actions"></i>
+                    <span>{{ m.name }}</span>
+                </span>
+            </div>
+
             <div class="col">
-                <div style="display: flex; align-items: center; flex-wrap: wrap;">
-                    <span class="fw-bold">{{ m.name }}</span>
-                </div>
-            </div>
+                <span class="align-middle">
+                    <app-icon class="me-1" type="tech" [value]="m.tech_level"></app-icon>
+                    <app-icon class="me-1" type="slots" [value]="m.slots"></app-icon>
+                    <app-icon type="salvage" [value]="m.salvage_value"></app-icon>
+                </span>
 
-            <div class="col-3">
-                <app-icon class="me-1" type="tech" [value]="m.tech_level"></app-icon>
-                <app-icon class="me-1" type="slots" [value]="m.slots"></app-icon>
-                <app-icon type="salvage" [value]="m.salvage_value"></app-icon>
-            </div>
-
-            <div class="col-3 text-end">
-                <button
-                    class="btn btn-sm btn-outline-secondary bg-secondary-subtle me-2"
-                    href="#moduleInfoModal"
-                    data-bs-toggle="modal"
-                    data-bs-target="#moduleInfoModal"
-                    [attr.data-bs-index]="i">
-                    <i class="bi bi-question-lg"></i>
-                </button>
-
-                <button class="btn btn-sm btn-outline-danger bg-danger-subtle" (click)="removeModule(i)">
-                    <i class="bi bi-trash-fill"></i>
-                </button>
+                <span class="float-end">
+                    <button class="btn btn-sm btn-outline-danger bg-danger-subtle" (click)="removeModule(i)">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </span>
             </div>
         </div>
-        <hr>
+
+        <hr class="hr">
     </ng-container>
 
     <div class="row">
@@ -57,6 +71,7 @@
         <app-mech-component-browser
             [prefix]="'module'"
             [componentList]="moduleList"
+            [extraQuickFilters]="quickFilters"
             [availableSlots]="slots + bonusSlots - usedSlots"
             (componentSelected)="addModule($event)"
             *ngIf="slots">
@@ -65,7 +80,7 @@
 </div>
 
 <div class="modal fade" id="moduleInfoModal" tabindex="-1" aria-labelledby="moduleInfoModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h1 class="modal-title fs-4" id="moduleInfoModalLabel">{{ module?.name || "No Module Selected" }}</h1>
@@ -79,35 +94,29 @@
                             <app-ep-tag [epCost]="module.ep_cost" *ngIf="module.ep_cost"></app-ep-tag>
                             <app-trait-list [traits]="module.traits" *ngIf="module.traits"></app-trait-list>
                         </div>
+
+                        <div class="col-3 text-end">
+                            <button
+                                class="btn btn-sm btn-outline-secondary bg-secondary-subtle me-2"
+                                (click)="cycleModule(-1)"
+                                *ngIf="modules.length > 1">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+
+                            <button
+                                class="btn btn-sm btn-outline-secondary bg-secondary-subtle float-end"
+                                (click)="cycleModule(1)"
+                                *ngIf="modules.length > 1">
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-2">
-                            <div class="row mb-4">
-                                <div class="col text-center">
-                                    <app-icon class="d-block" type="tech" [value]="module.tech_level"></app-icon>
-                                    <app-icon class="d-block" type="slots" [value]="module.slots"></app-icon>
-                                    <app-icon class="d-block" type="salvage" [value]="module.salvage_value"></app-icon>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button
-                                        class="btn btn-sm btn-outline-secondary bg-secondary-subtle mb-1"
-                                        (click)="cycleModule(-1)"
-                                        *ngIf="modules.length > 1">
-                                        <i class="bi bi-chevron-left"></i>
-                                    </button>
-
-                                    <button
-                                        class="btn btn-sm btn-outline-secondary bg-secondary-subtle"
-                                        (click)="cycleModule(1)"
-                                        *ngIf="modules.length > 1">
-                                        <i class="bi bi-chevron-right"></i>
-                                    </button>
-                                </div>
-                            </div>
+                        <div class="col-1 text-center">
+                            <app-icon class="d-block" type="tech" [value]="module.tech_level"></app-icon>
+                            <app-icon class="d-block" type="slots" [value]="module.slots"></app-icon>
+                            <app-icon class="d-block" type="salvage" [value]="module.salvage_value"></app-icon>
                         </div>
 
                         <div class="col">
@@ -124,10 +133,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="modal-footer">
-                <div class="container-fluid"></div>
-            </div> -->
         </div>
     </div>
 </div>

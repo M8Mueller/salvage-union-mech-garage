@@ -2,7 +2,11 @@
     <h4 class="card-header text-center bg-secondary-subtle">
         {{ titleText }}
         <div class="float-end fw-normal">
-            <i class="{{ titleIcon }}"></i> {{ titleIconText }}
+            <app-icon [warning]="titleIconValue !== null && titleIconValue2 !== null && titleIconValue > titleIconValue2" *ngIf="titleIconType !== null" [type]="titleIconType" [value]="titleIconValue"></app-icon>
+            <span *ngIf="titleIconValue2 !== null">
+                |
+                <app-icon *ngIf="titleIconType !== null" [type]="titleIconType" [value]="titleIconValue2"></app-icon>
+            </span>
         </div>
     </h4>
     <div class="card-body">

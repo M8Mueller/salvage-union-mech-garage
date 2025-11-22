@@ -49,6 +49,12 @@ export class MechSystemsComponent implements OnInit {
 
   usedSlots: number = 0;
 
+  quickFilters = [
+    { label: 'Weapon', value: 'Damage' },
+    { label: 'Rigging', value: 'Rigging' },
+    { label: 'Salvaging', value: 'Salvaging' },
+  ];
+
   constructor(
     private currentMech: CurrentMechService,
     private data: DataService,

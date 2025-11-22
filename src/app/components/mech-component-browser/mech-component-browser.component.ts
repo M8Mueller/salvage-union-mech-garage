@@ -8,7 +8,7 @@ import { IconComponent } from '../elements/icon/icon.component';
 import { RollTheDieComponent } from '../elements/roll-the-die/roll-the-die.component';
 import { TraitListComponent } from '../elements/trait-list/trait-list.component';
 
-import { MechComponent } from '@salvage-union-app/types/mech';
+import { MechComponent, QuickFilter } from '@salvage-union-app/types/mech';
 
 @Component({
   selector: 'app-mech-component-browser',
@@ -29,6 +29,7 @@ export class MechComponentBrowserComponent implements OnChanges, OnInit {
   @Input() prefix: string = '';
   @Input() componentList: { [tl: string]: MechComponent[] } = {};
   @Input() availableSlots: number = 0;
+  @Input() extraQuickFilters: QuickFilter[] = [];
 
   @Output() componentSelected: EventEmitter<number> = new EventEmitter<number>();
 
@@ -39,6 +40,13 @@ export class MechComponentBrowserComponent implements OnChanges, OnInit {
   filterForm: FormGroup = this.fb.group({
     search: [],
   });
+
+  defaultQuickFilters = [
+    { label: 'Recommended', value: 'Recommended' },
+    { label: 'Passive', value: 'Passive' },
+  ];
+
+  quickFilters: QuickFilter[] = this.defaultQuickFilters;
 
   constructor(
     private fb: FormBuilder
@@ -56,6 +64,8 @@ export class MechComponentBrowserComponent implements OnChanges, OnInit {
   ngOnChanges(changes: SimpleChanges) {
     const search = this.filterForm.get('search')?.value || null;
     this.filterComponents(search);
+
+    this.quickFilters = [...this.defaultQuickFilters, ...this.extraQuickFilters]
   }
 
   setFilter(value: string) {

@@ -11,6 +11,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './icon.component.css'
 })
 export class IconComponent {
-  @Input() type: 'tech' | 'slots' | 'salvage' | 'cargo' = 'tech';
+  @Input() type: 'tech' | 'slots' | 'salvage' | 'cargo' | 'recommended' | null = null;
   @Input() value: number | null = null;
+  @Input() warning: boolean = false;
 }

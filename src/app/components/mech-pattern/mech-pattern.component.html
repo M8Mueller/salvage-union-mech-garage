@@ -122,15 +122,16 @@
                                         type="button"
                                         class="btn btn-dark me-2"
                                         (click)="applyPattern()">
+                                        <i class="bi bi-tools"></i>
                                         Load Pattern
                                     </button>
                                     <button
                                         type="button"
-                                        class="btn btn-outline-success bg-success-subtle me-2"
+                                        class="btn btn-outline-primary bg-primary-subtle me-2"
                                         (click)="updatePattern(patternIndex)"
                                         [disabled]="!patternForm.valid">
                                         <i class="bi bi-floppy-fill"></i>
-                                        Update
+                                        Save Changes
                                     </button>
                                     <span class="me-2">|</span>
                                 </ng-container>
@@ -140,7 +141,7 @@
                                     class="btn btn-outline-success bg-success-subtle"
                                     (click)="newPattern()"
                                     [disabled]="!patternForm.valid">
-                                    <i class="bi bi-floppy-fill"></i>
+                                    <i class="bi bi-stars"></i>
                                     New
                                 </button>
                             </div>

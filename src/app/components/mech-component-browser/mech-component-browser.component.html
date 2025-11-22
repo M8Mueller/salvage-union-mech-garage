@@ -21,8 +21,9 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-sm btn-outline-success bg-success-subtle me-2" (click)="setFilter('Recommended')">Recommended</button>
-                            <button class="btn btn-sm btn-outline-secondary bg-secondary-subtle" (click)="setFilter('Passive')">Passive</button>
+                            <ng-container *ngFor="let qf of quickFilters">
+                                <button class="btn btn-sm btn-outline-secondary bg-secondary-subtle me-2" (click)="setFilter(qf.value)">{{ qf.label }}</button>
+                            </ng-container>
                         </div>
                     </div>
                 </form>
@@ -53,7 +54,8 @@
                 </div>
             </div>
 
-            <div class="collapse"
+            <div
+                class="collapse"
                 attr.id="tech_level_{{ tl }}">
                 <ng-container *ngFor="let component of filteredComponentList[tl]">
                     <div class="row mb-2">
