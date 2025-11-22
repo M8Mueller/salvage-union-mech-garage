@@ -1,0 +1,21 @@
+<i class="bi bi-exclamation-octagon-fill me-1" style="color: red;" *ngIf="warning"></i>
+
+<div *ngIf="type !== null" class="icon-text-overlay-container">
+    <i class="bi bi-square-fill icon-background" *ngIf="type == 'tech'"></i>
+
+    <i class="bi bi-triangle-fill icon-background" *ngIf="type == 'slots'"></i>
+
+    <i class="bi bi-gear-wide icon-background" *ngIf="type == 'salvage'"></i>
+    <i class="bi bi-circle-fill overlay-icon" *ngIf="type == 'salvage'"></i>
+
+    <i class="bi bi-box2-fill icon-background" *ngIf="type == 'cargo'"></i>
+
+    <span
+        class="overlay-text"
+        [ngClass]="{
+            'offset': (type == 'slots' && value !== null && value <= 9),
+            'offset-lg': type == 'cargo'  || (type == 'slots' && value !== null && value > 9),
+            'small': value !== null && value > 9
+        }"
+        >{{ type == 'tech' ? 'T' : '' }}{{ value }}</span>
+</div>

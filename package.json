@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build --base-href='https://M8mueller.github.io/salvage-union-mech-garage/'",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "scss": "sass scss/custom.scss src/custom.css"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "rxjs": "~7.8.0",
+    "sass": "^1.94.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },

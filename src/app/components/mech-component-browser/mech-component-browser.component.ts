@@ -4,10 +4,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { ActionListComponent } from '../elements/action-list/action-list.component';
 import { EpTagComponent } from '../elements/ep-tag/ep-tag.component';
+import { IconComponent } from '../elements/icon/icon.component';
 import { RollTheDieComponent } from '../elements/roll-the-die/roll-the-die.component';
 import { TraitListComponent } from '../elements/trait-list/trait-list.component';
 
-import { MechComponent } from '@salvage-union-app/types/mech';
+import { MechComponent, QuickFilter } from '@salvage-union-app/types/mech';
 
 @Component({
   selector: 'app-mech-component-browser',
@@ -16,6 +17,7 @@ import { MechComponent } from '@salvage-union-app/types/mech';
     ActionListComponent,
     CommonModule,
     EpTagComponent,
+    IconComponent,
     ReactiveFormsModule,
     RollTheDieComponent,
     TraitListComponent
@@ -24,8 +26,10 @@ import { MechComponent } from '@salvage-union-app/types/mech';
   styleUrl: './mech-component-browser.component.css'
 })
 export class MechComponentBrowserComponent implements OnChanges, OnInit {
+  @Input() prefix: string = '';
   @Input() componentList: { [tl: string]: MechComponent[] } = {};
   @Input() availableSlots: number = 0;
+  @Input() extraQuickFilters: QuickFilter[] = [];
 
   @Output() componentSelected: EventEmitter<number> = new EventEmitter<number>();
 
@@ -36,6 +40,13 @@ export class MechComponentBrowserComponent implements OnChanges, OnInit {
   filterForm: FormGroup = this.fb.group({
     search: [],
   });
+
+  defaultQuickFilters = [
+    { label: 'Recommended', value: 'Recommended' },
+    { label: 'Passive', value: 'Passive' },
+  ];
+
+  quickFilters: QuickFilter[] = this.defaultQuickFilters;
 
   constructor(
     private fb: FormBuilder
@@ -53,6 +64,8 @@ export class MechComponentBrowserComponent implements OnChanges, OnInit {
   ngOnChanges(changes: SimpleChanges) {
     const search = this.filterForm.get('search')?.value || null;
     this.filterComponents(search);
+
+    this.quickFilters = [...this.defaultQuickFilters, ...this.extraQuickFilters]
   }
 
   setFilter(value: string) {

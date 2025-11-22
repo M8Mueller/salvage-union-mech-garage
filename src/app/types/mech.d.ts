@@ -59,3 +59,8 @@ export interface RollResult {
     roll: string;
     result: string;
 }
+
+export interface QuickFilter {
+    label: string;
+    value: string;
+}

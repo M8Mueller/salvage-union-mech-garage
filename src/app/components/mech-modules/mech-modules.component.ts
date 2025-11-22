@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { CurrentMechService } from '@salvage-union-app/services/current-mech.service';
 import { DataService } from '@salvage-union-app/services/data.service';
@@ -8,19 +8,29 @@ import { MechComponent } from '@salvage-union-app/types/mech';
 
 import { MechComponentBrowserComponent } from '../mech-component-browser/mech-component-browser.component';
 import { CardComponent } from '../elements/card/card.component';
+import { EpTagComponent } from '../elements/ep-tag/ep-tag.component';
+import { TraitListComponent } from '../elements/trait-list/trait-list.component';
+import { ActionListComponent } from '../elements/action-list/action-list.component';
+import { RollTheDieComponent } from '../elements/roll-the-die/roll-the-die.component';
+import { IconComponent } from '../elements/icon/icon.component';
 
 @Component({
   selector: 'app-mech-modules',
   standalone: true,
   imports: [
+    ActionListComponent,
     CardComponent,
     CommonModule,
-    MechComponentBrowserComponent
+    EpTagComponent,
+    IconComponent,
+    MechComponentBrowserComponent,
+    RollTheDieComponent,
+    TraitListComponent
   ],
   templateUrl: './mech-modules.component.html',
   styleUrl: './mech-modules.component.css'
 })
-export class MechModulesComponent {
+export class MechModulesComponent implements OnInit {
   slots: number = 0;
   bonusSlots: number = 0;
 
@@ -34,7 +44,16 @@ export class MechModulesComponent {
   moduleIds: number[] = [];
   modules: MechComponent[] = [];
 
+  moduleIndex: number = -1;
+  module: MechComponent | null = null;
+
   usedSlots: number = 0;
+
+  quickFilters = [
+    { label: 'Hacking', value: 'Hacking' },
+    { label: 'Scanner', value: 'Scanner' },
+    { label: 'Optics', value: 'Optics' },
+  ];
 
   constructor(
     private currentMech: CurrentMechService,
@@ -61,6 +80,37 @@ export class MechModulesComponent {
       this.moduleIds = modules.map((m) => m.id);
       this.countSlots();
     });
+  }
+
+  ngOnInit() {
+    const modal = document.getElementById('moduleInfoModal');
+
+    if (modal) {
+      modal.addEventListener('show.bs.modal', event => {
+        const button = (event as MouseEvent).relatedTarget as HTMLElement;
+
+        if (button) {
+          const index = button.getAttribute('data-bs-index');
+
+          if (index) {
+            this.module = this.modules[Number(index)];
+          }
+        }
+      });
+    }
+  }
+
+  cycleModule(direction: number) {
+    let index = this.moduleIndex + direction;
+
+    if (index < 0) {
+      index = this.modules.length - 1;
+    } else if (index >= this.modules.length) {
+      index = 0;
+    }
+
+    this.module = this.modules[index];
+    this.moduleIndex = index;
   }
 
   addModule(id: number) {

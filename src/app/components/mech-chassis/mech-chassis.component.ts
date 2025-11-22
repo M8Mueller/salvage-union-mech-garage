@@ -11,6 +11,7 @@ import { DataService } from '@salvage-union-app/services/data.service';
 import { Chassis } from '@salvage-union-app/types/mech';
 import { CardComponent } from '../elements/card/card.component';
 import { MechPatternComponent } from "../mech-pattern/mech-pattern.component";
+import { IconComponent } from '../elements/icon/icon.component';
 
 @Component({
   selector: 'app-mech-chassis',
@@ -20,6 +21,7 @@ import { MechPatternComponent } from "../mech-pattern/mech-pattern.component";
     CardComponent,
     CommonModule,
     FormsModule,
+    IconComponent,
     ReactiveFormsModule,
     RollTheDieComponent,
     MechPatternComponent

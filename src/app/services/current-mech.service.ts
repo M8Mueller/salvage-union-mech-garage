@@ -59,7 +59,9 @@ export class CurrentMechService {
       if (systemIds) {
         const systems: MechComponent[] = [];
 
-        systemIds.forEach((id) => {
+        const ids = systemIds.sort((a, b) => a - b);
+
+        ids.forEach((id) => {
           const system = this.data.getSystem(id);
 
           if (system) {
@@ -73,7 +75,9 @@ export class CurrentMechService {
       if (moduleIds) {
         const modules: MechComponent[] = [];
 
-        moduleIds.forEach((id) => {
+        const ids = moduleIds.sort((a, b) => a - b);
+
+        ids.forEach((id) => {
           const module = this.data.getModule(id);
 
           if (module) {
@@ -93,13 +97,10 @@ export class CurrentMechService {
   }
 
   setPattern(index: number | null) {
-
-    console.log(this.patterns.value);
-    console.log(index)
+    console.log('CurrentMechService.setPattern', index);
 
     if (index !== null && index < this.patterns.value.length) {
       const pattern: Pattern = this.patterns.value[index];
-      console.log(pattern)
 
       this.storage.setData('patternIndex', index);
 
@@ -132,6 +133,12 @@ export class CurrentMechService {
   setSystems(ids: number[], clearPattern: boolean = true) {
     const systems: MechComponent[] = [];
 
+    console.log('setSystems input', ids);
+
+    ids = ids.sort((a, b) => a - b);
+
+    console.log('setSystems',  ids);
+
     ids.forEach((id)=>{
       const system = this.data.getSystem(id);
 
@@ -151,6 +158,12 @@ export class CurrentMechService {
 
   setModules(ids: number[], clearPattern: boolean = true) {
     const modules: MechComponent[] = [];
+
+    console.log('setModules input', ids);
+
+    ids = ids.sort((a, b) => a - b);
+
+    console.log('setModules',  ids);
 
     ids.forEach((id)=>{
       const module = this.data.getModule(id);

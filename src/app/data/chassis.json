@@ -758,6 +758,136 @@
             "cargo_cap": 5,
             "tech_level": 5,
             "salvage_value": 2
+        },
+        {
+            "id": 121,
+            "name": "[Engineer] Auto-Turret (1)",
+            "structure_pts": 9,
+            "energy_pts": 2,
+            "heat_cap": 4,
+            "system_slots": 9,
+            "module_slots": 1,
+            "cargo_cap": 0,
+            "tech_level": 1,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Immobile",
+                    "description": [
+                        "Your Auto-Turret cannot move, even if you attach a Locomotion System, it will be unable to move."
+                    ]
+                },
+                {
+                    "name": "Portable",
+                    "description": [
+                        "Your Auto-Turret takes up 2 Pilot Inventory Slots."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 122,
+            "name": "[Engineer] Auto-Turret (2)",
+            "structure_pts": 12,
+            "energy_pts": 4,
+            "heat_cap": 6,
+            "system_slots": 12,
+            "module_slots": 2,
+            "cargo_cap": 0,
+            "tech_level": 2,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Immobile",
+                    "description": [
+                        "Your Auto-Turret cannot move, even if you attach a Locomotion System, it will be unable to move."
+                    ]
+                },
+                {
+                    "name": "Portable",
+                    "description": [
+                        "Your Auto-Turret takes up 2 Pilot Inventory Slots."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 123,
+            "name": "[Engineer] Auto-Turret (3)",
+            "structure_pts": 15,
+            "energy_pts": 6,
+            "heat_cap": 8,
+            "system_slots": 15,
+            "module_slots": 3,
+            "cargo_cap": 0,
+            "tech_level": 3,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Immobile",
+                    "description": [
+                        "Your Auto-Turret cannot move, even if you attach a Locomotion System, it will be unable to move."
+                    ]
+                },
+                {
+                    "name": "Portable",
+                    "description": [
+                        "Your Auto-Turret takes up 2 Pilot Inventory Slots."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 124,
+            "name": "[Engineer] Auto-Turret (4)",
+            "structure_pts": 18,
+            "energy_pts": 8,
+            "heat_cap": 10,
+            "system_slots": 18,
+            "module_slots": 4,
+            "cargo_cap": 0,
+            "tech_level": 4,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Immobile",
+                    "description": [
+                        "Your Auto-Turret cannot move, even if you attach a Locomotion System, it will be unable to move."
+                    ]
+                },
+                {
+                    "name": "Portable",
+                    "description": [
+                        "Your Auto-Turret takes up 2 Pilot Inventory Slots."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 125,
+            "name": "[Engineer] Auto-Turret (5)",
+            "structure_pts": 21,
+            "energy_pts": 10,
+            "heat_cap": 12,
+            "system_slots": 21,
+            "module_slots": 5,
+            "cargo_cap": 0,
+            "tech_level": 5,
+            "salvage_value": 2,
+            "abilities": [
+                {
+                    "name": "Immobile",
+                    "description": [
+                        "Your Auto-Turret cannot move, even if you attach a Locomotion System, it will be unable to move."
+                    ]
+                },
+                {
+                    "name": "Portable",
+                    "description": [
+                        "Your Auto-Turret takes up 2 Pilot Inventory Slots."
+                    ]
+                }
+            ]
         }
     ]
 }

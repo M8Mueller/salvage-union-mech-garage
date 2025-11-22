@@ -1,0 +1,39 @@
+.icon-text-overlay-container {
+    position: relative;
+    display: inline-block;
+}
+
+.icon-background {
+    font-size: 1.2em; /* Icon size */
+    color: white;
+}
+
+.overlay-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the text */
+    color: white;
+}
+
+.overlay-text {
+    font-size: 0.8em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the text */
+    color: black;
+    font-weight: bold;
+}
+
+.overlay-text.small {
+    font-size: 0.6em;
+}
+
+.overlay-text.offset {
+    transform: translate(-50%, -40%); /* Offset the text */
+}
+
+.overlay-text.offset-lg {
+    transform: translate(-50%, -25%); /* Offset the text */
+}
