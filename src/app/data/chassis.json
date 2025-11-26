@@ -343,7 +343,7 @@
         },
         {
             "id": 16,
-            "name": "[Little Sestra] Sestra Drone",
+            "name": "Sestra Drone",
             "structure_pts": 7,
             "energy_pts": 8,
             "heat_cap": 6,
@@ -431,7 +431,7 @@
         {
             "id": 20,
             "name": "Terra",
-            "structure_pts": 12,
+            "structure_pts": 23,
             "energy_pts": 12,
             "heat_cap": 13,
             "system_slots": 18,
@@ -446,7 +446,9 @@
                         {
                             "traits": ["Turn Action"],
                             "ep_cost": 2,
-                            "description": ["When activated, the Terra projects a safe, oxygenated, and habitable atmospheric bubble around it for 1 hour, or until shut off as a Free Action. Within the bubble gravity levels, pressure, heat, and other environmental factors are comparable to an Earth-like planet. This extends to Medium Range, and everything within it is safe from all harmful environmental effects irrespective of their severity."]
+                            "description": [
+                                "When activated, the Terra projects a safe, oxygenated, and habitable atmospheric bubble around it for 1 hour, or until shut off as a Free Action. Within the bubble gravity levels, pressure, heat, and other environmental factors are comparable to an Earth-like planet. This extends to Medium Range, and everything within it is safe from all harmful environmental effects irrespective of their severity."
+                            ]
                         }
                     ]
                 }
@@ -468,9 +470,15 @@
                     "name": "Integrated Advanced Shield Projector",
                     "actions": [
                         {
-                            "traits": ["Reaction", "Range: Medium", "Shield"],
+                            "traits": [
+                                "Reaction",
+                                "Range: Medium",
+                                "Shield"
+                            ],
                             "ep_cost": "X",
-                            "description": ["When a target within Range is hit by an attack or something that would deal damage, you may activate the Advanced Shield Projector. The damage of the attack is reduced by 3× the amount of Energy Points you expend on this Ability. If this reduces the damage to 0 or less the attack also has no additional effects."]
+                            "description": [
+                                "When a target within Range is hit by an attack or something that would deal damage, you may activate the Advanced Shield Projector. The damage of the attack is reduced by 3× the amount of Energy Points you expend on this Ability. If this reduces the damage to 0 or less the attack also has no additional effects."
+                            ]
                         }
                     ]
                 }
@@ -490,11 +498,15 @@
             "abilities": [
                 {
                     "name": "Eradication Protocols",
-                    "description": ["If the Colossus rolls a ‘Nailed It’ result (20) with an attack roll, it deals 4× damage instead of 2× damage."]
+                    "description": [
+                        "If the Colossus rolls a 'Nailed It' result (20) with an attack roll, it deals 4× damage instead of 2× damage."
+                    ]
                 },
                 {
                     "name": "Heavily Armoured Chassis",
-                    "description": ["Any attack that rolls a 'Nailed It' (20) result against the Colossus counts as a standard hit (11-19) and does not deal 2x damage or have any other bonus effect."]
+                    "description": [
+                        "Any attack that rolls a 'Nailed It' (20) result against the Colossus counts as a standard hit (11-19) and does not deal 2x damage or have any other bonus effect."
+                    ]
                 }
             ]
         },
@@ -512,11 +524,15 @@
             "abilities": [
                 {
                     "name": "Flashy",
-                    "description": ["The Consul has the Flashy Trait. It looks incredibly impressive, never being less than mint and pristine to onlookers, and fills them with much awe and admiration."]
+                    "description": [
+                        "The Consul has the Flashy Trait. It looks incredibly impressive, never being less than mint and pristine to onlookers, and fills them with much awe and admiration."
+                    ]
                 },
                 {
                     "name": "Morph Sphere",
-                    "description": ["This advanced anti-matter tech developed by Ascension PLC enables the Consul to reconstruct its form into a spherical mechanical ball around People size."],
+                    "description": [
+                        "This advanced anti-matter tech developed by Ascension PLC enables the Consul to reconstruct its form into a spherical mechanical ball around People size."
+                    ],
                     "actions": [
                         {
                             "ep_cost": 2,
@@ -544,7 +560,9 @@
             "abilities": [
                 {
                     "name": "Integrated Advanced Vectored Thrust Unit",
-                    "description": ["The Drop Bear has an Integrated Advanced Vectored Thrust Unit. This acts as a standard Vectored Thrust Unit System. In addition, when the Drop Bear activates the Advanced VTU System it can move an additional Range Band, ignoring all obstacles, Mechs, and terrain, and still move on its turn as normal."]
+                    "description": [
+                        "The Drop Bear has an Integrated Advanced Vectored Thrust Unit. This acts as a standard Vectored Thrust Unit System. In addition, when the Drop Bear activates the Advanced VTU System it can move an additional Range Band, ignoring all obstacles, Mechs, and terrain, and still move on its turn as normal."
+                    ]
                 }
             ]
         },
@@ -562,7 +580,9 @@
             "abilities": [
                 {
                     "name": "Heat Efficient Reactor",
-                    "description": ["Everytime the Vorpal gains Heat, reduce the amount gained to 1. Treat each source of Heat separately when using this Ability. For example if the Vorpal fires a Blue Mining Laser with the Hot (3) Trait it gains 1 Heat instead of 3. If the Vorpal then chooses to Push it would gain an additional 1 Heat instead of 2 for the Push."]
+                    "description": [
+                        "Everytime the Vorpal gains Heat, reduce the amount gained to 1. Treat each source of Heat separately when using this Ability. For example if the Vorpal fires a Blue Mining Laser with the Hot (3) Trait it gains 1 Heat instead of 3. If the Vorpal then chooses to Push it would gain an additional 1 Heat instead of 2 for the Push."
+                    ]
                 }
             ]
         },
@@ -635,7 +655,7 @@
         },
         {
             "id": 101,
-            "name": "[Scout] Survey Drone (1)",
+            "name": "Survey Drone (T1)",
             "structure_pts": 2,
             "energy_pts": 4,
             "heat_cap": 2,
@@ -647,13 +667,15 @@
             "abilities": [
                 {
                     "name": "Integrated Hover Locomotion System",
-                    "description": ["Your Survey Drone has the Hover trait."]
+                    "description": [
+                        "Your Survey Drone has the Hover trait."
+                    ]
                 }
             ]
         },
         {
             "id": 102,
-            "name": "[Scout] Survey Drone (2)",
+            "name": "Survey Drone (T2)",
             "structure_pts": 4,
             "energy_pts": 6,
             "heat_cap": 3,
@@ -665,13 +687,15 @@
             "abilities": [
                 {
                     "name": "Integrated Hover Locomotion System",
-                    "description": ["Your Survey Drone has the Hover trait."]
+                    "description": [
+                        "Your Survey Drone has the Hover trait."
+                    ]
                 }
             ]
         },
         {
             "id": 103,
-            "name": "[Scout] Survey Drone (3)",
+            "name": "Survey Drone (T3)",
             "structure_pts": 6,
             "energy_pts": 8,
             "heat_cap": 4,
@@ -683,13 +707,15 @@
             "abilities": [
                 {
                     "name": "Integrated Hover Locomotion System",
-                    "description": ["Your Survey Drone has the Hover trait."]
+                    "description": [
+                        "Your Survey Drone has the Hover trait."
+                    ]
                 }
             ]
         },
         {
             "id": 104,
-            "name": "[Scout] Survey Drone (4)",
+            "name": "Survey Drone (T4)",
             "structure_pts": 8,
             "energy_pts": 10,
             "heat_cap": 5,
@@ -701,13 +727,15 @@
             "abilities": [
                 {
                     "name": "Integrated Hover Locomotion System",
-                    "description": ["Your Survey Drone has the Hover trait."]
+                    "description": [
+                        "Your Survey Drone has the Hover trait."
+                    ]
                 }
             ]
         },
         {
             "id": 105,
-            "name": "[Scout] Survey Drone (5)",
+            "name": "Survey Drone (T5)",
             "structure_pts": 10,
             "energy_pts": 12,
             "heat_cap": 6,
@@ -719,13 +747,15 @@
             "abilities": [
                 {
                     "name": "Integrated Hover Locomotion System",
-                    "description": ["Your Survey Drone has the Hover trait."]
+                    "description": [
+                        "Your Survey Drone has the Hover trait."
+                    ]
                 }
             ]
         },
         {
             "id": 113,
-            "name": "[Ranger] Mecha Companion (3)",
+            "name": "Mecha Companion (T3)",
             "structure_pts": 12,
             "energy_pts": 5,
             "heat_cap": 8,
@@ -737,7 +767,7 @@
         },
         {
             "id": 114,
-            "name": "[Ranger] Mecha Companion (4)",
+            "name": "Mecha Companion (T4)",
             "structure_pts": 16,
             "energy_pts": 6,
             "heat_cap": 10,
@@ -749,7 +779,7 @@
         },
         {
             "id": 115,
-            "name": "[Ranger] Mecha Companion (5)",
+            "name": "Mecha Companion (T5)",
             "structure_pts": 20,
             "energy_pts": 7,
             "heat_cap": 12,
@@ -761,7 +791,7 @@
         },
         {
             "id": 121,
-            "name": "[Engineer] Auto-Turret (1)",
+            "name": "Auto-Turret (T1)",
             "structure_pts": 9,
             "energy_pts": 2,
             "heat_cap": 4,
@@ -787,7 +817,7 @@
         },
         {
             "id": 122,
-            "name": "[Engineer] Auto-Turret (2)",
+            "name": "Auto-Turret (T2)",
             "structure_pts": 12,
             "energy_pts": 4,
             "heat_cap": 6,
@@ -813,7 +843,7 @@
         },
         {
             "id": 123,
-            "name": "[Engineer] Auto-Turret (3)",
+            "name": "Auto-Turret (T3)",
             "structure_pts": 15,
             "energy_pts": 6,
             "heat_cap": 8,
@@ -839,7 +869,7 @@
         },
         {
             "id": 124,
-            "name": "[Engineer] Auto-Turret (4)",
+            "name": "Auto-Turret (T4)",
             "structure_pts": 18,
             "energy_pts": 8,
             "heat_cap": 10,
@@ -865,7 +895,7 @@
         },
         {
             "id": 125,
-            "name": "[Engineer] Auto-Turret (5)",
+            "name": "Auto-Turret (T5)",
             "structure_pts": 21,
             "energy_pts": 10,
             "heat_cap": 12,

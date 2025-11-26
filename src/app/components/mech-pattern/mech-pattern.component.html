@@ -13,7 +13,7 @@
 </div>
 
 <div class="modal fade" id="savedPatternsModal" tabindex="-1" aria-labelledby="savedPatternsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h1 class="modal-title fs-4" id="savedPatternsModalLabel">Patterns</h1>
@@ -28,125 +28,128 @@
                         </div>
                     </div>
 
-                    <div class="row" *ngFor="let pattern of patterns; let i=index; let last=last">
-                        <div class="col-9">
-                            <ng-container *ngIf="patternIndex === i; else inactive">
+                    <ng-container *ngFor="let pattern of patterns; let i=index; let last=last">
+                        <div class="row">
+                            <div class="col-5 d-flex align-items-center">
                                 <button
                                     type="button"
-                                    class="btn btn-dark my-auto"
-                                    (click)="selectPattern(null)">
-                                    <i class="bi bi-check-square me-2"></i>
-                                    {{ pattern.name }}
-                                    <span class="text-secondary">({{ patternChassis[i]?.name }})</span>
-                                </button>
-                            </ng-container>
+                                    class="btn btn-dark me-1"
+                                    (click)="togglePattern(i)">
 
-                            <ng-template #inactive>
-                                <button
-                                    type="button"
-                                    class="btn btn-dark my-auto"
-                                    (click)="selectPattern(i)">
-                                    <i class="bi bi-square me-2"></i>
-                                    {{ pattern.name }}
-                                    <span class="text-secondary">({{ patternChassis[i]?.name }})</span>
+                                    <i class="bi"
+                                        [ngClass]="{
+                                            'bi-check-circle': patternIndex === i,
+                                            'bi-circle': patternIndex !== i
+                                        }"></i>
                                 </button>
-                            </ng-template>
+
+                                <app-icon class="me-2" type="salvage" [value]="getScrapCost(pattern)"></app-icon>
+
+                                <span class="fw-bold">{{ pattern.name }}</span>
+                            </div>
+
+                            <div class="col d-flex justify-content-between align-items-center">
+                                <span class="text-secondary">
+                                    <span>{{ patternChassis[i]?.name || "No chassis"}}</span>
+                                </span>
+
+                                <span>
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm btn-outline-success bg-success-subtle me-2"
+                                        (click)="applyPattern(i)">
+                                        <i class="bi bi-tools"></i>
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm btn-outline-danger bg-danger-subtle"
+                                        (click)="deletePattern(i)">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
 
-                        <div class="col-3 text-end">
-                            <button
-                                type="button"
-                                class="btn btn-sm btn-outline-danger bg-danger-subtle ms-2"
-                                (click)="deletePattern(i)">
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
+                        <div class="row" *ngIf="patternIndex === i">
+                            <div class="col offset-2">
+                                <h5 class="h5">Systems</h5>
+                                <div class="text-secondary" *ngIf="systems.length === 0">None</div>
+                                <div class="text-secondary" *ngFor="let sys of systems; let isLast=last">{{ sys.name }}</div>
+                            </div>
+
+                            <div class="col">
+                                <h5 class="h5">Modules</h5>
+                                <div class="text-secondary" *ngIf="modules.length === 0">None</div>
+                                <div class="text-secondary" *ngFor="let mod of modules; let isLast=last">{{ mod.name }}</div>
+                            </div>
                         </div>
 
-                        <hr *ngIf="!last" class="my-2">
-                    </div>
+                        <hr class="hr" *ngIf="!last">
+                    </ng-container>
+
+
                 </div>
             </div>
 
             <div class="modal-footer">
                 <div class="container-fluid">
-                    <form class="form-horizontal" [formGroup]="patternForm" (ngSubmit)="newPattern()">
+                    <div class="row">
+                        <div class="col">
+                            <form class="form-horizontal" [formGroup]="patternForm" (ngSubmit)="newPattern()">
+                                <div class="row">
+                                    <div class="col-5 d-flex justify-content-between align-items-center">
+                                        <div class="input-group">
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-secondary bg-secondary-subtle"
+                                                (click)="selectPattern(null)">
 
-                        <div class="row mb-2">
-                            <label class="col-3 col-form-label fw-bold text-end" for="name">Name</label>
-                            <div class="col">
-                                <input type="text" class="form-control bg-secondary-subtle" placeholder="Enter a name" formControlName="name">
-                            </div>
+                                                <i class="bi"
+                                                    [ngClass]="{
+                                                        'bi-circle': patternIndex !== null,
+                                                        'bi-check-circle': patternIndex === null
+                                                    }"></i>
+                                            </button>
+
+                                            <div class="form-floating">
+                                                <input id="pattern_name" type="text" class="form-control bg-secondary-subtle" placeholder="Name" formControlName="name">
+                                                <label for="pattern_name">New Pattern</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col d-flex justify-content-between align-items-center">
+                                        <span class="text-secondary">
+                                            {{ currentChassis?.name || "No chassis" }}
+                                        </span>
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-sm btn-outline-primary bg-primary-subtle"
+                                            (click)="newPattern()"
+                                            [disabled]="!patternForm.valid">
+                                            <i class="bi bi-floppy-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2" *ngIf="patternIndex === null">
+                        <div class="col offset-2">
+                            <h5 class="h5">Systems</h5>
+                            <div class="text-secondary" *ngIf="currentSystems.length === 0">None</div>
+                            <div class="text-secondary" *ngFor="let sys of currentSystems; let isLast=last">{{ sys.name }}</div>
                         </div>
 
-                        <dl class="row">
-                            <dt class="col-3 text-end">Chassis</dt>
-                            <dd class="col-9 text-secondary">
-                                <span *ngIf="patternIndex !== null; else currentChassisName;">{{ chassis?.name || "None" }}</span>
-
-                                <ng-template #currentChassisName>
-                                    <span>{{ currentChassis?.name || "None" }}</span>
-                                </ng-template>
-                            </dd>
-
-                            <dt class="col-3 text-end">Systems</dt>
-                            <dd class="col-9 text-secondary">
-                                <ng-container *ngIf="patternIndex !== null; else currentSystemList;">
-                                    <span *ngIf="systems.length === 0">None</span>
-                                    <span *ngFor="let sys of systems; let isLast=last">{{ sys.name }}{{ isLast ? '' : ' // ' }}</span>
-                                </ng-container>
-
-                                <ng-template #currentSystemList>
-                                    <span *ngIf="currentSystems.length === 0">None</span>
-                                    <span *ngFor="let sys of currentSystems; let isLast=last">{{ sys.name }}{{ isLast ? '' : ' // ' }}</span>
-                                </ng-template>
-                            </dd>
-
-                            <dt class="col-3 text-end">Modules</dt>
-                            <dd class="col-9 text-secondary">
-                                <ng-container *ngIf="patternIndex !== null; else currentModuleList;">
-                                    <span *ngIf="modules.length === 0">None</span>
-                                    <span *ngFor="let mod of modules; let isLast=last">{{ mod.name }}{{ isLast ? '' : ' // ' }}</span>
-                                </ng-container>
-
-                                <ng-template #currentModuleList>
-                                    <span *ngIf="currentModules.length === 0">None</span>
-                                    <span *ngFor="let mod of currentModules; let isLast=last">{{ mod.name }}{{ isLast ? '' : ' // ' }}</span>
-                                </ng-template>
-                            </dd>
-                        </dl>
-
-                        <div class="row">
-                            <div class="col text-end">
-                                <ng-container *ngIf="patternIndex !== null">
-                                    <button
-                                        type="button"
-                                        class="btn btn-dark me-2"
-                                        (click)="applyPattern()">
-                                        <i class="bi bi-tools"></i>
-                                        Load Pattern
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-outline-primary bg-primary-subtle me-2"
-                                        (click)="updatePattern(patternIndex)"
-                                        [disabled]="!patternForm.valid">
-                                        <i class="bi bi-floppy-fill"></i>
-                                        Save Changes
-                                    </button>
-                                    <span class="me-2">|</span>
-                                </ng-container>
-
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-success bg-success-subtle"
-                                    (click)="newPattern()"
-                                    [disabled]="!patternForm.valid">
-                                    <i class="bi bi-stars"></i>
-                                    New
-                                </button>
-                            </div>
+                        <div class="col">
+                            <h5 class="h5">Modules</h5>
+                            <div class="text-secondary" *ngIf="currentModules.length === 0">None</div>
+                            <div class="text-secondary" *ngFor="let mod of currentModules; let isLast=last">{{ mod.name }}</div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
