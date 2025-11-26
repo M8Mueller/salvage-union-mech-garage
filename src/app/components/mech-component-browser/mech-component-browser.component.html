@@ -8,8 +8,10 @@
                             <div class="col">
                                 <ng-container *ngIf="filterForm.get('search') as search">
                                     <div class="input-group position-relative d-inline-flex align-items-center">
-                                        <input class="form-control bg-secondary-subtle"
+                                        <input
+                                            id="search"
                                             type="text"
+                                            class="form-control bg-secondary-subtle"
                                             placeholder="Filter by name or trait..."
                                             formControlName="search">
                                         <i class="bi bi-x-lg position-absolute input-button"
@@ -23,8 +25,10 @@
                             <div class="col">
                                 <ng-container *ngIf="filterForm.get('max_slots') as maxSlots">
                                     <div class="input-group position-relative d-inline-flex align-items-center">
-                                        <input class="form-control bg-secondary-subtle"
+                                        <input
+                                            id="max_slots"
                                             type="number"
+                                            class="form-control bg-secondary-subtle"
                                             min="1"
                                             placeholder="Filter by maximum slots..."
                                             formControlName="max_slots">
@@ -143,7 +147,7 @@
                                         <app-roll-the-die [rollResults]="component.roll_the_die" *ngIf="component.roll_the_die"></app-roll-the-die>
                                     </div>
 
-                                    <div *ngIf="component.description">
+                                    <!-- <div *ngIf="component.description">
                                         <a class="collapse-control"
                                             aria-expanded="false"
                                             data-bs-toggle="collapse"
@@ -152,7 +156,7 @@
                                             <span class="expanded">- Less</span>
                                             <span class="collapsed">+ More</span>
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 

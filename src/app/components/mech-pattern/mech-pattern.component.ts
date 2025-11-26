@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DataService } from '../../services/data.service';
 import { CurrentMechService } from '../../services/current-mech.service';
 import { StorageService } from '../../services/storage.service';
+import { IconComponent } from '../elements/icon/icon.component';
 
 @Component({
   selector: 'app-mech-pattern',
@@ -12,6 +13,7 @@ import { StorageService } from '../../services/storage.service';
   imports: [
     CommonModule,
     FormsModule,
+    IconComponent,
     ReactiveFormsModule,
   ],
   templateUrl: './mech-pattern.component.html',
@@ -52,7 +54,13 @@ export class MechPatternComponent {
     }
 
     this.currentMech.patternIndex$.subscribe((index) => {
-      this.currentPattern = index !== null ? this.patterns[index] : null;
+      if (index !== null) {
+        this.currentPattern = this.patterns[index];
+        this.patternForm.get('name')?.setValue(this.currentPattern.name);
+      } else {
+        this.currentPattern = null;
+        this.patternForm.get('name')?.setValue('');
+      }
       this.selectPattern(index);
     });
 
@@ -69,29 +77,58 @@ export class MechPatternComponent {
     });
   }
 
-  selectPattern(index: number | null) {
-    this.patternIndex = index;
+  togglePattern(index: number) {
+    if (index === this.patternIndex) {
+      this.selectPattern(null);
+    } else {
+      this.selectPattern(index);
+    }
+  }
 
-    if (index !== null) {
+  selectPattern(index: number | null) {
+    if (index === null) {
+      this.patternIndex = null;
+      this.pattern = null;
+      this.chassis = null;
+      this.systems = [];
+      this.modules = [];
+
+      return;
+    } else {
+      this.patternIndex = index;
       const pattern = this.patterns[index];
 
       this.pattern = pattern;
       this.chassis = this.data.getChassis(pattern.chassis);
       this.systems = pattern.systems.flatMap((s) => this.data.getSystem(s) || []);
       this.modules = pattern.modules.flatMap((m) => this.data.getModule(m) || []);
-
-      this.patternForm.get('name')?.setValue(pattern.name);
-
-    } else {
-      this.pattern = null;
-      this.chassis = null;
-      this.systems = [];
-      this.modules = [];
     }
   }
 
-  applyPattern() {
-    this.currentMech.setPattern(this.patternIndex);
+  getScrapCost(pattern: Pattern): number {
+    let total = 0;
+
+    const chassis = this.data.getChassis(pattern.chassis);
+    const systems = pattern.systems.flatMap((s) => this.data.getSystem(s) || []);
+    const modules = pattern.modules.flatMap((m) => this.data.getModule(m) || []);
+
+    if (chassis) {
+      total += chassis.salvage_value * chassis.tech_level;
+    }
+
+    systems.forEach((system) => {
+      total += system.salvage_value * system.tech_level;
+    });
+
+    modules.forEach((module) => {
+      total += module.salvage_value * module.tech_level;
+    });
+
+    return total;
+  }
+
+  applyPattern(index: number) {
+    this.currentMech.setPattern(index);
   }
 
   updatePattern(index: number) {
